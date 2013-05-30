@@ -11,6 +11,12 @@
     /// </summary>
     public class Cpf
     {
+        private string rawValue;
+
+        private string parsedValue;
+
+        public CpfPunctuation Pontuaction { get; private set; }
+
         public Cpf(string value)
             : this(value, CpfPunctuation.Loose)
         {
@@ -27,6 +33,11 @@
             {
                 throw new ArgumentException("O CPF não é válido");
             }
+
+            this.rawValue = value;
+            this.parsedValue = CpfHelper.Sanitize(value);
+
+            this.Pontuaction = pontuaction;
         }
 
         public static Cpf Parse(string value)
@@ -51,7 +62,7 @@
             try
             {
                 cpf = new Cpf(value);
-                
+
                 parsed = true;
             }
             catch (ArgumentException)
@@ -72,6 +83,58 @@
         public static string Complete(string value)
         {
             return CpfHelper.Complete(value);
+        }
+
+        //public static bool operator ==(Cpf cpfLeft, Cpf cpfRight)
+        //{
+        //    if (cpfLeft == null || cpfRight == null)
+        //    {
+        //        return false;
+        //    }
+
+        //    return false;
+        //}
+
+        //public static bool operator !=(Cpf cpfLeft, Cpf cpfRight)
+        //{
+        //    if (cpfLeft == null || cpfRight == null)
+        //    {
+        //        return true;
+        //    }
+
+        //    return true;
+        //}
+
+        public override bool Equals(object obj)
+        {
+            return this.Equals(obj as Cpf);
+        }
+
+        public bool Equals(Cpf cpf)
+        {
+            if (cpf == null)
+            {
+                return false;
+            }
+
+            return this.parsedValue == cpf.parsedValue;
+        }
+
+        public override int GetHashCode()
+        {
+            int hash = 17;
+
+            unchecked
+            {
+                hash = hash * 31 + (string.IsNullOrWhiteSpace(this.parsedValue) ? 0 : this.parsedValue.GetHashCode());
+            }
+
+            return hash;
+        }
+
+        public override string ToString()
+        {
+            return this.parsedValue;
         }
     }
 }

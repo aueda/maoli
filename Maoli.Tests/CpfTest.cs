@@ -206,5 +206,145 @@
 
             Assert.IsTrue(actual);
         }
+
+        //[TestMethod]
+        //public void EqualsOperatorReturnsTrueIfCpfAreEqual()
+        //{
+        //    var cpf1 = new Cpf("71402565860");
+        //    var cpf2 = new Cpf("71402565860");
+
+        //    var actual = cpf1 == cpf2;
+
+        //    Assert.IsTrue(actual);
+        //}
+
+        // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
+        [TestMethod]
+        public void EqualsReturnsTrueIfSameCpfIsEqual()
+        {
+            var cpf = Cpf.Parse("71402565860");
+
+            var actual = cpf.Equals(cpf);
+
+            Assert.IsTrue(actual);
+        }
+
+        // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
+        [TestMethod]
+        public void EqualsReturnsTrueIfTwoCpfsAreReciprocal()
+        {
+            var cpf1 = Cpf.Parse("71402565860");
+            var cpf2 = Cpf.Parse("71402565860");
+
+            var actual = cpf1.Equals(cpf2) && cpf2.Equals(cpf1);
+
+            Assert.IsTrue(actual);
+        }
+
+        // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
+        [TestMethod]
+        public void EqualsReturnsTrueIfThreeCpfsAreReciprocal()
+        {
+            var cpf1 = Cpf.Parse("71402565860");
+            var cpf2 = Cpf.Parse("71402565860");
+            var cpf3 = Cpf.Parse("71402565860");
+
+            var actual = cpf1.Equals(cpf2) && cpf2.Equals(cpf3) && cpf1.Equals(cpf3);
+
+            Assert.IsTrue(actual);
+        }
+
+        // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
+        [TestMethod]
+        public void EqualsReturnsFalseIfCpfIsNull()
+        {
+            var cpf = Cpf.Parse("71402565860");
+            
+            var actual = cpf.Equals(null);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void EqualsReturnsTrueIfCpfAreEqual()
+        {
+            var cpf1 = Cpf.Parse("71402565860");
+            var cpf2 = Cpf.Parse("71402565860");
+
+            var actual = cpf1.Equals(cpf2);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void EqualsReturnsTrueIfCpfAreEqualButWithDiffPontuaction()
+        {
+            var cpf1 = Cpf.Parse("71402565860");
+            var cpf2 = Cpf.Parse("714.025.658-60", CpfPunctuation.Strict);
+
+            var actual = cpf1.Equals(cpf2);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void EqualsReturnsFalseIfCpfAreNotEqual()
+        {
+            var cpf1 = Cpf.Parse("71402565860");
+            var cpf2 = Cpf.Parse("77033192100");
+
+            var actual = cpf1.Equals(cpf2);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void GetHashCodeReturnsTrueIfCpfAreEqual()
+        {
+            var hash1 = Cpf.Parse("71402565860").GetHashCode();
+            var hash2 = Cpf.Parse("71402565860").GetHashCode();
+
+            Assert.AreEqual<int>(hash1, hash2);
+        }
+
+        [TestMethod]
+        public void GetHashCodeReturnsTrueIfCpfAreEqualButWithDiffPontuaction()
+        {
+            var hash1 = Cpf.Parse("71402565860").GetHashCode();
+            var hash2 = Cpf.Parse("714.025.658-60").GetHashCode();
+
+            Assert.AreEqual<int>(hash1, hash2);
+        }
+
+        [TestMethod]
+        public void GetHashCodeReturnsFalseIfCpfAreNotEqual()
+        {
+            var hash1 = Cpf.Parse("71402565860").GetHashCode();
+            var hash2 = Cpf.Parse("77033192100").GetHashCode();
+
+            Assert.AreNotEqual<int>(hash1, hash2);
+        }
+
+        [TestMethod]
+        public void ToStringReturnsStringWithNoPontuactionIfCpfPontuactionIsStrict()
+        {
+            var cpf = new Cpf("714.025.658-60", CpfPunctuation.Strict);
+
+            var expected = "71402565860";
+            var actual = cpf.ToString();
+
+            Assert.AreEqual<string>(expected, actual);
+        }
+
+        [TestMethod]
+        public void ToStringReturnsStringWithNoPontuactionIfCpfPontuactionIsLoose()
+        {
+            var cpf = new Cpf("71402565860");
+
+            var expected = "71402565860";
+            var actual = cpf.ToString();
+
+            Assert.AreEqual<string>(expected, actual);
+        }
     }
 }

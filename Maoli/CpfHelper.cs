@@ -79,6 +79,11 @@
                 .Replace("-", string.Empty);
         }
 
+        internal static string Format(string value)
+        {
+            throw new NotImplementedException();
+        }
+
         internal static string Complete(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
