@@ -7,18 +7,18 @@
     [TestClass]
     public class CpfTest
     {
-        private const string validCpf = "71402565860";
+        private const string looseValidCpf = "71402565860";
 
         private const string invalidCpf = "82513676932";
 
-        private const string formValidCpf = "714.025.658-60";
+        private const string strictValidCpf = "714.025.658-60";
 
-        private const string formInvalidCpf = "825.136.769-32";
+        private const string strictInvalidCpf = "825.136.769-32";
 
         [TestMethod]
         public void PunctuationReturnsStrict()
         {
-            var cpf = Cpf.Parse(CpfTest.formValidCpf, CpfPunctuation.Strict);
+            var cpf = Cpf.Parse(CpfTest.strictValidCpf, CpfPunctuation.Strict);
             var expected = CpfPunctuation.Strict;
             var actual = cpf.Punctuation;
 
@@ -28,7 +28,7 @@
         [TestMethod]
         public void PunctuationReturnsLoose()
         {
-            var cpf = Cpf.Parse(CpfTest.validCpf, CpfPunctuation.Loose);
+            var cpf = Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Loose);
             var expected = CpfPunctuation.Loose;
             var actual = cpf.Punctuation;
 
@@ -38,7 +38,7 @@
         [TestMethod]
         public void LooseParseReturnsACpfObjectIfCpfIsValid()
         {
-            var cpf = Cpf.Parse(CpfTest.validCpf);
+            var cpf = Cpf.Parse(CpfTest.looseValidCpf);
 
             Assert.IsNotNull(cpf);
         }
@@ -46,7 +46,7 @@
         [TestMethod]
         public void LooseParseReturnsACpfObjectIfFormattedCpfIsValid()
         {
-            var cpf = Cpf.Parse(CpfTest.formValidCpf);
+            var cpf = Cpf.Parse(CpfTest.strictValidCpf);
 
             Assert.IsNotNull(cpf);
         }
@@ -126,7 +126,7 @@
 
             try
             {
-                var cpf = Cpf.Parse(CpfTest.validCpf, CpfPunctuation.Strict);
+                var cpf = Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Strict);
             }
             catch (ArgumentException)
             {
@@ -156,7 +156,7 @@
         [TestMethod]
         public void StrictParseReturnsACpfObjectIfFormattedCpfIsValid()
         {
-            var cpf = Cpf.Parse(CpfTest.formValidCpf, CpfPunctuation.Strict);
+            var cpf = Cpf.Parse(CpfTest.strictValidCpf, CpfPunctuation.Strict);
 
             Assert.IsNotNull(cpf);
         }
@@ -168,7 +168,7 @@
 
             try
             {
-                var cpf = Cpf.Parse(CpfTest.validCpf, CpfPunctuation.Strict);
+                var cpf = Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Strict);
             }
             catch (ArgumentException)
             {
@@ -181,7 +181,7 @@
         [TestMethod]
         public void IsValidReturnsTrueIfCpfIsValid()
         {
-            var actual = Cpf.IsValid(CpfTest.validCpf);
+            var actual = Cpf.IsValid(CpfTest.looseValidCpf);
 
             Assert.IsTrue(actual);
         }
@@ -205,7 +205,7 @@
         [TestMethod]
         public void IsValidReturnsFalseIfCpfIsValidButNotStrict()
         {
-            var actual = Cpf.IsValid(validCpf, CpfPunctuation.Strict);
+            var actual = Cpf.IsValid(looseValidCpf, CpfPunctuation.Strict);
 
             Assert.IsFalse(actual);
         }
@@ -213,7 +213,7 @@
         [TestMethod]
         public void IsValidReturnsTrueIfCpfIsValidAndStrict()
         {
-            var actual = Cpf.IsValid(CpfTest.formValidCpf, CpfPunctuation.Strict);
+            var actual = Cpf.IsValid(CpfTest.strictValidCpf, CpfPunctuation.Strict);
 
             Assert.IsTrue(actual);
         }
@@ -223,7 +223,7 @@
         {
             var actual = Cpf.Complete("714025658");
 
-            Assert.AreEqual<string>(CpfTest.validCpf, actual);
+            Assert.AreEqual<string>(CpfTest.looseValidCpf, actual);
         }
 
         [TestMethod]
