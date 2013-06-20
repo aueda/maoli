@@ -15,7 +15,7 @@
 
         private string parsedValue;
 
-        public CpfPunctuation Pontuaction { get; private set; }
+        public CpfPunctuation Punctuation { get; private set; }
 
         public Cpf(string value)
             : this(value, CpfPunctuation.Loose)
@@ -37,7 +37,7 @@
             this.rawValue = value;
             this.parsedValue = CpfHelper.Sanitize(value);
 
-            this.Pontuaction = pontuaction;
+            this.Punctuation = pontuaction;
         }
 
         public static Cpf Parse(string value)

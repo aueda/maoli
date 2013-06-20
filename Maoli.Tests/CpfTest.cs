@@ -16,6 +16,26 @@
         private const string formInvalidCpf = "825.136.769-32";
 
         [TestMethod]
+        public void PunctuationReturnsStrict()
+        {
+            var cpf = Cpf.Parse(CpfTest.formValidCpf, CpfPunctuation.Strict);
+            var expected = CpfPunctuation.Strict;
+            var actual = cpf.Punctuation;
+
+            Assert.AreEqual<CpfPunctuation>(expected, actual);
+        }
+
+        [TestMethod]
+        public void PunctuationReturnsLoose()
+        {
+            var cpf = Cpf.Parse(CpfTest.validCpf, CpfPunctuation.Loose);
+            var expected = CpfPunctuation.Loose;
+            var actual = cpf.Punctuation;
+
+            Assert.AreEqual<CpfPunctuation>(expected, actual);
+        }
+
+        [TestMethod]
         public void LooseParseReturnsACpfObjectIfCpfIsValid()
         {
             var cpf = Cpf.Parse(CpfTest.validCpf);
