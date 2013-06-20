@@ -183,6 +183,22 @@
         }
 
         [TestMethod]
+        public void IsValidReturnsFalseIfCpfIsValidButNotStrict()
+        {
+            var actual = Cpf.IsValid(validCpf, CpfPunctuation.Strict);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void IsValidReturnsTrueIfCpfIsValidAndStrict()
+        {
+            var actual = Cpf.IsValid(CpfTest.formValidCpf, CpfPunctuation.Strict);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
         public void CompleteReturnsAValidCpf()
         {
             var actual = Cpf.Complete("714025658");

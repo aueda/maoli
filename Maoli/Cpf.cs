@@ -80,6 +80,11 @@
             return CpfHelper.Validate(value, CpfPunctuation.Loose);
         }
 
+        public static bool IsValid(string value, CpfPunctuation punctuation)
+        {
+            return CpfHelper.Validate(value, punctuation);
+        }
+
         public static string Complete(string value)
         {
             return CpfHelper.Complete(value);
