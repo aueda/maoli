@@ -52,16 +52,16 @@
 
         public static bool TryParse(string value, out Cpf cpf)
         {
-            return Cpf.TryParse(value, CpfPunctuation.Loose, out cpf);
+            return Cpf.TryParse(value, out cpf, CpfPunctuation.Loose);
         }
 
-        public static bool TryParse(string value, CpfPunctuation pontuaction, out Cpf cpf)
+        public static bool TryParse(string value, out Cpf cpf, CpfPunctuation punctuation)
         {
             var parsed = false;
 
             try
             {
-                cpf = new Cpf(value);
+                cpf = new Cpf(value, punctuation);
 
                 parsed = true;
             }

@@ -346,5 +346,45 @@
 
             Assert.AreEqual<string>(expected, actual);
         }
+
+        [TestMethod]
+        public void TryParseReturnsFalseIfCpfIsInvalid()
+        {
+            Cpf cpf = null;
+
+            var actual = Cpf.TryParse("71402565862", out cpf);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void TryParseReturnsTrueIfCpfIsValid()
+        {
+            Cpf cpf = null;
+
+            var actual = Cpf.TryParse("71402565860", out cpf);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void StrictTryParseReturnsFalseIfCpfIsInvalid()
+        {
+            Cpf cpf = null;
+
+            var actual = Cpf.TryParse("71402565860", out cpf, CpfPunctuation.Strict);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void StrictTryParseReturnsFalseIfCpfIsValid()
+        {
+            Cpf cpf = null;
+
+            var actual = Cpf.TryParse("714.025.658-60", out cpf, CpfPunctuation.Strict);
+
+            Assert.IsTrue(actual);
+        }
     }
 }
