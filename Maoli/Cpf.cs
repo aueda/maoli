@@ -1,4 +1,4 @@
-﻿namespace Maoli.Docs
+﻿namespace Maoli
 {
     using System;
     using System.Collections.Generic;

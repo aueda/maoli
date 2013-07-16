@@ -1,7 +1,7 @@
-﻿namespace Maoli.Docs.Tests
+﻿namespace Maoli.Tests
 {
     using System;
-    using Maoli.Docs;
+    using Maoli;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]

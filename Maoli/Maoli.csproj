@@ -7,8 +7,8 @@
     <ProjectGuid>{66620B5A-D754-44DD-9349-B44759D1C617}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Maoli.Docs</RootNamespace>
-    <AssemblyName>Maoli.Docs</AssemblyName>
+    <RootNamespace>Maoli</RootNamespace>
+    <AssemblyName>Maoli</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

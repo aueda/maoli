@@ -6,8 +6,8 @@
     <ProjectGuid>{6EBE6C42-4BF7-42E2-A09A-E6F44526379E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Maoli.Docs.Tests</RootNamespace>
-    <AssemblyName>Maoli.Docs.Tests</AssemblyName>
+    <RootNamespace>Maoli.Tests</RootNamespace>
+    <AssemblyName>Maoli.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Maoli\Maoli.Docs.csproj">
+    <ProjectReference Include="..\Maoli\Maoli.csproj">
       <Project>{66620b5a-d754-44dd-9349-b44759d1c617}</Project>
-      <Name>Maoli.Docs</Name>
+      <Name>Maoli</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
