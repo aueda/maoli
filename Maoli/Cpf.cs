@@ -88,26 +88,53 @@
             return parsed;
         }
 
+        /// <summary>
+        /// Checks if a string value is a valid CPF representation
+        /// </summary>
+        /// <param name="value">a CPF string to be checked</param>
+        /// <returns>true if CPF string is valid; false otherwise</returns>
         public static bool IsValid(string value)
         {
             return CpfHelper.Validate(value, CpfPunctuation.Loose);
         }
 
-        public static bool IsValid(string value, CpfPunctuation punctuation)
+        /// <summary>
+        /// Checks if a string value is a valid CPF representation
+        /// </summary>
+        /// <param name="value">a CPF string to be checked</param>
+        /// <param name="puntuaction">the puntuaction setting configurating 
+        /// how validation must be handled</param>
+        /// <returns>true if CPF string is valid; otherwise, false</returns>
+        public static bool IsValid(string value, CpfPunctuation puntuaction)
         {
-            return CpfHelper.Validate(value, punctuation);
+            return CpfHelper.Validate(value, puntuaction);
         }
 
+        /// <summary>
+        /// Completes a partial CPF string by appending a valid checksum trailing
+        /// </summary>
+        /// <param name="value">a partial CPF string with or without puntuaction</param>
+        /// <returns>a CPF string with a valid checksum trailing</returns>
         public static string Complete(string value)
         {
             return CpfHelper.Complete(value);
         }
 
+        /// <summary>
+        /// Determines whether this instance and a specified object, which must also be a <see cref="Cpf"/> object, have the same value
+        /// </summary>
+        /// <param name="obj">The Cpf to compare to this instance</param>
+        /// <returns>if the value of the value parameter is the same as this instance; otherwise, false</returns>
         public override bool Equals(object obj)
         {
             return this.Equals(obj as Cpf);
         }
 
+        /// <summary>
+        /// Determines whether this instance and another specified <see cref="Cpf"/> object have the same value
+        /// </summary>
+        /// <param name="cpf">The Cpf to compare to this instance</param>
+        /// <returns>if the value of the value parameter is the same as this instance; otherwise, false</returns>
         public bool Equals(Cpf cpf)
         {
             if (cpf == null)
@@ -118,6 +145,10 @@
             return this.parsedValue == cpf.parsedValue;
         }
 
+        /// <summary>
+        /// Returns the hash code for this Cpf
+        /// </summary>
+        /// <returns>A 32-bit signed integer hash code</returns>
         public override int GetHashCode()
         {
             int hash = 17;
@@ -130,6 +161,10 @@
             return hash;
         }
 
+        /// <summary>
+        /// Converts the value of this instance to a <seealso cref="string"/>String.
+        /// </summary>
+        /// <returns>The cpf as string</returns>
         public override string ToString()
         {
             return this.parsedValue;

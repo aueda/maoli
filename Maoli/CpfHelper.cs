@@ -28,11 +28,12 @@
         }
 
         /// <summary>
-        /// Validates a string value as a valid CPF representation
+        /// Checks if a string value is a valid CPF representation
         /// </summary>
-        /// <param name="value">string value representing a CPF</param>
-        /// <param name="puntuaction">flag indicating how punctuaction must be validated</param>
-        /// <returns>true if it is a valid CPF; false otherwise</returns>
+        /// <param name="value">a CPF string to be checked</param>
+        /// <param name="puntuaction">the puntuaction setting configurating 
+        /// how validation must be handled</param>
+        /// <returns>true if CPF string is valid; false otherwise</returns>
         internal static bool Validate(string value, CpfPunctuation puntuaction)
         {
             if (string.IsNullOrWhiteSpace(value))
