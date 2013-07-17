@@ -115,14 +115,14 @@
         {
             if (string.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException("O cpf é inválido");
+                throw new ArgumentException("O CPF é inválido");
             }
 
             value = CpfHelper.Sanitize(value);
 
             if (!Regex.IsMatch(value, @"\d{9}"))
             {
-                throw new ArgumentException("O cpf é inválido");
+                throw new ArgumentException("O CPF é inválido");
             }
 
             int digit1 = CpfHelper.CreateChecksum(value);
