@@ -313,7 +313,7 @@
         }
 
         [TestMethod]
-        public void EqualsReturnsTrueIfCpfAreEqualButWithDiffPontuaction()
+        public void EqualsReturnsTrueIfCpfAreEqualButWithDiffPuntuaction()
         {
             var cpf1 = Cpf.Parse("71402565860");
             var cpf2 = Cpf.Parse("714.025.658-60", CpfPunctuation.Strict);
@@ -344,7 +344,7 @@
         }
 
         [TestMethod]
-        public void GetHashCodeReturnsTrueIfCpfAreEqualButWithDiffPontuaction()
+        public void GetHashCodeReturnsTrueIfCpfAreEqualButWithDiffPuntuaction()
         {
             var hash1 = Cpf.Parse("71402565860").GetHashCode();
             var hash2 = Cpf.Parse("714.025.658-60").GetHashCode();
@@ -362,7 +362,7 @@
         }
 
         [TestMethod]
-        public void ToStringReturnsStringWithNoPontuactionIfCpfPontuactionIsStrict()
+        public void ToStringReturnsStringWithNoPuntuactionIfCpfPuntuactionIsStrict()
         {
             var cpf = new Cpf("714.025.658-60", CpfPunctuation.Strict);
 
@@ -373,7 +373,7 @@
         }
 
         [TestMethod]
-        public void ToStringReturnsStringWithNoPontuactionIfCpfPontuactionIsLoose()
+        public void ToStringReturnsStringWithNoPuntuactionIfCpfPuntuactionIsLoose()
         {
             var cpf = new Cpf("71402565860");
 

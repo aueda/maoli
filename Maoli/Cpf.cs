@@ -33,16 +33,16 @@
         /// Initializes a new instance of Cpf
         /// </summary>
         /// <param name="value">a valid CPF string</param>
-        /// <param name="pontuaction">the puntuaction setting configurating 
+        /// <param name="puntuaction">the puntuaction setting configurating 
         /// how validation must be handled</param>
-        public Cpf(string value, CpfPunctuation pontuaction)
+        public Cpf(string value, CpfPunctuation puntuaction)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
                 throw new ArgumentException("O CPF não pode ser nulo ou branco");
             }
 
-            if (!CpfHelper.Validate(value, pontuaction))
+            if (!CpfHelper.Validate(value, puntuaction))
             {
                 throw new ArgumentException("O CPF não é válido");
             }
@@ -50,7 +50,7 @@
             this.rawValue = value;
             this.parsedValue = CpfHelper.Sanitize(value);
 
-            this.Punctuation = pontuaction;
+            this.Punctuation = puntuaction;
         }
 
         public static Cpf Parse(string value)
@@ -58,9 +58,9 @@
             return Cpf.Parse(value, CpfPunctuation.Loose);
         }
 
-        public static Cpf Parse(string value, CpfPunctuation pontuaction)
+        public static Cpf Parse(string value, CpfPunctuation puntuaction)
         {
-            return new Cpf(value, pontuaction);
+            return new Cpf(value, puntuaction);
         }
 
         public static bool TryParse(string value, out Cpf cpf)

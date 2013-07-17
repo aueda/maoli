@@ -31,16 +31,16 @@
         /// Validates a string value as a valid CPF representation
         /// </summary>
         /// <param name="value">string value representing a CPF</param>
-        /// <param name="pontuaction">flag indicating how punctuaction must be validated</param>
+        /// <param name="puntuaction">flag indicating how punctuaction must be validated</param>
         /// <returns>true if it is a valid CPF; false otherwise</returns>
-        internal static bool Validate(string value, CpfPunctuation pontuaction)
+        internal static bool Validate(string value, CpfPunctuation puntuaction)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
                 return false;
             }
 
-            if (!Regex.IsMatch(value, CpfHelper.regexValidations[pontuaction]))
+            if (!Regex.IsMatch(value, CpfHelper.regexValidations[puntuaction]))
             {
                 return false;
             }
