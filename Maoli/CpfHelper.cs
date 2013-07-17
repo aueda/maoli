@@ -7,6 +7,9 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Helper class for <see cref="Cpf"/> class
+    /// </summary>
     internal static class CpfHelper
     {
         private static Dictionary<CpfPunctuation, string> regexValidations;
@@ -24,6 +27,12 @@
                 @"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
         }
 
+        /// <summary>
+        /// Validates a string value as a valid CPF representation
+        /// </summary>
+        /// <param name="value">string value representing a CPF</param>
+        /// <param name="pontuaction">flag indicating how punctuaction must be validated</param>
+        /// <returns>true if it is a valid CPF; false otherwise</returns>
         internal static bool Validate(string value, CpfPunctuation pontuaction)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -47,6 +56,11 @@
             return inputDigit1 == calcDigit1 && inputDigit2 == calcDigit2;
         }
 
+        /// <summary>
+        /// Create a checksum digit
+        /// </summary>
+        /// <param name="text">the text to create the checksum</param>
+        /// <returns>the checksum digit</returns>
         internal static int CreateChecksum(string text)
         {
             var i = 0;
@@ -68,6 +82,11 @@
             return digit;
         }
 
+        /// <summary>
+        /// Removes puntuaction and trim from a CPF string
+        /// </summary>
+        /// <param name="value">a CPF string</param>
+        /// <returns>a trimmed CPF string without puntuaction</returns>
         internal static string Sanitize(string value)
         {
             return value
@@ -77,11 +96,21 @@
                 .Replace("-", string.Empty);
         }
 
+        /// <summary>
+        /// Formats a CPF string using the punctuation setting
+        /// </summary>
+        /// <param name="value">a CPF string to format</param>
+        /// <returns>A formated CPF string with or without puntuaction</returns>
         internal static string Format(string value)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Completes a partial CPF string by appending a valid checksum trailing
+        /// </summary>
+        /// <param name="value">a partial CPF string with or without puntuaction</param>
+        /// <returns>a CPF string with a valid checksum trailing</returns>
         internal static string Complete(string value)
         {
             if (string.IsNullOrWhiteSpace(value))

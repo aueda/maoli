@@ -15,13 +15,26 @@
 
         private string parsedValue;
 
+        /// <summary>
+        /// Gets the puntuaction setting
+        /// </summary>
         public CpfPunctuation Punctuation { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of Cpf
+        /// </summary>
+        /// <param name="value">a valid CPF string</param>
         public Cpf(string value)
             : this(value, CpfPunctuation.Loose)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of Cpf
+        /// </summary>
+        /// <param name="value">a valid CPF string</param>
+        /// <param name="pontuaction">the puntuaction setting configurating 
+        /// how validation must be handled</param>
         public Cpf(string value, CpfPunctuation pontuaction)
         {
             if (string.IsNullOrWhiteSpace(value))
