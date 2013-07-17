@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Cpf.cs" />
     <Compile Include="CpfHelper.cs" />
-    <Compile Include="CpfPuntuaction.cs" />
+    <Compile Include="CpfPunctuation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

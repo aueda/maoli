@@ -16,7 +16,7 @@
         private string parsedValue;
 
         /// <summary>
-        /// Gets the puntuaction setting
+        /// Gets the punctuation setting
         /// </summary>
         public CpfPunctuation Punctuation { get; private set; }
 
@@ -33,16 +33,16 @@
         /// Initializes a new instance of Cpf
         /// </summary>
         /// <param name="value">a valid CPF string</param>
-        /// <param name="puntuaction">the puntuaction setting configurating 
+        /// <param name="punctuation">the punctuation setting configurating 
         /// how validation must be handled</param>
-        public Cpf(string value, CpfPunctuation puntuaction)
+        public Cpf(string value, CpfPunctuation punctuation)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
                 throw new ArgumentException("O CPF não pode ser nulo ou branco");
             }
 
-            if (!CpfHelper.Validate(value, puntuaction))
+            if (!CpfHelper.Validate(value, punctuation))
             {
                 throw new ArgumentException("O CPF não é válido");
             }
@@ -50,7 +50,7 @@
             this.rawValue = value;
             this.parsedValue = CpfHelper.Sanitize(value);
 
-            this.Punctuation = puntuaction;
+            this.Punctuation = punctuation;
         }
 
         public static Cpf Parse(string value)
@@ -58,9 +58,9 @@
             return Cpf.Parse(value, CpfPunctuation.Loose);
         }
 
-        public static Cpf Parse(string value, CpfPunctuation puntuaction)
+        public static Cpf Parse(string value, CpfPunctuation punctuation)
         {
-            return new Cpf(value, puntuaction);
+            return new Cpf(value, punctuation);
         }
 
         public static bool TryParse(string value, out Cpf cpf)
@@ -102,18 +102,18 @@
         /// Checks if a string value is a valid CPF representation
         /// </summary>
         /// <param name="value">a CPF string to be checked</param>
-        /// <param name="puntuaction">the puntuaction setting configurating 
+        /// <param name="punctuation">the punctuation setting configurating 
         /// how validation must be handled</param>
         /// <returns>true if CPF string is valid; otherwise, false</returns>
-        public static bool IsValid(string value, CpfPunctuation puntuaction)
+        public static bool IsValid(string value, CpfPunctuation punctuation)
         {
-            return CpfHelper.Validate(value, puntuaction);
+            return CpfHelper.Validate(value, punctuation);
         }
 
         /// <summary>
         /// Completes a partial CPF string by appending a valid checksum trailing
         /// </summary>
-        /// <param name="value">a partial CPF string with or without puntuaction</param>
+        /// <param name="value">a partial CPF string with or without punctuation</param>
         /// <returns>a CPF string with a valid checksum trailing</returns>
         public static string Complete(string value)
         {

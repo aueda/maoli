@@ -31,17 +31,17 @@
         /// Checks if a string value is a valid CPF representation
         /// </summary>
         /// <param name="value">a CPF string to be checked</param>
-        /// <param name="puntuaction">the puntuaction setting configurating 
+        /// <param name="punctuation">the punctuation setting configurating 
         /// how validation must be handled</param>
         /// <returns>true if CPF string is valid; false otherwise</returns>
-        internal static bool Validate(string value, CpfPunctuation puntuaction)
+        internal static bool Validate(string value, CpfPunctuation punctuation)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
                 return false;
             }
 
-            if (!Regex.IsMatch(value, CpfHelper.regexValidations[puntuaction]))
+            if (!Regex.IsMatch(value, CpfHelper.regexValidations[punctuation]))
             {
                 return false;
             }
@@ -84,10 +84,10 @@
         }
 
         /// <summary>
-        /// Removes puntuaction and trim from a CPF string
+        /// Removes punctuation and trim from a CPF string
         /// </summary>
         /// <param name="value">a CPF string</param>
-        /// <returns>a trimmed CPF string without puntuaction</returns>
+        /// <returns>a trimmed CPF string without punctuation</returns>
         internal static string Sanitize(string value)
         {
             return value
@@ -101,7 +101,7 @@
         /// Formats a CPF string using the punctuation setting
         /// </summary>
         /// <param name="value">a CPF string to format</param>
-        /// <returns>A formated CPF string with or without puntuaction</returns>
+        /// <returns>A formated CPF string with or without punctuation</returns>
         internal static string Format(string value)
         {
             throw new NotImplementedException();
@@ -110,7 +110,7 @@
         /// <summary>
         /// Completes a partial CPF string by appending a valid checksum trailing
         /// </summary>
-        /// <param name="value">a partial CPF string with or without puntuaction</param>
+        /// <param name="value">a partial CPF string with or without punctuation</param>
         /// <returns>a CPF string with a valid checksum trailing</returns>
         internal static string Complete(string value)
         {
