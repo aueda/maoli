@@ -90,26 +90,6 @@
             return CpfHelper.Complete(value);
         }
 
-        //public static bool operator ==(Cpf cpfLeft, Cpf cpfRight)
-        //{
-        //    if (cpfLeft == null || cpfRight == null)
-        //    {
-        //        return false;
-        //    }
-
-        //    return false;
-        //}
-
-        //public static bool operator !=(Cpf cpfLeft, Cpf cpfRight)
-        //{
-        //    if (cpfLeft == null || cpfRight == null)
-        //    {
-        //        return true;
-        //    }
-
-        //    return true;
-        //}
-
         public override bool Equals(object obj)
         {
             return this.Equals(obj as Cpf);

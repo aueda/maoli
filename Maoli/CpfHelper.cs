@@ -38,8 +38,6 @@
 
             value = CpfHelper.Sanitize(value);
 
-            // TODO: verify if cpf is 00000000000, 11111111111, ..., 99999999999
-
             var inputDigit1 = Convert.ToInt32(value.Substring(9, 1));
             var inputDigit2 = Convert.ToInt32(value.Substring(10, 1));
 
