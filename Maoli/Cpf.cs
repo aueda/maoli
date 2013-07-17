@@ -53,21 +53,47 @@
             this.Punctuation = punctuation;
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="Cpf"/> from a CPF string
+        /// </summary>
+        /// <param name="value">a CPF string</param>
+        /// <returns>the new instance of <see cref="Cpf"/></returns>
         public static Cpf Parse(string value)
         {
             return Cpf.Parse(value, CpfPunctuation.Loose);
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="Cpf"/> from a CPF string
+        /// </summary>
+        /// <param name="value">a CPF string</param>
+        /// <param name="punctuation">the punctuation setting configurating 
+        /// how validation must be handled</param>
+        /// <returns>the new instance of <see cref="Cpf"/></returns>
         public static Cpf Parse(string value, CpfPunctuation punctuation)
         {
             return new Cpf(value, punctuation);
         }
 
+        /// <summary>
+        /// Tries to create a new instance of <see cref="Cpf"/> from a CPF string
+        /// </summary>
+        /// <param name="value">a CPF string</param>
+        /// <param name="cpf">the new instance of <see cref="Cpf"/></param>
+        /// <returns>true if CPF string is valid; false, otherwise</returns>
         public static bool TryParse(string value, out Cpf cpf)
         {
             return Cpf.TryParse(value, out cpf, CpfPunctuation.Loose);
         }
 
+        /// <summary>
+        /// Tries to create a new instance of <see cref="Cpf"/> from a CPF string
+        /// </summary>
+        /// <param name="value">a CPF string</param>
+        /// <param name="cpf">the new instance of <see cref="Cpf"/></param>
+        /// <param name="punctuation">the punctuation setting configurating 
+        /// how validation must be handled</param>
+        /// <returns>true if CPF string is valid; false, otherwise</returns>
         public static bool TryParse(string value, out Cpf cpf, CpfPunctuation punctuation)
         {
             var parsed = false;
