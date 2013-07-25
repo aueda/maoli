@@ -9,7 +9,7 @@
     {
         private const string looseValidCpf = "71402565860";
 
-        private const string invalidCpf = "82513676932";
+        private const string looseInvalidCpf = "82513676932";
 
         private const string strictValidCpf = "714.025.658-60";
 
@@ -58,7 +58,7 @@
 
             try
             {
-                var cpf = Cpf.Parse(CpfTest.invalidCpf);
+                var cpf = Cpf.Parse(CpfTest.looseInvalidCpf);
             }
             catch (ArgumentException)
             {
@@ -189,7 +189,7 @@
         [TestMethod]
         public void IsValidReturnsFalseIfCpfIsInvalid()
         {
-            var actual = Cpf.IsValid(CpfTest.invalidCpf);
+            var actual = Cpf.IsValid(CpfTest.looseInvalidCpf);
 
             Assert.IsFalse(actual);
         }
@@ -414,7 +414,7 @@
         }
 
         [TestMethod]
-        public void StrictTryParseReturnsFalseIfCpfIsValid()
+        public void StrictTryParseReturnsTruefCpfIsValidAndHasPunctuation()
         {
             Cpf cpf = null;
 
