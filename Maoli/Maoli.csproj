@@ -39,6 +39,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cnpj.cs" />
+    <Compile Include="CnpjHelper.cs" />
+    <Compile Include="CnpjPunctuation.cs" />
     <Compile Include="Cpf.cs" />
     <Compile Include="CpfHelper.cs" />
     <Compile Include="CpfPunctuation.cs" />
