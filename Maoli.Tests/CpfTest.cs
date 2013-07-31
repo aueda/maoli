@@ -179,41 +179,41 @@
         }
 
         [TestMethod]
-        public void IsValidReturnsTrueIfCpfIsValid()
+        public void ValidateReturnsTrueIfCpfIsValid()
         {
-            var actual = Cpf.IsValid(CpfTest.looseValidCpf);
+            var actual = Cpf.Validate(CpfTest.looseValidCpf);
 
             Assert.IsTrue(actual);
         }
 
         [TestMethod]
-        public void IsValidReturnsFalseIfCpfIsInvalid()
+        public void ValidateReturnsFalseIfCpfIsInvalid()
         {
-            var actual = Cpf.IsValid(CpfTest.looseInvalidCpf);
+            var actual = Cpf.Validate(CpfTest.looseInvalidCpf);
 
             Assert.IsFalse(actual);
         }
 
         [TestMethod]
-        public void IsValidReturnsFalseIfCpfContainsInvalidChars()
+        public void ValidateReturnsFalseIfCpfContainsInvalidChars()
         {
-            var actual = Cpf.IsValid("714o256s8");
+            var actual = Cpf.Validate("714o256s8");
 
             Assert.IsFalse(actual);
         }
 
         [TestMethod]
-        public void IsValidReturnsFalseIfCpfIsValidButNotStrict()
+        public void ValidateReturnsFalseIfCpfIsValidButNotStrict()
         {
-            var actual = Cpf.IsValid(looseValidCpf, CpfPunctuation.Strict);
+            var actual = Cpf.Validate(looseValidCpf, CpfPunctuation.Strict);
 
             Assert.IsFalse(actual);
         }
 
         [TestMethod]
-        public void IsValidReturnsTrueIfCpfIsValidAndStrict()
+        public void ValidateReturnsTrueIfCpfIsValidAndStrict()
         {
-            var actual = Cpf.IsValid(CpfTest.strictValidCpf, CpfPunctuation.Strict);
+            var actual = Cpf.Validate(CpfTest.strictValidCpf, CpfPunctuation.Strict);
 
             Assert.IsTrue(actual);
         }
