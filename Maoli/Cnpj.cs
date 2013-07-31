@@ -119,7 +119,7 @@
         /// </summary>
         /// <param name="value">a Cnpj string to be checked</param>
         /// <returns>true if Cnpj string is valid; false otherwise</returns>
-        public static bool IsValid(string value)
+        public static bool Validate(string value)
         {
             return CnpjHelper.Validate(value, CnpjPunctuation.Loose);
         }
@@ -131,7 +131,7 @@
         /// <param name="punctuation">the punctuation setting configurating 
         /// how validation must be handled</param>
         /// <returns>true if Cnpj string is valid; otherwise, false</returns>
-        public static bool IsValid(string value, CnpjPunctuation punctuation)
+        public static bool Validate(string value, CnpjPunctuation punctuation)
         {
             return CnpjHelper.Validate(value, punctuation);
         }

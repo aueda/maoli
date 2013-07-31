@@ -179,41 +179,41 @@
         }
 
         [TestMethod]
-        public void IsValidReturnsTrueIfCnpjIsValid()
+        public void ValidateReturnsTrueIfCnpjIsValid()
         {
-            var actual = Cnpj.IsValid(CnpjTest.looseValidCnpj);
+            var actual = Cnpj.Validate(CnpjTest.looseValidCnpj);
 
             Assert.IsTrue(actual);
         }
 
         [TestMethod]
-        public void IsValidReturnsFalseIfCnpjIsInvalid()
+        public void ValidateReturnsFalseIfCnpjIsInvalid()
         {
-            var actual = Cnpj.IsValid(CnpjTest.looseInvalidCnpj);
+            var actual = Cnpj.Validate(CnpjTest.looseInvalidCnpj);
 
             Assert.IsFalse(actual);
         }
 
         [TestMethod]
-        public void IsValidReturnsFalseIfCnpjContainsInvalidChars()
+        public void ValidateReturnsFalseIfCnpjContainsInvalidChars()
         {
-            var actual = Cnpj.IsValid("714o256s8");
+            var actual = Cnpj.Validate("714o256s8");
 
             Assert.IsFalse(actual);
         }
 
         [TestMethod]
-        public void IsValidReturnsFalseIfCnpjIsValidButNotStrict()
+        public void ValidateReturnsFalseIfCnpjIsValidButNotStrict()
         {
-            var actual = Cnpj.IsValid(looseValidCnpj, CnpjPunctuation.Strict);
+            var actual = Cnpj.Validate(looseValidCnpj, CnpjPunctuation.Strict);
 
             Assert.IsFalse(actual);
         }
 
         [TestMethod]
-        public void IsValidReturnsTrueIfCnpjIsValidAndStrict()
+        public void ValidateReturnsTrueIfCnpjIsValidAndStrict()
         {
-            var actual = Cnpj.IsValid(CnpjTest.strictValidCnpj, CnpjPunctuation.Strict);
+            var actual = Cnpj.Validate(CnpjTest.strictValidCnpj, CnpjPunctuation.Strict);
 
             Assert.IsTrue(actual);
         }
