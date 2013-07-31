@@ -243,17 +243,6 @@
             Assert.IsTrue(actual);
         }
 
-        //[TestMethod]
-        //public void EqualsOperatorReturnsTrueIfCnpjAreEqual()
-        //{
-        //    var Cnpj1 = new Cnpj("71402565860");
-        //    var Cnpj2 = new Cnpj("71402565860");
-
-        //    var actual = Cnpj1 == Cnpj2;
-
-        //    Assert.IsTrue(actual);
-        //}
-
         // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
         [TestMethod]
         public void EqualsReturnsTrueIfSameCnpjIsEqual()

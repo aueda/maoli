@@ -243,17 +243,6 @@
             Assert.IsTrue(actual);
         }
 
-        //[TestMethod]
-        //public void EqualsOperatorReturnsTrueIfCpfAreEqual()
-        //{
-        //    var cpf1 = new Cpf("71402565860");
-        //    var cpf2 = new Cpf("71402565860");
-
-        //    var actual = cpf1 == cpf2;
-
-        //    Assert.IsTrue(actual);
-        //}
-
         // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
         [TestMethod]
         public void EqualsReturnsTrueIfSameCpfIsEqual()
