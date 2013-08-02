@@ -69,12 +69,11 @@
         /// <returns>the checksum digit</returns>
         internal static int CreateChecksum(string text, int[] multiplier)
         {
-            var i = 0;
             var sum = 0;
             var digit = 0;
             var remainder = 0;
 
-            for (i = 0; i < text.Length; i++)
+            for (var i = text.Length - 1; i > -1; i--)
             {
                 sum += Convert.ToInt32(text[i].ToString()) * multiplier[i];
             }
