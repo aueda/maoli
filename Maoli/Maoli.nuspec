@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
-    <metadata minClientVersion="0.1">
+    <metadata minClientVersion="2.6">
         <id>$id$</id>
         <version>$version$</version>
         <title>Maoli</title>
@@ -12,7 +12,7 @@
         <description>$description$</description>
         <copyright>Copyright (c) 2013 Adriano Ueda</copyright>
         <language />
-        <tags>C# ASP.NET CPF</tags>
+        <tags>C# ASP.NET CPF CNPJ</tags>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
             <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0" />
