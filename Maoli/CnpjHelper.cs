@@ -24,7 +24,7 @@
 
             CnpjHelper.regexValidations.Add(
                 CnpjPunctuation.Loose,
-                @"^\d{2}\.?\d{3}\.?\d{3}/?\d{4}\-?\d{2}$");
+                @"^(\d{2}\.\d{3}\.\d{3}/\d{4}\-\d{2})|(\d{14})$");
 
             CnpjHelper.regexValidations.Add(
                 CnpjPunctuation.Strict,

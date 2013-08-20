@@ -211,6 +211,14 @@
         }
 
         [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsHalfPunctuatedAndValidAndLoose()
+        {
+            var actual = Cpf.Validate("714.025.65860", CpfPunctuation.Loose);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
         public void ValidateReturnsTrueIfCpfIsValidAndStrict()
         {
             var actual = Cpf.Validate(CpfTest.strictValidCpf, CpfPunctuation.Strict);

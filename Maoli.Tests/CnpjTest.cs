@@ -219,6 +219,14 @@
         }
 
         [TestMethod]
+        public void ValidateReturnsFalseIfCnpjIsHalfPunctuatedAndValidAndLoose()
+        {
+            var actual = Cnpj.Validate("63.9433150001-92", CnpjPunctuation.Loose);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
         public void CompleteReturnsAValidCnpj()
         {
             var actual = Cnpj.Complete("639433150001");
