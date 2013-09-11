@@ -227,6 +227,14 @@
         }
 
         [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsInvalidAndStrict()
+        {
+            var actual = Cpf.Validate(CpfTest.strictInvalidCpf, CpfPunctuation.Strict);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
         public void CompleteReturnsAValidCpf()
         {
             var actual = Cpf.Complete("714025658");
@@ -292,7 +300,7 @@
         public void EqualsReturnsFalseIfCpfIsNull()
         {
             var cpf = Cpf.Parse("71402565860");
-            
+
             var actual = cpf.Equals(null);
 
             Assert.IsFalse(actual);
