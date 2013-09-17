@@ -18,7 +18,7 @@
         <releaseNotes>Fixed CPF and CNPJ partial punctuation</releaseNotes>
       <copyright>Copyright (c) 2013 Adriano Ueda</copyright>
         <language />
-        <tags>C# ASP.NET CPF CNPJ</tags>
+        <tags>c# asp.net cpf cnpj</tags>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
             <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0" />
