@@ -55,6 +55,7 @@
     <Compile Include="CnpjTest.cs" />
     <Compile Include="CpfTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CepTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maoli\Maoli.csproj">
