@@ -195,6 +195,14 @@
         }
 
         [TestMethod]
+        public void ValidateReturnsFalseIfCnpjIsEmpty()
+        {
+            var actual = Cnpj.Validate(string.Empty);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
         public void ValidateReturnsFalseIfCnpjContainsInvalidChars()
         {
             var actual = Cnpj.Validate("714o256s8");

@@ -195,6 +195,14 @@
         }
 
         [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsEmpty()
+        {
+            var actual = Cpf.Validate(string.Empty);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
         public void ValidateReturnsFalseIfCpfContainsInvalidChars()
         {
             var actual = Cpf.Validate("714o256s8");
