@@ -17,7 +17,7 @@
 
             CepHelper.regexValidations.Add(
                 CepPunctuation.Loose,
-                @"^(\d{5}\-\d{3})|(\d{5})$");
+                @"^(\d{5}\-\d{3})|(\d{8})$");
 
             CepHelper.regexValidations.Add(
                 CepPunctuation.Strict,

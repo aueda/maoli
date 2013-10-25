@@ -24,6 +24,14 @@
         }
 
         [TestMethod]
+        public void ValidateReturnsFalseIfCepIsLooseAndInvalidAndIncomplete()
+        {
+            var actual = Cep.Validate("12345");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
         public void ValidateReturnsFalseIfCepIsLooseAndInvalid()
         {
             var actual = Cep.Validate("123-5678");
