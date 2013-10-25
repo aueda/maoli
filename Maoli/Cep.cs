@@ -5,6 +5,9 @@
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Represents a valid CEP number
+    /// </summary>
     public class Cep
     {
         /// <summary>
