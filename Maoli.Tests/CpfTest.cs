@@ -211,6 +211,14 @@
         }
 
         [TestMethod]
+        public void ValidateReturnsFalseIfCnpjIsLooseAndGreaterThanElevenCaracters()
+        {
+            var actual = Cpf.Validate("12345678901234567890");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
         public void ValidateReturnsFalseIfCpfIsValidButNotStrict()
         {
             var actual = Cpf.Validate(looseValidCpf, CpfPunctuation.Strict);

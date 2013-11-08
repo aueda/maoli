@@ -211,6 +211,14 @@
         }
 
         [TestMethod]
+        public void ValidateReturnsFalseIfCnpjIsLooseAndGreaterThanFourteenCaracters()
+        {
+            var actual = Cnpj.Validate("12345678901234567890");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
         public void ValidateReturnsFalseIfCnpjIsValidButNotStrict()
         {
             var actual = Cnpj.Validate(looseValidCnpj, CnpjPunctuation.Strict);
