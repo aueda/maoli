@@ -32,6 +32,14 @@
         }
 
         [TestMethod]
+        public void ValidateReturnsFalseIfCepIsLooseAndGreaterThanEightCaracters()
+        {
+            var actual = Cep.Validate("1234567890");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
         public void ValidateReturnsFalseIfCepIsLooseAndInvalid()
         {
             var actual = Cep.Validate("123-5678");
