@@ -1,4 +1,11 @@
-﻿namespace Maoli
+﻿//-----------------------------------------------------------------------
+// <copyright file="Cep.cs" company="Adriano Ueda">
+//     Copyright (C) Adriano Ueda. All rights reserved.
+// </copyright>
+// <author>Adriano Ueda</author>
+//-----------------------------------------------------------------------
+
+namespace Maoli
 {
     using System;
     using System.Collections.Generic;
@@ -24,7 +31,7 @@
         /// Checks if a string value is a valid CEP representation
         /// </summary>
         /// <param name="value">a CEP string to be checked</param>
-        /// <param name="punctuation">the punctuation setting configurating 
+        /// <param name="punctuation">the punctuation setting to 
         /// how validation must be handled</param>
         /// <returns>true if CEP string is valid; otherwise, false</returns>
         public static bool Validate(string value, CepPunctuation punctuation)

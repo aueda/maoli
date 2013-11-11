@@ -1,4 +1,11 @@
-﻿namespace Maoli
+﻿//-----------------------------------------------------------------------
+// <copyright file="Cnpj.cs" company="Adriano Ueda">
+//     Copyright (C) Adriano Ueda. All rights reserved.
+// </copyright>
+// <author>Adriano Ueda</author>
+//-----------------------------------------------------------------------
+
+namespace Maoli
 {
     using System;
     using System.Collections.Generic;
@@ -7,33 +14,34 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Represents a valid Cnpj number
+    /// Represents a valid CNPJ number
     /// </summary>
     public class Cnpj
     {
+        /// <summary>
+        /// Stores the CNPJ number as informed
+        /// </summary>
         private string rawValue;
 
+        /// <summary>
+        /// Stores the CNPJ number without punctuation
+        /// </summary>
         private string parsedValue;
 
         /// <summary>
-        /// Gets the punctuation setting
+        /// Initializes a new instance of the <see cref="Cnpj"/> class.
         /// </summary>
-        public CnpjPunctuation Punctuation { get; private set; }
-
-        /// <summary>
-        /// Initializes a new instance of Cnpj
-        /// </summary>
-        /// <param name="value">a valid Cnpj string</param>
+        /// <param name="value">a valid CNPJ string</param>
         public Cnpj(string value)
             : this(value, CnpjPunctuation.Loose)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of Cnpj
+        /// Initializes a new instance of the <see cref="Cnpj"/> class.
         /// </summary>
-        /// <param name="value">a valid Cnpj string</param>
-        /// <param name="punctuation">the punctuation setting configurating 
+        /// <param name="value">a valid CNPJ string</param>
+        /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled</param>
         public Cnpj(string value, CnpjPunctuation punctuation)
         {
@@ -54,9 +62,14 @@
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="Cnpj"/> from a Cnpj string
+        /// Gets the punctuation setting
         /// </summary>
-        /// <param name="value">a Cnpj string</param>
+        public CnpjPunctuation Punctuation { get; private set; }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="Cnpj"/> from a CNPJ string
+        /// </summary>
+        /// <param name="value">a CNPJ string</param>
         /// <returns>the new instance of <see cref="Cnpj"/></returns>
         public static Cnpj Parse(string value)
         {
@@ -64,10 +77,10 @@
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="Cnpj"/> from a Cnpj string
+        /// Creates a new instance of <see cref="Cnpj"/> from a CNPJ string
         /// </summary>
-        /// <param name="value">a Cnpj string</param>
-        /// <param name="punctuation">the punctuation setting configurating 
+        /// <param name="value">a CNPJ string</param>
+        /// <param name="punctuation">the punctuation setting to 
         /// how validation must be handled</param>
         /// <returns>the new instance of <see cref="Cnpj"/></returns>
         public static Cnpj Parse(string value, CnpjPunctuation punctuation)
@@ -76,37 +89,37 @@
         }
 
         /// <summary>
-        /// Tries to create a new instance of <see cref="Cnpj"/> from a Cnpj string
+        /// Tries to create a new instance of <see cref="Cnpj"/> from a CNPJ string
         /// </summary>
-        /// <param name="value">a Cnpj string</param>
-        /// <param name="Cnpj">the new instance of <see cref="Cnpj"/></param>
-        /// <returns>true if Cnpj string is valid; false, otherwise</returns>
-        public static bool TryParse(string value, out Cnpj Cnpj)
+        /// <param name="value">a CNPJ string</param>
+        /// <param name="cnpj">the new instance of <see cref="Cnpj"/></param>
+        /// <returns>true if CNPJ string is valid; false, otherwise</returns>
+        public static bool TryParse(string value, out Cnpj cnpj)
         {
-            return Cnpj.TryParse(value, out Cnpj, CnpjPunctuation.Loose);
+            return Cnpj.TryParse(value, out cnpj, CnpjPunctuation.Loose);
         }
 
         /// <summary>
-        /// Tries to create a new instance of <see cref="Cnpj"/> from a Cnpj string
+        /// Tries to create a new instance of <see cref="Cnpj"/> from a CNPJ string
         /// </summary>
-        /// <param name="value">a Cnpj string</param>
-        /// <param name="Cnpj">the new instance of <see cref="Cnpj"/></param>
-        /// <param name="punctuation">the punctuation setting configurating 
+        /// <param name="value">a CNPJ string</param>
+        /// <param name="cnpj">the new instance of <see cref="Cnpj"/></param>
+        /// <param name="punctuation">the punctuation setting to 
         /// how validation must be handled</param>
-        /// <returns>true if Cnpj string is valid; false, otherwise</returns>
-        public static bool TryParse(string value, out Cnpj Cnpj, CnpjPunctuation punctuation)
+        /// <returns>true if CNPJ string is valid; false, otherwise</returns>
+        public static bool TryParse(string value, out Cnpj cnpj, CnpjPunctuation punctuation)
         {
             var parsed = false;
 
             try
             {
-                Cnpj = new Cnpj(value, punctuation);
+                cnpj = new Cnpj(value, punctuation);
 
                 parsed = true;
             }
             catch (ArgumentException)
             {
-                Cnpj = null;
+                cnpj = null;
 
                 parsed = false;
             }
@@ -115,32 +128,32 @@
         }
 
         /// <summary>
-        /// Checks if a string value is a valid Cnpj representation
+        /// Checks if a string value is a valid CNPJ representation
         /// </summary>
-        /// <param name="value">a Cnpj string to be checked</param>
-        /// <returns>true if Cnpj string is valid; false otherwise</returns>
+        /// <param name="value">a CNPJ string to be checked</param>
+        /// <returns>true if CNPJ string is valid; false otherwise</returns>
         public static bool Validate(string value)
         {
             return CnpjHelper.Validate(value, CnpjPunctuation.Loose);
         }
 
         /// <summary>
-        /// Checks if a string value is a valid Cnpj representation
+        /// Checks if a string value is a valid CNPJ representation
         /// </summary>
-        /// <param name="value">a Cnpj string to be checked</param>
-        /// <param name="punctuation">the punctuation setting configurating 
+        /// <param name="value">a CNPJ string to be checked</param>
+        /// <param name="punctuation">the punctuation setting to 
         /// how validation must be handled</param>
-        /// <returns>true if Cnpj string is valid; otherwise, false</returns>
+        /// <returns>true if CNPJ string is valid; otherwise, false</returns>
         public static bool Validate(string value, CnpjPunctuation punctuation)
         {
             return CnpjHelper.Validate(value, punctuation);
         }
 
         /// <summary>
-        /// Completes a partial Cnpj string by appending a valid checksum trailing
+        /// Completes a partial CNPJ string by appending a valid checksum trailing
         /// </summary>
-        /// <param name="value">a partial Cnpj string with or without punctuation</param>
-        /// <returns>a Cnpj string with a valid checksum trailing</returns>
+        /// <param name="value">a partial CNPJ string with or without punctuation</param>
+        /// <returns>a CNPJ string with a valid checksum trailing</returns>
         public static string Complete(string value)
         {
             return CnpjHelper.Complete(value);
@@ -149,7 +162,7 @@
         /// <summary>
         /// Determines whether this instance and a specified object, which must also be a <see cref="Cnpj"/> object, have the same value
         /// </summary>
-        /// <param name="obj">The Cnpj to compare to this instance</param>
+        /// <param name="obj">The CNPJ to compare to this instance</param>
         /// <returns>if the value of the value parameter is the same as this instance; otherwise, false</returns>
         public override bool Equals(object obj)
         {
@@ -159,20 +172,20 @@
         /// <summary>
         /// Determines whether this instance and another specified <see cref="Cnpj"/> object have the same value
         /// </summary>
-        /// <param name="Cnpj">The Cnpj to compare to this instance</param>
+        /// <param name="cnpj">The CNPJ to compare to this instance</param>
         /// <returns>if the value of the value parameter is the same as this instance; otherwise, false</returns>
-        public bool Equals(Cnpj Cnpj)
+        public bool Equals(Cnpj cnpj)
         {
-            if (Cnpj == null)
+            if (cnpj == null)
             {
                 return false;
             }
 
-            return this.parsedValue == Cnpj.parsedValue;
+            return this.parsedValue == cnpj.parsedValue;
         }
 
         /// <summary>
-        /// Returns the hash code for this Cnpj
+        /// Returns the hash code for this CNPJ
         /// </summary>
         /// <returns>A 32-bit signed integer hash code</returns>
         public override int GetHashCode()
@@ -181,7 +194,7 @@
 
             unchecked
             {
-                hash = hash * 31 + (string.IsNullOrWhiteSpace(this.parsedValue) ? 0 : this.parsedValue.GetHashCode());
+                hash = (hash * 31) + (string.IsNullOrWhiteSpace(this.parsedValue) ? 0 : this.parsedValue.GetHashCode());
             }
 
             return hash;
@@ -190,7 +203,7 @@
         /// <summary>
         /// Converts the value of this instance to a <seealso cref="string"/>String.
         /// </summary>
-        /// <returns>The Cnpj as string</returns>
+        /// <returns>The CNPJ as string</returns>
         public override string ToString()
         {
             return this.parsedValue;

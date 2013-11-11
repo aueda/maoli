@@ -1,4 +1,11 @@
-﻿namespace Maoli
+﻿//-----------------------------------------------------------------------
+// <copyright file="CpfHelper.cs" company="Adriano Ueda">
+//     Copyright (C) Adriano Ueda. All rights reserved.
+// </copyright>
+// <author>Adriano Ueda</author>
+//-----------------------------------------------------------------------
+
+namespace Maoli
 {
     using System;
     using System.Collections.Generic;
@@ -12,8 +19,14 @@
     /// </summary>
     internal static class CpfHelper
     {
+        /// <summary>
+        /// Regex validations
+        /// </summary>
         private static Dictionary<CpfPunctuation, string> regexValidations;
 
+        /// <summary>
+        /// Initializes static members of the <see cref="CpfHelper"/> class.
+        /// </summary>
         static CpfHelper()
         {
             CpfHelper.regexValidations = new Dictionary<CpfPunctuation, string>();
@@ -31,7 +44,7 @@
         /// Checks if a string value is a valid CPF representation
         /// </summary>
         /// <param name="value">a CPF string to be checked</param>
-        /// <param name="punctuation">the punctuation setting configurating 
+        /// <param name="punctuation">the punctuation setting to 
         /// how validation must be handled</param>
         /// <returns>true if CPF string is valid; false otherwise</returns>
         internal static bool Validate(string value, CpfPunctuation punctuation)
@@ -100,7 +113,7 @@
         /// Formats a CPF string using the punctuation setting
         /// </summary>
         /// <param name="value">a CPF string to format</param>
-        /// <returns>A formated CPF string with or without punctuation</returns>
+        /// <returns>A formatted CPF string with or without punctuation</returns>
         internal static string Format(string value)
         {
             throw new NotImplementedException();

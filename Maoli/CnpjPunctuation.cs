@@ -1,4 +1,11 @@
-﻿namespace Maoli
+﻿//-----------------------------------------------------------------------
+// <copyright file="CnpjPunctuation.cs" company="Adriano Ueda">
+//     Copyright (C) Adriano Ueda. All rights reserved.
+// </copyright>
+// <author>Adriano Ueda</author>
+//-----------------------------------------------------------------------
+
+namespace Maoli
 {
     using System;
     using System.Collections.Generic;

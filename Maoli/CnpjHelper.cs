@@ -1,4 +1,11 @@
-﻿namespace Maoli
+﻿//-----------------------------------------------------------------------
+// <copyright file="CnpjHelper.cs" company="Adriano Ueda">
+//     Copyright (C) Adriano Ueda. All rights reserved.
+// </copyright>
+// <author>Adriano Ueda</author>
+//-----------------------------------------------------------------------
+
+namespace Maoli
 {
     using System;
     using System.Collections.Generic;
@@ -12,12 +19,24 @@
     /// </summary>
     internal static class CnpjHelper
     {
+        /// <summary>
+        /// Regex validations
+        /// </summary>
         private static Dictionary<CnpjPunctuation, string> regexValidations;
 
+        /// <summary>
+        /// Multipliers for the first check digit
+        /// </summary>
         private static int[] multiplier1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
+        /// <summary>
+        /// Multipliers for the second check digit
+        /// </summary>
         private static int[] multiplier2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
+        /// <summary>
+        /// Initializes static members of the <see cref="CnpjHelper"/> class.
+        /// </summary>
         static CnpjHelper()
         {
             CnpjHelper.regexValidations = new Dictionary<CnpjPunctuation, string>();
@@ -35,7 +54,7 @@
         /// Checks if a string value is a valid CNPJ representation
         /// </summary>
         /// <param name="value">a CNPJ string to be checked</param>
-        /// <param name="punctuation">the punctuation setting configurating 
+        /// <param name="punctuation">the punctuation setting to 
         /// how validation must be handled</param>
         /// <returns>true if CNPJ string is valid; false otherwise</returns>
         internal static bool Validate(string value, CnpjPunctuation punctuation)
@@ -78,7 +97,7 @@
                 sum += Convert.ToInt32(text[i].ToString()) * multiplier[i];
             }
 
-            remainder = (sum % 11);
+            remainder = sum % 11;
             digit = (remainder < 2) ? 0 : 11 - remainder;
 
             return digit;
@@ -103,7 +122,7 @@
         /// Formats a CNPJ string using the punctuation setting
         /// </summary>
         /// <param name="value">a CNPJ string to format</param>
-        /// <returns>A formated CNPJ string with or without punctuation</returns>
+        /// <returns>A formatted CNPJ string with or without punctuation</returns>
         internal static string Format(string value)
         {
             throw new NotImplementedException();
