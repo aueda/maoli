@@ -195,6 +195,94 @@
         }
 
         [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsSameDigit()
+        {
+            var actual = Cpf.Validate("111.111.111-11");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsOnlyZero()
+        {
+            var actual = Cpf.Validate("000.000.000-00");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsOnlyOne()
+        {
+            var actual = Cpf.Validate("111.111.111-11");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsOnlyTwo()
+        {
+            var actual = Cpf.Validate("222.222.222-22");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsOnlyThree()
+        {
+            var actual = Cpf.Validate("333.333.333-33");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsOnlyFour()
+        {
+            var actual = Cpf.Validate("444.444.444-44");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsOnlyFive()
+        {
+            var actual = Cpf.Validate("555.555.555-55");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsOnlySix()
+        {
+            var actual = Cpf.Validate("666.666.666-66");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsOnlySeven()
+        {
+            var actual = Cpf.Validate("777.777.777-77");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsOnlyEight()
+        {
+            var actual = Cpf.Validate("888.888.888-88");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValidateReturnsFalseIfCpfIsOnlyNine()
+        {
+            var actual = Cpf.Validate("999.999.999-99");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
         public void ValidateReturnsFalseIfCpfContainsInvalidChars()
         {
             var actual = Cpf.Validate("714o256s8");
@@ -419,5 +507,7 @@
 
             Assert.IsTrue(actual);
         }
+
+
     }
 }
