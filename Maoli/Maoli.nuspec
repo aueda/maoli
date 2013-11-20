@@ -15,13 +15,9 @@
         <summary>
         Maoli is C# helper library for common brazilian business rules (CPF and CNPJ).       
         </summary>
-        <releaseNotes>Fixed CPF and CNPJ partial punctuation</releaseNotes>
+        <releaseNotes>- Fixed CPF validation</releaseNotes>
       <copyright>Copyright (c) 2013 Adriano Ueda</copyright>
         <language />
         <tags>C# ASP.NET CPF CNPJ</tags>
-        <frameworkAssemblies>
-            <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
-            <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0" />
-        </frameworkAssemblies>
     </metadata>
 </package>
