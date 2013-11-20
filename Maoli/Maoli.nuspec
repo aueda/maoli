@@ -15,8 +15,8 @@
     <summary>
       Maoli is C# helper library for common brazilian business rules (CPF, CNPJ and CEP).
     </summary>
-    <releaseNotes>
-      Implemented CEP validation
+    <releaseNotes>- Fixed CPF validation
+- Implemented CEP validation
     </releaseNotes>
     <copyright>Copyright (c) 2013 Adriano Ueda</copyright>
     <language />
