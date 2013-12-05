@@ -1,16 +1,28 @@
 #Maoli
 
-Maoli is C# helper library for common brazilian business rules (CPF and CNPJ),
+Maoli is C# helper library for common brazilian business rules (CEP, CPF and CNPJ),
 compatible with .NET Framework 4.0 and above.
 
 Currently implements:
 
+* CEP validation
 * CPF validation
 * CNPJ validation
 
 For client-side validation of CPF and CNPJ, please see [Maoli.js](https://github.com/aueda/maoli.js/).
 
 ## Documentation
+
+### Cep
+
+``Cep.Validate(string value)`` - checks if a string value is a valid CEP representation. Returns true if CEP string is valid; false otherwise.
+
+```c#
+	if (Cep.Validate("99999-999"))
+	{
+	  Console.WriteLine("CEP is valid");
+	}
+```
 
 ### Cpf
 
