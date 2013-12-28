@@ -8,7 +8,7 @@
     <owners>Adriano Ueda</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/aueda/maoli</projectUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
       $description$ For documentation visit https://github.com/aueda/maoli
     </description>
