@@ -61,6 +61,11 @@ namespace Maoli
 
             value = CpfHelper.Sanitize(value);
 
+            if (CpfHelper.IsSameDigit(value))
+            {
+                return false;
+            }
+
             var inputDigit1 = Convert.ToInt32(value.Substring(9, 1));
             var inputDigit2 = Convert.ToInt32(value.Substring(10, 1));
 
@@ -142,6 +147,28 @@ namespace Maoli
             int digit2 = CpfHelper.CreateChecksum(value + digit1.ToString());
 
             return value + digit1.ToString() + digit2.ToString();
+        }
+
+        /// <summary>
+        /// Checks if the CPF string is a same digit sequence
+        /// </summary>
+        /// <param name="value">a CPF string</param>
+        /// <returns>true if CPF string is a same digit sequence; false otherwise</returns>
+        internal static bool IsSameDigit(string value)
+        {
+            var sameDigitRegex = @"^(\d)\1+$";
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return false;
+            }
+
+            if (Regex.IsMatch(value, sameDigitRegex))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
