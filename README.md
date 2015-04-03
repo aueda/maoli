@@ -1,5 +1,7 @@
 #Maoli
 
+[![Build Status](https://travis-ci.org/aueda/maoli.svg?branch=feat-travis-ci)](https://travis-ci.org/aueda/maoli/)
+
 Maoli is C# helper library for common brazilian business rules (CEP, CPF and CNPJ),
 compatible with .NET Framework 4.0 and above.
 

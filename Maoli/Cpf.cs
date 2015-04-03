@@ -19,11 +19,6 @@ namespace Maoli
     public class Cpf
     {
         /// <summary>
-        /// Stores the CPF number as informed
-        /// </summary>
-        private string rawValue;
-
-        /// <summary>
         /// Stores the CPF number without punctuation
         /// </summary>
         private string parsedValue;
@@ -55,7 +50,6 @@ namespace Maoli
                 throw new ArgumentException("O CPF não é válido");
             }
 
-            this.rawValue = value;
             this.parsedValue = CpfHelper.Sanitize(value);
 
             this.Punctuation = punctuation;

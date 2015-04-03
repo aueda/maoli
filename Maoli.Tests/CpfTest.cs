@@ -2,9 +2,8 @@
 {
     using System;
     using Maoli;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Xunit;
 
-    [TestClass]
     public class CpfTest
     {
         private const string looseValidCpf = "71402565860";
@@ -15,367 +14,367 @@
 
         private const string strictInvalidCpf = "825.136.769-32";
 
-        [TestMethod]
+        [Fact]
         public void PunctuationReturnsStrict()
         {
             var cpf = Cpf.Parse(CpfTest.strictValidCpf, CpfPunctuation.Strict);
             var expected = CpfPunctuation.Strict;
             var actual = cpf.Punctuation;
 
-            Assert.AreEqual<CpfPunctuation>(expected, actual);
+            Assert.Equal<CpfPunctuation>(expected, actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void PunctuationReturnsLoose()
         {
             var cpf = Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Loose);
             var expected = CpfPunctuation.Loose;
             var actual = cpf.Punctuation;
 
-            Assert.AreEqual<CpfPunctuation>(expected, actual);
+            Assert.Equal<CpfPunctuation>(expected, actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void LooseParseReturnsACpfObjectIfCpfIsValid()
         {
             var cpf = Cpf.Parse(CpfTest.looseValidCpf);
 
-            Assert.IsNotNull(cpf);
+            Assert.NotNull(cpf);
         }
 
-        [TestMethod]
+        [Fact]
         public void LooseParseReturnsACpfObjectIfFormattedCpfIsValid()
         {
             var cpf = Cpf.Parse(CpfTest.strictValidCpf);
 
-            Assert.IsNotNull(cpf);
+            Assert.NotNull(cpf);
         }
 
-        [TestMethod]
+        [Fact]
         public void LooseParseThrowsArgumentExceptionIfCpfIsNotValid()
         {
             var actual = false;
 
             try
             {
-                var cpf = Cpf.Parse(CpfTest.looseInvalidCpf);
+                Cpf.Parse(CpfTest.looseInvalidCpf);
             }
             catch (ArgumentException)
             {
                 actual = true;
             }
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void LooseParseThrowsArgumentExceptionIfCpfIsEmpty()
         {
             var actual = false;
 
             try
             {
-                var cpf = Cpf.Parse(string.Empty);
+                Cpf.Parse(string.Empty);
             }
             catch (ArgumentException)
             {
                 actual = true;
             }
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void LooseParseThrowsArgumentExceptionIfCpfIsNull()
         {
             var actual = false;
 
             try
             {
-                var cpf = Cpf.Parse(null);
+                Cpf.Parse(null);
             }
             catch (ArgumentException)
             {
                 actual = true;
             }
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void StrictParseThrowsArgumentExceptionACpfObjectIfCpfIsEmpty()
         {
             var actual = false;
 
             try
             {
-                var cpf = Cpf.Parse(string.Empty, CpfPunctuation.Strict);
+                Cpf.Parse(string.Empty, CpfPunctuation.Strict);
             }
             catch (ArgumentException)
             {
                 actual = true;
             }
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void StrictParseThrowsArgumentExceptionACpfObjectIfCpfIsInvalid()
         {
             var actual = false;
 
             try
             {
-                var cpf = Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Strict);
+                Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Strict);
             }
             catch (ArgumentException)
             {
                 actual = true;
             }
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void StrictParseThrowsArgumentExceptionACpfObjectIfCpfIsNull()
         {
             var actual = false;
 
             try
             {
-                var cpf = Cpf.Parse(null, CpfPunctuation.Strict);
+                Cpf.Parse(null, CpfPunctuation.Strict);
             }
             catch (ArgumentException)
             {
                 actual = true;
             }
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void StrictParseReturnsACpfObjectIfFormattedCpfIsValid()
         {
             var cpf = Cpf.Parse(CpfTest.strictValidCpf, CpfPunctuation.Strict);
 
-            Assert.IsNotNull(cpf);
+            Assert.NotNull(cpf);
         }
 
-        [TestMethod]
+        [Fact]
         public void StrictParseThrowsArgumentExceptionIfCpfIsFormatted()
         {
             var actual = false;
 
             try
             {
-                var cpf = Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Strict);
+                Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Strict);
             }
             catch (ArgumentException)
             {
                 actual = true;
             }
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsTrueIfCpfIsValid()
         {
             var actual = Cpf.Validate(CpfTest.looseValidCpf);
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsInvalid()
         {
             var actual = Cpf.Validate(CpfTest.looseInvalidCpf);
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsEmpty()
         {
             var actual = Cpf.Validate(string.Empty);
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsSameDigit()
         {
             var actual = Cpf.Validate("111.111.111-11");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsOnlyZero()
         {
             var actual = Cpf.Validate("000.000.000-00");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsOnlyOne()
         {
             var actual = Cpf.Validate("111.111.111-11");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsOnlyTwo()
         {
             var actual = Cpf.Validate("222.222.222-22");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsOnlyThree()
         {
             var actual = Cpf.Validate("333.333.333-33");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsOnlyFour()
         {
             var actual = Cpf.Validate("444.444.444-44");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsOnlyFive()
         {
             var actual = Cpf.Validate("555.555.555-55");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsOnlySix()
         {
             var actual = Cpf.Validate("666.666.666-66");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsOnlySeven()
         {
             var actual = Cpf.Validate("777.777.777-77");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsOnlyEight()
         {
             var actual = Cpf.Validate("888.888.888-88");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsOnlyNine()
         {
             var actual = Cpf.Validate("999.999.999-99");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfContainsInvalidChars()
         {
             var actual = Cpf.Validate("714o256s8");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCnpjIsLooseAndGreaterThanElevenCaracters()
         {
             var actual = Cpf.Validate("12345678901234567890");
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsValidButNotStrict()
         {
             var actual = Cpf.Validate(looseValidCpf, CpfPunctuation.Strict);
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsHalfPunctuatedAndValidAndLoose()
         {
             var actual = Cpf.Validate("714.025.65860", CpfPunctuation.Loose);
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsTrueIfCpfIsValidAndStrict()
         {
             var actual = Cpf.Validate(CpfTest.strictValidCpf, CpfPunctuation.Strict);
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateReturnsFalseIfCpfIsInvalidAndStrict()
         {
             var actual = Cpf.Validate(CpfTest.strictInvalidCpf, CpfPunctuation.Strict);
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void CompleteReturnsAValidCpf()
         {
             var actual = Cpf.Complete("714025658");
 
-            Assert.AreEqual<string>(CpfTest.looseValidCpf, actual);
+            Assert.Equal<string>(CpfTest.looseValidCpf, actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void CompleteThrowsArgumentExceptionIfCpfTextIsWrong()
         {
             var actual = false;
 
             try
             {
-                var cpf = Cpf.Complete("714o256s8");
+                Cpf.Complete("714o256s8");
             }
             catch (ArgumentException)
             {
                 actual = true;
             }
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
         // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
-        [TestMethod]
+        [Fact]
         public void EqualsReturnsTrueIfSameCpfIsEqual()
         {
             var cpf = Cpf.Parse("71402565860");
 
             var actual = cpf.Equals(cpf);
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
         // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
-        [TestMethod]
+        [Fact]
         public void EqualsReturnsTrueIfTwoCpfsAreReciprocal()
         {
             var cpf1 = Cpf.Parse("71402565860");
@@ -383,11 +382,11 @@
 
             var actual = cpf1.Equals(cpf2) && cpf2.Equals(cpf1);
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
         // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
-        [TestMethod]
+        [Fact]
         public void EqualsReturnsTrueIfThreeCpfsAreReciprocal()
         {
             var cpf1 = Cpf.Parse("71402565860");
@@ -396,21 +395,21 @@
 
             var actual = cpf1.Equals(cpf2) && cpf2.Equals(cpf3) && cpf1.Equals(cpf3);
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
         // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
-        [TestMethod]
+        [Fact]
         public void EqualsReturnsFalseIfCpfIsNull()
         {
             var cpf = Cpf.Parse("71402565860");
 
             var actual = cpf.Equals(null);
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void EqualsReturnsTrueIfCpfAreEqual()
         {
             var cpf1 = Cpf.Parse("71402565860");
@@ -418,10 +417,10 @@
 
             var actual = cpf1.Equals(cpf2);
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void EqualsReturnsTrueIfCpfAreEqualButWithDiffPunctuation()
         {
             var cpf1 = Cpf.Parse("71402565860");
@@ -429,10 +428,10 @@
 
             var actual = cpf1.Equals(cpf2);
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void EqualsReturnsFalseIfCpfAreNotEqual()
         {
             var cpf1 = Cpf.Parse("71402565860");
@@ -440,37 +439,37 @@
 
             var actual = cpf1.Equals(cpf2);
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetHashCodeReturnsTrueIfCpfAreEqual()
         {
             var hash1 = Cpf.Parse("71402565860").GetHashCode();
             var hash2 = Cpf.Parse("71402565860").GetHashCode();
 
-            Assert.AreEqual<int>(hash1, hash2);
+            Assert.Equal<int>(hash1, hash2);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetHashCodeReturnsTrueIfCpfAreEqualButWithDiffPunctuation()
         {
             var hash1 = Cpf.Parse("71402565860").GetHashCode();
             var hash2 = Cpf.Parse("714.025.658-60").GetHashCode();
 
-            Assert.AreEqual<int>(hash1, hash2);
+            Assert.Equal<int>(hash1, hash2);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetHashCodeReturnsFalseIfCpfAreNotEqual()
         {
             var hash1 = Cpf.Parse("71402565860").GetHashCode();
             var hash2 = Cpf.Parse("77033192100").GetHashCode();
 
-            Assert.AreNotEqual<int>(hash1, hash2);
+            Assert.NotEqual<int>(hash1, hash2);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToStringReturnsStringWithNoPunctuationIfCpfPunctuationIsStrict()
         {
             var cpf = new Cpf("714.025.658-60", CpfPunctuation.Strict);
@@ -478,10 +477,10 @@
             var expected = "71402565860";
             var actual = cpf.ToString();
 
-            Assert.AreEqual<string>(expected, actual);
+            Assert.Equal<string>(expected, actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToStringReturnsStringWithNoPunctuationIfCpfPunctuationIsLoose()
         {
             var cpf = new Cpf("71402565860");
@@ -489,47 +488,47 @@
             var expected = "71402565860";
             var actual = cpf.ToString();
 
-            Assert.AreEqual<string>(expected, actual);
+            Assert.Equal<string>(expected, actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void TryParseReturnsFalseIfCpfIsInvalid()
         {
             Cpf cpf = null;
 
             var actual = Cpf.TryParse("71402565862", out cpf);
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void TryParseReturnsTrueIfCpfIsValid()
         {
             Cpf cpf = null;
 
             var actual = Cpf.TryParse("71402565860", out cpf);
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void StrictTryParseReturnsFalseIfCpfIsInvalid()
         {
             Cpf cpf = null;
 
             var actual = Cpf.TryParse("71402565860", out cpf, CpfPunctuation.Strict);
 
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void StrictTryParseReturnsTruefCpfIsValidAndHasPunctuation()
         {
             Cpf cpf = null;
 
             var actual = Cpf.TryParse("714.025.658-60", out cpf, CpfPunctuation.Strict);
 
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
 

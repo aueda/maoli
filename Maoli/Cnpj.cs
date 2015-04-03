@@ -19,11 +19,6 @@ namespace Maoli
     public class Cnpj
     {
         /// <summary>
-        /// Stores the CNPJ number as informed
-        /// </summary>
-        private string rawValue;
-
-        /// <summary>
         /// Stores the CNPJ number without punctuation
         /// </summary>
         private string parsedValue;
@@ -55,7 +50,6 @@ namespace Maoli
                 throw new ArgumentException("O CNPJ não é válido");
             }
 
-            this.rawValue = value;
             this.parsedValue = CnpjHelper.Sanitize(value);
 
             this.Punctuation = punctuation;
