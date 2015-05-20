@@ -1,12 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli", "Maoli\Maoli.csproj", "{66620B5A-D754-44DD-9349-B44759D1C617}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.Tests", "Maoli.Tests\Maoli.Tests.csproj", "{6EBE6C42-4BF7-42E2-A09A-E6F44526379E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3558581C-D2FF-4934-80C4-0E0C95CB05FE}"
 	ProjectSection(SolutionItems) = preProject
+		LEIAME.md = LEIAME.md
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
