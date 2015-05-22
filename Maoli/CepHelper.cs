@@ -12,7 +12,6 @@ namespace Maoli
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Helper class for <see cref="Cep"/> class
@@ -49,7 +48,7 @@ namespace Maoli
         /// <returns>true if CNPJ string is valid; false otherwise</returns>
         internal static bool Validate(string value, CepPunctuation punctuation)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (StringHelper.IsNullOrWhiteSpace(value))
             {
                 return false;
             }

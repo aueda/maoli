@@ -12,7 +12,6 @@ namespace Maoli
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Helper class for <see cref="Cpf"/> class
@@ -49,7 +48,7 @@ namespace Maoli
         /// <returns>true if CPF string is valid; false otherwise</returns>
         internal static bool Validate(string value, CpfPunctuation punctuation)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (StringHelper.IsNullOrWhiteSpace(value))
             {
                 return false;
             }
@@ -131,7 +130,7 @@ namespace Maoli
         /// <returns>a CPF string with a valid checksum trailing</returns>
         internal static string Complete(string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (StringHelper.IsNullOrWhiteSpace(value))
             {
                 throw new ArgumentException("O CPF é inválido");
             }
@@ -158,7 +157,7 @@ namespace Maoli
         {
             var sameDigitRegex = @"^(\d)\1+$";
 
-            if (string.IsNullOrWhiteSpace(value))
+            if (StringHelper.IsNullOrWhiteSpace(value))
             {
                 return false;
             }

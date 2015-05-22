@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66620B5A-D754-44DD-9349-B44759D1C617}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Maoli</RootNamespace>
+    <AssemblyName>Maoli</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <!-- Custom elements -->
+    <TargetFrameworkCodename>$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</TargetFrameworkCodename>
+    <TargetFrameworkOutputFolder>$(TargetFrameworkVersion.Replace("v", "net").Replace(".", ""))</TargetFrameworkOutputFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <!-- Define NET conditionals -->
+    <DefineConstants Condition="!$(DefineConstants.Contains(';NET'))">$(DefineConstants);$(TargetFrameworkCodename)</DefineConstants>
+    <DefineConstants Condition="$(DefineConstants.Contains(';NET'))">$(DefineConstants.Remove($(DefineConstants.LastIndexOf(";NET"))));$(TargetFrameworkCodename)</DefineConstants>
+    <!-- Change the output path -->
+    <OutputPath Condition="!$(DefineConstants.Contains('\net'))">$(OutputPath)$(TargetFrameworkOutputFolder)</OutputPath>
+    <OutputPath Condition="$(DefineConstants.Contains('\net'))">$(OutputPath.Remove($(OutputPath.LastIndexOf("\net"))))$(TargetFrameworkOutputFolder)</OutputPath>
+    <!-- Change the obj path -->
+    <IntermediateOutputPath Condition="!$(DefineConstants.Contains('\net'))">obj\$(Configuration)\$(IntermediateOutputPath)$(TargetFrameworkOutputFolder)</IntermediateOutputPath>
+    <IntermediateOutputPath Condition="$(DefineConstants.Contains('\net'))">obj\$(Configuration)\$(IntermediateOutputPath.Remove($(IntermediateOutputPath.LastIndexOf("\net"))))$(TargetFrameworkOutputFolder)</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <!--<DocumentationFile>bin\Release\Maoli.xml</DocumentationFile>-->
+    <!-- Define NET conditionals -->
+    <DefineConstants Condition="!$(DefineConstants.Contains(';NET'))">$(DefineConstants);$(TargetFrameworkCodename)</DefineConstants>
+    <DefineConstants Condition="$(DefineConstants.Contains(';NET'))">$(DefineConstants.Remove($(DefineConstants.LastIndexOf(";NET"))));$(TargetFrameworkCodename)</DefineConstants>
+    <!-- Change the output path -->
+    <OutputPath Condition="!$(DefineConstants.Contains('\net'))">$(OutputPath)$(TargetFrameworkOutputFolder)</OutputPath>
+    <OutputPath Condition="$(DefineConstants.Contains('\net'))">$(OutputPath.Remove($(OutputPath.LastIndexOf("\net"))))$(TargetFrameworkOutputFolder)</OutputPath>
+    <!-- Change the obj path -->
+    <IntermediateOutputPath Condition="!$(DefineConstants.Contains('\net'))">obj\$(Configuration)\$(IntermediateOutputPath)$(TargetFrameworkOutputFolder)</IntermediateOutputPath>
+    <IntermediateOutputPath Condition="$(DefineConstants.Contains('\net'))">obj\$(Configuration)\$(IntermediateOutputPath.Remove($(IntermediateOutputPath.LastIndexOf("\net"))))$(TargetFrameworkOutputFolder)</IntermediateOutputPath>
+    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cep.cs" />
+    <Compile Include="CepHelper.cs" />
+    <Compile Include="CepPunctuation.cs" />
+    <Compile Include="Cnpj.cs" />
+    <Compile Include="CnpjHelper.cs" />
+    <Compile Include="CnpjPunctuation.cs" />
+    <Compile Include="Cpf.cs" />
+    <Compile Include="CpfHelper.cs" />
+    <Compile Include="CpfPunctuation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Maoli.nuspec" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
