@@ -17,11 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.net45", "Maoli\Maoli.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.net451", "Maoli\Maoli.net451.csproj", "{850975A0-652A-4A55-871D-02D2B1198EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.net35.Tests", "Maoli.Tests\Maoli.net35.Tests.csproj", "{215FB938-6CA0-4B59-BBC5-679FEA68CB7C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.net40.Tests", "Maoli.Tests\Maoli.net40.Tests.csproj", "{4CA607F2-4828-4121-BDF2-5C2DF26E3705}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.net45.Tests", "Maoli.Tests\Maoli.net45.Tests.csproj", "{34F3733D-AA67-4A38-B0F2-DE27A20F24A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.Tests", "Maoli.Tests\Maoli.Tests.csproj", "{34F3733D-AA67-4A38-B0F2-DE27A20F24A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,14 +41,6 @@ Global
 		{850975A0-652A-4A55-871D-02D2B1198EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{850975A0-652A-4A55-871D-02D2B1198EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{850975A0-652A-4A55-871D-02D2B1198EBF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{215FB938-6CA0-4B59-BBC5-679FEA68CB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{215FB938-6CA0-4B59-BBC5-679FEA68CB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{215FB938-6CA0-4B59-BBC5-679FEA68CB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{215FB938-6CA0-4B59-BBC5-679FEA68CB7C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4CA607F2-4828-4121-BDF2-5C2DF26E3705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4CA607F2-4828-4121-BDF2-5C2DF26E3705}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4CA607F2-4828-4121-BDF2-5C2DF26E3705}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4CA607F2-4828-4121-BDF2-5C2DF26E3705}.Release|Any CPU.Build.0 = Release|Any CPU
 		{34F3733D-AA67-4A38-B0F2-DE27A20F24A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{34F3733D-AA67-4A38-B0F2-DE27A20F24A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34F3733D-AA67-4A38-B0F2-DE27A20F24A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
