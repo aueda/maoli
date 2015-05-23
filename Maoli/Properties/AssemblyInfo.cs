@@ -40,5 +40,22 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.2.2.0")]
-[assembly: AssemblyFileVersion("0.2.2.0")]
-[assembly: AssemblyInformationalVersion("0.2.2")]
+#if NET35
+[assembly: AssemblyInformationalVersion("0.2.2-net35")]
+#else
+#if NET40
+[assembly: AssemblyInformationalVersion("0.2.2-net40")]
+#else
+#if NET45
+[assembly: AssemblyInformationalVersion("0.2.2-net45")]
+#else
+#if NET451
+[assembly: AssemblyInformationalVersion("0.2.2-net451")]
+#else
+[assembly: AssemblyInformationalVersion("0.2.2-other")]
+#endif
+#endif
+#endif
+#endif
+
+[assembly: AssemblyFileVersion("0.2.2")]
