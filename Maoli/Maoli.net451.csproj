@@ -13,48 +13,29 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <!-- Custom elements -->
-    <TargetFrameworkCodename>$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</TargetFrameworkCodename>
-    <TargetFrameworkOutputFolder>$(TargetFrameworkVersion.Replace("v", "net").Replace(".", ""))</TargetFrameworkOutputFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>bin\Debug\net451</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NET451</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <!-- Define NET conditionals -->
-    <DefineConstants Condition="!$(DefineConstants.Contains(';NET'))">$(DefineConstants);$(TargetFrameworkCodename)</DefineConstants>
-    <DefineConstants Condition="$(DefineConstants.Contains(';NET'))">$(DefineConstants.Remove($(DefineConstants.LastIndexOf(";NET"))));$(TargetFrameworkCodename)</DefineConstants>
-    <!-- Change the output path -->
-    <OutputPath Condition="!$(DefineConstants.Contains('\net'))">$(OutputPath)$(TargetFrameworkOutputFolder)</OutputPath>
-    <OutputPath Condition="$(DefineConstants.Contains('\net'))">$(OutputPath.Remove($(OutputPath.LastIndexOf("\net"))))$(TargetFrameworkOutputFolder)</OutputPath>
-    <!-- Change the obj path -->
-    <IntermediateOutputPath Condition="!$(DefineConstants.Contains('\net'))">obj\$(Configuration)\$(IntermediateOutputPath)$(TargetFrameworkOutputFolder)</IntermediateOutputPath>
-    <IntermediateOutputPath Condition="$(DefineConstants.Contains('\net'))">obj\$(Configuration)\$(IntermediateOutputPath.Remove($(IntermediateOutputPath.LastIndexOf("\net"))))$(TargetFrameworkOutputFolder)</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\net451</IntermediateOutputPath>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\Release\net451</OutputPath>
+    <DefineConstants>TRACE;NET451</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <!-- Define NET conditionals -->
-    <DefineConstants Condition="!$(DefineConstants.Contains(';NET'))">$(DefineConstants);$(TargetFrameworkCodename)</DefineConstants>
-    <DefineConstants Condition="$(DefineConstants.Contains(';NET'))">$(DefineConstants.Remove($(DefineConstants.LastIndexOf(";NET"))));$(TargetFrameworkCodename)</DefineConstants>
-    <!-- Change the output path -->
-    <OutputPath Condition="!$(DefineConstants.Contains('\net'))">$(OutputPath)$(TargetFrameworkOutputFolder)</OutputPath>
-    <OutputPath Condition="$(DefineConstants.Contains('\net'))">$(OutputPath.Remove($(OutputPath.LastIndexOf("\net"))))$(TargetFrameworkOutputFolder)</OutputPath>
-    <!-- Change the obj path -->
-    <IntermediateOutputPath Condition="!$(DefineConstants.Contains('\net'))">obj\$(Configuration)\$(IntermediateOutputPath)$(TargetFrameworkOutputFolder)</IntermediateOutputPath>
-    <IntermediateOutputPath Condition="$(DefineConstants.Contains('\net'))">obj\$(Configuration)\$(IntermediateOutputPath.Remove($(IntermediateOutputPath.LastIndexOf("\net"))))$(TargetFrameworkOutputFolder)</IntermediateOutputPath>
-    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
+    <DocumentationFile>bin\Release\net451\Maoli.xml</DocumentationFile>
+    <IntermediateOutputPath>obj\$(Configuration)\net451</IntermediateOutputPath>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
