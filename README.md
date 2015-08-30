@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/aueda/maoli.svg?branch=master)](https://travis-ci.org/aueda/maoli/)
 
-Versão em português: [README.md](https://github.com/aueda/maoli/blob/master/LEIAME.md)
+VersÃ£o em portuguÃªs: [LEIAME.md](https://github.com/aueda/maoli/blob/master/LEIAME.md)
 
 Maoli is C# helper library for common brazilian business rules (CEP, CPF and CNPJ),
 compatible with .NET Framework 4.0 and above.
