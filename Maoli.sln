@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.net40", "Maoli\Maoli.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3558581C-D2FF-4934-80C4-0E0C95CB05FE}"
 	ProjectSection(SolutionItems) = preProject
+		LEIAME.md = LEIAME.md
 		LICENSE = LICENSE
 		Maoli.nuspec = Maoli.nuspec
 		pack.bat = pack.bat
