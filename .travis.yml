@@ -6,4 +6,4 @@ install:
    - dnu restore --no-cache
 
 script:
-   - dnx --project src/Maoli.Tests test
+   - dnx --project src/Maoli.Tests test -parallel none
