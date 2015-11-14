@@ -1,9 +1,9 @@
 sudo: false
-1 language: CSharp
-2 install:
-3   - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
-4   - dnx upgrade
-5   - dnx restore --no-cache
+language: CSharp
+install:
+   - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
+   - dnx upgrade
+   - dnx restore --no-cache
 
-6 script:
-7   - dnx test -parallel none
+script:
+   - dnx test -parallel none
