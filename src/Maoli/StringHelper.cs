@@ -21,7 +21,7 @@ namespace Maoli
         /// false, otherwise.</returns>
         public static bool IsNullOrWhiteSpace(string value)
         {
-#if NET35
+#if NET20 || NET35
             return string.IsNullOrEmpty(value) ||
                 (!string.IsNullOrEmpty(value) && value.Trim() == string.Empty);
 #else

@@ -1,26 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.net40", "Maoli\Maoli.net40.csproj", "{66620B5A-D754-44DD-9349-B44759D1C617}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B2DBE93E-708B-49AE-822C-2669FA0BBA45}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3558581C-D2FF-4934-80C4-0E0C95CB05FE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C40157C4-484B-4BE2-9C1A-72FD73FF064C}"
 	ProjectSection(SolutionItems) = preProject
-		LEIAME.md = LEIAME.md
-		LICENSE = LICENSE
-		Maoli.nuspec = Maoli.nuspec
-		pack.bat = pack.bat
-		README.md = README.md
+		global.json = global.json
+		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.net35", "Maoli\Maoli.net35.csproj", "{AEB370B0-EE2B-4DA8-AB7E-7875EAE03DAA}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Maoli", "src\Maoli\Maoli.xproj", "{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.net45", "Maoli\Maoli.net45.csproj", "{220D6DE4-4D1C-4FE3-AC5B-7EAA2AE9DEB2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.net451", "Maoli\Maoli.net451.csproj", "{850975A0-652A-4A55-871D-02D2B1198EBF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.Tests", "Maoli.Tests\Maoli.Tests.csproj", "{34F3733D-AA67-4A38-B0F2-DE27A20F24A5}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Maoli.Tests", "src\Maoli.Tests\Maoli.Tests.xproj", "{10AD23E9-1059-4B7F-B4EE-FC64F7C90355}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,28 +21,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{66620B5A-D754-44DD-9349-B44759D1C617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66620B5A-D754-44DD-9349-B44759D1C617}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66620B5A-D754-44DD-9349-B44759D1C617}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66620B5A-D754-44DD-9349-B44759D1C617}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AEB370B0-EE2B-4DA8-AB7E-7875EAE03DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AEB370B0-EE2B-4DA8-AB7E-7875EAE03DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AEB370B0-EE2B-4DA8-AB7E-7875EAE03DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AEB370B0-EE2B-4DA8-AB7E-7875EAE03DAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{220D6DE4-4D1C-4FE3-AC5B-7EAA2AE9DEB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{220D6DE4-4D1C-4FE3-AC5B-7EAA2AE9DEB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{220D6DE4-4D1C-4FE3-AC5B-7EAA2AE9DEB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{220D6DE4-4D1C-4FE3-AC5B-7EAA2AE9DEB2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{850975A0-652A-4A55-871D-02D2B1198EBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{850975A0-652A-4A55-871D-02D2B1198EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{850975A0-652A-4A55-871D-02D2B1198EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{850975A0-652A-4A55-871D-02D2B1198EBF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{34F3733D-AA67-4A38-B0F2-DE27A20F24A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34F3733D-AA67-4A38-B0F2-DE27A20F24A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34F3733D-AA67-4A38-B0F2-DE27A20F24A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34F3733D-AA67-4A38-B0F2-DE27A20F24A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10AD23E9-1059-4B7F-B4EE-FC64F7C90355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10AD23E9-1059-4B7F-B4EE-FC64F7C90355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10AD23E9-1059-4B7F-B4EE-FC64F7C90355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10AD23E9-1059-4B7F-B4EE-FC64F7C90355}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9} = {B2DBE93E-708B-49AE-822C-2669FA0BBA45}
+		{10AD23E9-1059-4B7F-B4EE-FC64F7C90355} = {B2DBE93E-708B-49AE-822C-2669FA0BBA45}
 	EndGlobalSection
 EndGlobal

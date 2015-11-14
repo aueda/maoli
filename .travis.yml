@@ -1,11 +1,9 @@
 sudo: false
-language: csharp
-solution: Maoli.sln
- 
-install:
-  - nuget restore Maoli.sln
-  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
- 
-script:
-  - xbuild /p:Configuration=Release Maoli.sln
-  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Tests/bin/Release/Maoli.Tests.dll
+1 language: CSharp
+2 install:
+3   - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
+4   - dnx upgrade
+5   - dnx restore --no-cache
+
+6 script:
+7   - dnx test -parallel none
