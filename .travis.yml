@@ -3,7 +3,7 @@ language: CSharp
 install:
    - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
    - dnvm upgrade
-   - dnvm restore --no-cache
+   - dnu restore --no-cache
 
 script:
-   - dnvm test -parallel none
+   - dnx test
