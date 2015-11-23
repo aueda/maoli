@@ -68,8 +68,8 @@ namespace Maoli
 
             value = CnpjHelper.Sanitize(value);
 
-            var inputDigit1 = Convert.ToInt32(value.Substring(12, 1));
-            var inputDigit2 = Convert.ToInt32(value.Substring(13, 1));
+            var inputDigit1 = int.Parse(value.Substring(12, 1));
+            var inputDigit2 = int.Parse(value.Substring(13, 1));
 
             var calcDigit1 = CnpjHelper.CreateChecksum(value.Substring(0, 12), CnpjHelper.multiplier1);
             var calcDigit2 = CnpjHelper.CreateChecksum(value.Substring(0, 13), CnpjHelper.multiplier2);
@@ -91,7 +91,7 @@ namespace Maoli
 
             for (var i = text.Length - 1; i > -1; i--)
             {
-                sum += Convert.ToInt32(text[i].ToString()) * multiplier[i];
+                sum += int.Parse(text[i].ToString()) * multiplier[i];
             }
 
             remainder = sum % 11;
