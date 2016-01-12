@@ -7,15 +7,13 @@
   "licenseUrl": "",
   "frameworks": {
     "dnx451": {
-    },
-    "dnxcore50": {
     }
   },
   "commands": {
     "test": "xunit.runner.dnx"
   },
   "dependencies": {
-    "Maoli": "0.2.5-alpha3",
+    "Maoli": "0.2.5-alpha4",
     "xunit": "2.1.0",
     "xunit.runner.dnx": "2.1.0-rc1-build204"
   }

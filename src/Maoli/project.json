@@ -3,6 +3,39 @@
   "copyright": "Copyright (c) 2015 Adriano Ueda",
   "description": "Maoli is C# helper library for common brazilian business rules (CPF, CNPJ and CEP). For documentation visit https://github.com/aueda/maoli",
   "frameworks": {
+    "dnx451": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Text.RegularExpressions": "4.0.11-beta-23516",
+        "System.Threading": "4.0.11-beta-23516"
+      }
+    },
+    "dotnet5.4": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.10",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.10",
+        "System.Text.RegularExpressions": "4.0.10",
+        "System.Threading": "4.0.10"
+      }
+    },
+    "net20": { },
+    "net35": { },
+    "net40": { },
+    "net45": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Text.RegularExpressions": "4.0.11-beta-23516",
+        "System.Threading": "4.0.11-beta-23516"
+      }
+    },
     "net451": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23516",
@@ -33,20 +66,26 @@
         "System.Threading": "4.0.11-beta-23516"
       }
     },
-    "dotnet5.4": {
+    "net461": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23516",
         "System.Collections": "4.0.11-beta-23516",
         "System.Linq": "4.0.1-beta-23516",
         "System.Runtime": "4.0.21-beta-23516",
         "System.Text.RegularExpressions": "4.0.11-beta-23516",
-        "System.Threading": "4.0.11-beta-23409"
+        "System.Threading": "4.0.11-beta-23516"
       }
     },
-    "net20": { },
-    "net35": { },
-    "net40": { },
-    "net45": {
+    "netcore45": {
+      "dependencies": {
+        "System.Collections": "4.0.10",
+        "System.Linq": "4.0.0",
+        "System.Runtime": "4.0.0",
+        "System.Text.RegularExpressions": "4.0.0",
+        "System.Threading": "4.0.0"
+      }
+    },
+    "netcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23516",
         "System.Collections": "4.0.11-beta-23516",
@@ -62,5 +101,5 @@
   "releaseNotes": "- Multi-framework NuGet release\n- Compatibility fixes",
   "summary": "Maoli is C# helper library for common brazilian business rules (CPF, CNPJ and CEP).",
   "tags": [ "AspNet", "Cnpj", "Cpf", "Cep" ],
-  "version": "0.2.5-alpha3"
+  "version": "0.2.5-alpha4"
 }
