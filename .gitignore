@@ -155,3 +155,6 @@ $RECYCLE.BIN/
 
 # ASP.NET Core lock files
 *.lock.json
+
+# VS 2015
+.vs

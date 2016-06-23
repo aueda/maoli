@@ -17,7 +17,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Adriano Ueda")]
 [assembly: AssemblyProduct("Maoli")]
-[assembly: AssemblyCopyright("Copyright © Adriano Ueda 2015")]
+[assembly: AssemblyCopyright("Copyright © 2016 Adriano Ueda")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -25,6 +25,6 @@ using System.Runtime.InteropServices;
 // to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
-[assembly: AssemblyInformationalVersion("0.2.5-alpha4")]
+[assembly: AssemblyInformationalVersion("0.2.5-alpha5")]
 [assembly: AssemblyVersion("0.2.5")]
 [assembly: AssemblyFileVersion("0.2.5")]

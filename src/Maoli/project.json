@@ -1,105 +1,60 @@
 {
+  "title": "Maoli",
   "authors": [ "Adriano Ueda" ],
-  "copyright": "Copyright (c) 2015 Adriano Ueda",
+  "copyright": "Copyright (c) 2016 Adriano Ueda",
   "description": "Maoli is C# helper library for common brazilian business rules (CPF, CNPJ and CEP). For documentation visit https://github.com/aueda/maoli",
+  "version": "0.2.5-alpha5",
   "frameworks": {
-    "dnx451": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516",
-        "System.Text.RegularExpressions": "4.0.11-beta-23516",
-        "System.Threading": "4.0.11-beta-23516"
-      }
-    },
-    "dotnet5.4": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Collections": "4.0.10",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.10",
-        "System.Text.RegularExpressions": "4.0.10",
-        "System.Threading": "4.0.10"
-      }
-    },
     "net20": { },
     "net35": { },
     "net40": { },
-    "net45": {
+    "net45": { },
+    "net451": { },
+    "net452": { },
+    "net46": { },
+    "net461": { },
+    "netcoreapp1.0": {
       "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516",
-        "System.Text.RegularExpressions": "4.0.11-beta-23516",
-        "System.Threading": "4.0.11-beta-23516"
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-rc2-3002702",
+          "type": "platform"
+        }
+      },
+      "imports": [
+        "dotnet5.6",
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
+    },
+    "netstandard1.4": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-rc2-24027",
+        "System.Collections": "4.0.11-rc2-24027",
+        "System.Linq": "4.1.0-rc2-24027",
+        "System.Runtime": "4.1.0-rc2-24027",
+        "System.Text.RegularExpressions": "4.0.12-rc2-24027",
+        "System.Threading": "4.0.11-rc2-24027"
       }
     },
-    "net451": {
+    "netstandard1.5": {
       "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516",
-        "System.Text.RegularExpressions": "4.0.11-beta-23516",
-        "System.Threading": "4.0.11-beta-23516"
-      }
-    },
-    "net452": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516",
-        "System.Text.RegularExpressions": "4.0.11-beta-23516",
-        "System.Threading": "4.0.11-beta-23516"
-      }
-    },
-    "net46": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516",
-        "System.Text.RegularExpressions": "4.0.11-beta-23516",
-        "System.Threading": "4.0.11-beta-23516"
-      }
-    },
-    "net461": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516",
-        "System.Text.RegularExpressions": "4.0.11-beta-23516",
-        "System.Threading": "4.0.11-beta-23516"
-      }
-    },
-    "netcore45": {
-      "dependencies": {
-        "System.Collections": "4.0.10",
-        "System.Linq": "4.0.0",
-        "System.Runtime": "4.0.0",
-        "System.Text.RegularExpressions": "4.0.0",
-        "System.Threading": "4.0.0"
-      }
-    },
-    "netcore50": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516",
-        "System.Text.RegularExpressions": "4.0.11-beta-23516",
-        "System.Threading": "4.0.11-beta-23516"
+        "Microsoft.CSharp": "4.0.1-rc2-24027",
+        "System.Collections": "4.0.11-rc2-24027",
+        "System.Linq": "4.1.0-rc2-24027",
+        "System.Runtime": "4.1.0-rc2-24027",
+        "System.Text.RegularExpressions": "4.0.12-rc2-24027",
+        "System.Threading": "4.0.11-rc2-24027"
       }
     }
   },
-  "licenseUrl": "http://opensource.org/licenses/MIT",
-  "projectUrl": "https://github.com/aueda/maoli",
-  "releaseNotes": "- Multi-framework NuGet release\n- Compatibility fixes",
-  "summary": "Maoli is C# helper library for common brazilian business rules (CPF, CNPJ and CEP).",
-  "tags": [ "AspNet", "Cnpj", "Cpf", "Cep" ],
-  "version": "0.2.5-alpha4"
+  "packOptions": {
+    "licenseUrl": "http://opensource.org/licenses/MIT",
+    "projectUrl": "https://github.com/aueda/maoli",
+    "releaseNotes": "- Multi-framework NuGet release\n- Compatibility fixes",
+    "summary": "Maoli is C# helper library for common brazilian business rules (CPF, CNPJ and CEP).",
+    "tags": [ "AspNet", "Cnpj", "Cpf", "Cep" ]
+  },
+  "buildOptions": {
+    "xmlDoc": true
+  }
 }
