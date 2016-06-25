@@ -50,9 +50,9 @@
   "packOptions": {
     "licenseUrl": "http://opensource.org/licenses/MIT",
     "projectUrl": "https://github.com/aueda/maoli",
-    "releaseNotes": "- Multi-framework NuGet release\n- Compatibility fixes",
+    "releaseNotes": "- .NET Core 1 RC2 and Xamarin compatibility\n- Misc fixes",
     "summary": "Maoli is C# helper library for common brazilian business rules (CPF, CNPJ and CEP).",
-    "tags": [ "AspNet", "Cnpj", "Cpf", "Cep" ]
+    "tags": [ "aspnet", "aspnetcore", "xamarin", "cnpj", "cpf", "cep" ]
   },
   "buildOptions": {
     "xmlDoc": true
