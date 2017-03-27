@@ -1,22 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B2DBE93E-708B-49AE-822C-2669FA0BBA45}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C40157C4-484B-4BE2-9C1A-72FD73FF064C}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		.travis.yml = .travis.yml
 		global.json = global.json
-		NuGet.Config = NuGet.Config
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Maoli", "src\Maoli\Maoli.xproj", "{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maoli", "Maoli\Maoli.csproj", "{110145A0-3B39-4079-9A2F-E3AFE7F25C68}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Maoli.Tests", "src\Maoli.Tests\Maoli.Tests.xproj", "{10AD23E9-1059-4B7F-B4EE-FC64F7C90355}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maoli.Tests", "Maoli.Tests\Maoli.Tests.csproj", "{E8A5C9C8-80A1-44D1-94D5-1D3D33C195CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,20 +22,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10AD23E9-1059-4B7F-B4EE-FC64F7C90355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10AD23E9-1059-4B7F-B4EE-FC64F7C90355}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10AD23E9-1059-4B7F-B4EE-FC64F7C90355}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10AD23E9-1059-4B7F-B4EE-FC64F7C90355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{110145A0-3B39-4079-9A2F-E3AFE7F25C68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{110145A0-3B39-4079-9A2F-E3AFE7F25C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{110145A0-3B39-4079-9A2F-E3AFE7F25C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{110145A0-3B39-4079-9A2F-E3AFE7F25C68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8A5C9C8-80A1-44D1-94D5-1D3D33C195CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8A5C9C8-80A1-44D1-94D5-1D3D33C195CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A5C9C8-80A1-44D1-94D5-1D3D33C195CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8A5C9C8-80A1-44D1-94D5-1D3D33C195CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{9713FDE4-36E0-4AF4-A5AB-B7FBF85C78F9} = {B2DBE93E-708B-49AE-822C-2669FA0BBA45}
-		{10AD23E9-1059-4B7F-B4EE-FC64F7C90355} = {B2DBE93E-708B-49AE-822C-2669FA0BBA45}
 	EndGlobalSection
 EndGlobal

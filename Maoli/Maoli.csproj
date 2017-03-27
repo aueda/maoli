@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Adriano Ueda"</Authors>
+    <Company />
+    <Copyright>Copyright (c) 2017 Adriano Ueda</Copyright>
+    <Description>Maoli is C# helper library for common brazilian business rules (CPF, CNPJ and CEP). For documentation visit https://github.com/aueda/maoli</Description>
+    <Version>0.2.5-alpha6</Version>
+    <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/aueda/maoli</PackageProjectUrl>
+    <PackageTags>aspnet aspnetcore xamarin cnpj cpf cep</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard1.6\Maoli.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
