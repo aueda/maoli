@@ -342,7 +342,7 @@
         {
             var actual = Cpf.Complete("714025658");
 
-            Assert.Equal<string>(CpfTest.looseValidCpf, actual);
+            Assert.Equal(CpfTest.looseValidCpf, actual);
         }
 
         [Fact]
@@ -477,7 +477,7 @@
             var expected = "71402565860";
             var actual = cpf.ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -488,7 +488,7 @@
             var expected = "71402565860";
             var actual = cpf.ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

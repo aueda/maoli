@@ -254,7 +254,7 @@
         {
             var actual = Cnpj.Complete("639433150001");
 
-            Assert.Equal<string>(CnpjTest.looseValidCnpj, actual);
+            Assert.Equal(CnpjTest.looseValidCnpj, actual);
         }
 
         [Fact]
@@ -389,7 +389,7 @@
             var expected = looseValidCnpj;
             var actual = Cnpj.ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -400,7 +400,7 @@
             var expected = looseValidCnpj;
             var actual = Cnpj.ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
