@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
-<Authors>Adriano Ueda</Authors>
+    <TargetFrameworks>net40;netstandard1.1</TargetFrameworks>
+    <Authors>Adriano Ueda</Authors>
     <Company />
     <Copyright>Copyright (c) 2018 Adriano Ueda</Copyright>
     <Description>Maoli is C# helper library for common brazilian business rules (CPF, CNPJ and CEP). For documentation visit https://github.com/aueda/maoli</Description>
