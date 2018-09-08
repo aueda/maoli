@@ -12,4 +12,10 @@
     <PackageTags>aspnet aspnetcore xamarin cnpj cpf cep</PackageTags>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
+    <DocumentationFile>bin\Release\net40\Maoli.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.1|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.1\Maoli.xml</DocumentationFile>
+  </PropertyGroup>  
 </Project>
