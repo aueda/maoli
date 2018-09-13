@@ -9,10 +9,7 @@ namespace Maoli
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Helper class for <see cref="Cpf"/> class
@@ -49,7 +46,7 @@ namespace Maoli
         /// <returns>true if CPF string is valid; false otherwise</returns>
         internal static bool Validate(string value, CpfPunctuation punctuation)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (StringHelper.IsNullOrWhiteSpace(value))
             {
                 return false;
             }
@@ -66,8 +63,8 @@ namespace Maoli
                 return false;
             }
 
-            var inputDigit1 = Convert.ToInt32(value.Substring(9, 1));
-            var inputDigit2 = Convert.ToInt32(value.Substring(10, 1));
+            var inputDigit1 = int.Parse(value.Substring(9, 1));
+            var inputDigit2 = int.Parse(value.Substring(10, 1));
 
             var calcDigit1 = CpfHelper.CreateChecksum(value.Substring(0, 9));
             var calcDigit2 = CpfHelper.CreateChecksum(value.Substring(0, 10));
@@ -87,7 +84,7 @@ namespace Maoli
 
             for (var i = text.Length - 1; i > -1; i--)
             {
-                sum += Convert.ToInt32(text[i].ToString()) * (text.Length + 1 - i);
+                sum += int.Parse(text[i].ToString()) * (text.Length + 1 - i);
             }
 
             digit = 11 - (sum % 11);
@@ -131,7 +128,7 @@ namespace Maoli
         /// <returns>a CPF string with a valid checksum trailing</returns>
         internal static string Complete(string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (StringHelper.IsNullOrWhiteSpace(value))
             {
                 throw new ArgumentException("O CPF é inválido");
             }
@@ -158,7 +155,7 @@ namespace Maoli
         {
             var sameDigitRegex = @"^(\d)\1+$";
 
-            if (string.IsNullOrWhiteSpace(value))
+            if (StringHelper.IsNullOrWhiteSpace(value))
             {
                 return false;
             }

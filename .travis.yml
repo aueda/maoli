@@ -1,11 +1,8 @@
-sudo: false
 language: csharp
-solution: Maoli.sln
- 
-install:
-  - nuget restore Maoli.sln
-  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
- 
+mono: none
+dotnet: 2.0.0
+dist: trusty
 script:
-  - xbuild /p:Configuration=Release Maoli.sln
-  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Tests/bin/Release/Maoli.Tests.dll
+  - cd Maoli.Tests
+  - dotnet restore
+  - dotnet test

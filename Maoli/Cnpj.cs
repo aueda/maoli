@@ -8,10 +8,6 @@
 namespace Maoli
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Represents a valid CNPJ number
@@ -40,7 +36,7 @@ namespace Maoli
         /// how validation must be handled</param>
         public Cnpj(string value, CnpjPunctuation punctuation)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (StringHelper.IsNullOrWhiteSpace(value))
             {
                 throw new ArgumentException("O CNPJ não pode ser nulo ou branco");
             }
@@ -188,7 +184,7 @@ namespace Maoli
 
             unchecked
             {
-                hash = (hash * 31) + (string.IsNullOrWhiteSpace(this.parsedValue) ? 0 : this.parsedValue.GetHashCode());
+                hash = (hash * 31) + (StringHelper.IsNullOrWhiteSpace(this.parsedValue) ? 0 : this.parsedValue.GetHashCode());
             }
 
             return hash;

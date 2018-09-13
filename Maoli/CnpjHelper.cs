@@ -9,10 +9,7 @@ namespace Maoli
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Helper class for <see cref="Cnpj"/> class
@@ -59,7 +56,7 @@ namespace Maoli
         /// <returns>true if CNPJ string is valid; false otherwise</returns>
         internal static bool Validate(string value, CnpjPunctuation punctuation)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (StringHelper.IsNullOrWhiteSpace(value))
             {
                 return false;
             }
@@ -71,8 +68,8 @@ namespace Maoli
 
             value = CnpjHelper.Sanitize(value);
 
-            var inputDigit1 = Convert.ToInt32(value.Substring(12, 1));
-            var inputDigit2 = Convert.ToInt32(value.Substring(13, 1));
+            var inputDigit1 = int.Parse(value.Substring(12, 1));
+            var inputDigit2 = int.Parse(value.Substring(13, 1));
 
             var calcDigit1 = CnpjHelper.CreateChecksum(value.Substring(0, 12), CnpjHelper.multiplier1);
             var calcDigit2 = CnpjHelper.CreateChecksum(value.Substring(0, 13), CnpjHelper.multiplier2);
@@ -94,7 +91,7 @@ namespace Maoli
 
             for (var i = text.Length - 1; i > -1; i--)
             {
-                sum += Convert.ToInt32(text[i].ToString()) * multiplier[i];
+                sum += int.Parse(text[i].ToString()) * multiplier[i];
             }
 
             remainder = sum % 11;
@@ -135,7 +132,7 @@ namespace Maoli
         /// <returns>a CNPJ string with a valid checksum trailing</returns>
         internal static string Complete(string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (StringHelper.IsNullOrWhiteSpace(value))
             {
                 throw new ArgumentException("O CNPJ é inválido");
             }
