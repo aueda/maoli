@@ -1,63 +1,64 @@
-#Maoli
+# Maoli
 
+[![NuGet Version](https://img.shields.io/nuget/v/Maoli.svg)](https://www.nuget.org/packages/Maoli/)
 [![Build Status](https://travis-ci.org/aueda/maoli.svg?branch=master)](https://travis-ci.org/aueda/maoli/)
 
-Vers„o em inglÍs: [README.md](https://github.com/aueda/maoli/)
+Vers√£o em ingl√™s: [README.md](https://github.com/aueda/maoli/)
 
-Maoli È uma biblioteca de regras de negÛcio brasileiras comuns, compatÌvel com .NET Framework 4.0 e superior.
+Maoli √© uma biblioteca de regras de neg√≥cio brasileiras comuns, compat√≠vel com .NET Framework 4.0 e superior.
 
 Atualmente implementa:
 
-* ValidaÁ„o de CEP
-* ValidaÁ„o de CPF
-* ValidaÁ„o de CNPJ
+* Valida√ß√£o de CEP
+* Valida√ß√£o de CPF
+* Valida√ß√£o de CNPJ
 
-Para validaÁ„o em cliente, consulte [Maoli.js](https://github.com/aueda/maoli.js/).
+Para valida√ß√£o em cliente, consulte [Maoli.js](https://github.com/aueda/maoli.js/).
 
-## DocumentaÁ„o
+## Documenta√ß√£o
 
 ### Cep
 
-``Cep.Validate(string value)`` - valida se uma string È uma representaÁ„o v·lida de CEP. Devolve true se o CEP È v·lido; caso contr·rio, false.
+``Cep.Validate(string value)`` - valida se uma string √© uma representa√ß√£o v√°lida de CEP. Devolve true se o CEP √© v√°lido; caso contr√°rio, false.
 
 ```c#
-	if (Cep.Validate("99999-999"))
-	{
-	  Console.WriteLine("CEP È v·lido");
-	}
+if (Cep.Validate("99999-999"))
+{
+  Console.WriteLine("CEP √© v√°lido");
+}
 ```
 
 ### Cpf
 
-``Cpf.Validate(string value)`` - valida se uma string È uma representaÁ„o v·lida de CPF. Devolve true se o CPF È v·lido; caso contr·rio, false.
+``Cpf.Validate(string value)`` - valida se uma string √© uma representa√ß√£o v√°lida de CPF. Devolve true se o CPF √© v√°lido; caso contr√°rio, false.
 
 ```c#
-	if (Cpf.Validate("999.999.99-99"))
-	{
-	  Console.WriteLine("CPF È v·lido");
-	}
+if (Cpf.Validate("999.999.99-99"))
+{
+  Console.WriteLine("CPF √© v√°lido");
+}
 ```
 
-``Cpf.Complete(string value)`` - completa uma string de CPF parcial concatenando um dÌgito verificador v·lido. Devolve uma string de CPF com um dÌgito verificador v·lido.
+``Cpf.Complete(string value)`` - completa uma string de CPF parcial concatenando um d√≠gito verificador v√°lido. Devolve uma string de CPF com um d√≠gito verificador v√°lido.
 
 ```c#
-	var cpf = Cpf.Complete("99999999")); // gera "99999999999" como retorno
+var cpf = Cpf.Complete("99999999")); // gera "99999999999" como retorno
 ```
 
 ### Cnpj
 
-``Cnpj.Validate(string value)`` - valida se uma string È uma representaÁ„o v·lida de CNPJ. Devolve true se o CNPJ È v·lido; caso contr·rio, false.
+``Cnpj.Validate(string value)`` - valida se uma string √© uma representa√ß√£o v√°lida de CNPJ. Devolve true se o CNPJ √© v√°lido; caso contr√°rio, false.
 
 ```c#
-	if (Cnpj.Validate("99.999.999/9999-99"))
-	{
-	  Console.WriteLine("CPNJ È v·lido");
-	}
+if (Cnpj.Validate("99.999.999/9999-99"))
+{
+  Console.WriteLine("CPNJ √© v√°lido");
+}
 ```
-``Cnpj.Complete(string value)`` - completa uma string de CNPJ parcial concatenando um dÌgito verificador v·lido. Devolve uma string de CNPJ com um dÌgito verificador v·lido.
+``Cnpj.Complete(string value)`` - completa uma string de CNPJ parcial concatenando um d√≠gito verificador v√°lido. Devolve uma string de CNPJ com um d√≠gito verificador v√°lido.
 
 ```c#
-	var cnpj = Cnpj.Complete("999999999999")); // gera "99999999999999" como retorno
+var cnpj = Cnpj.Complete("999999999999")); // gera "99999999999999" como retorno
 ```
 
 ## Pacote NuGet
@@ -68,13 +69,15 @@ Para instalar o Maoli usando o NuGet, execute o seguinte comando na linha de com
 Install-Package Maoli
 ```
 
-## CÛdigo-fonte
+Veja o [website do NuGet](https://www.nuget.org/packages/Maoli/).
 
-O cÛdigo-fonte est· disponÌvel em [GitHub](https://github.com/aueda/maoli/).
+## C√≥digo-fonte
 
-## LicenÁa
+O c√≥digo-fonte est√° dispon√≠vel em [GitHub](https://github.com/aueda/maoli/).
 
-Este projeto est· sob a [licenÁa MIT](http://opensource.org/licenses/MIT).
+## Licen√ßa
+
+Este projeto est√° sob a [licen√ßa MIT](http://opensource.org/licenses/MIT).
 
 ## Autor
 
