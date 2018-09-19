@@ -346,6 +346,24 @@
         }
 
         [Fact]
+        public void CompleteThrowsArgumentExceptionIfCpfTextIsNull()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Cpf.Complete(null);
+            });
+        }
+
+        [Fact]
+        public void CompleteThrowsArgumentExceptionIfCpfTextIsEmpty()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Cpf.Complete(string.Empty);
+            });
+        }
+
+        [Fact]
         public void CompleteThrowsArgumentExceptionIfCpfTextIsWrong()
         {
             var actual = false;

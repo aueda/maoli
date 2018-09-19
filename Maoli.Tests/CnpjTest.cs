@@ -274,6 +274,24 @@
             Assert.True(actual);
         }
 
+        [Fact]
+        public void CompleteThrowsArgumentExceptionIfCnpjTextIsNull()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Cnpj.Complete(null);
+            });
+        }
+
+        [Fact]
+        public void CompleteThrowsArgumentExceptionIfCnpjTextIsEmpty()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Cnpj.Complete(null);
+            });
+        }
+
         // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
         [Fact]
         public void EqualsReturnsTrueIfSameCnpjIsEqual()

@@ -112,16 +112,6 @@ namespace Maoli
         }
 
         /// <summary>
-        /// Formats a CPF string using the punctuation setting
-        /// </summary>
-        /// <param name="value">a CPF string to format</param>
-        /// <returns>A formatted CPF string with or without punctuation</returns>
-        internal static string Format(string value)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Completes a partial CPF string by appending a valid checksum trailing
         /// </summary>
         /// <param name="value">a partial CPF string with or without punctuation</param>
