@@ -42,7 +42,8 @@ if (Cpf.Validate("999.999.99-99"))
 ``Cpf.Complete(string value)`` - completa uma string de CPF parcial concatenando um dígito verificador válido. Devolve uma string de CPF com um dígito verificador válido.
 
 ```c#
-var cpf = Cpf.Complete("99999999")); // gera "99999999999" como retorno
+// devolve "99999999999"
+var cpf = Cpf.Complete("99999999")); 
 ```
 
 ### Cnpj
@@ -58,7 +59,8 @@ if (Cnpj.Validate("99.999.999/9999-99"))
 ``Cnpj.Complete(string value)`` - completa uma string de CNPJ parcial concatenando um dígito verificador válido. Devolve uma string de CNPJ com um dígito verificador válido.
 
 ```c#
-var cnpj = Cnpj.Complete("999999999999")); // gera "99999999999999" como retorno
+// devolve "99999999999999"
+var cnpj = Cnpj.Complete("999999999999")); 
 ```
 
 ## Pacote NuGet

@@ -36,7 +36,7 @@ if (Cep.Validate("99999-999"))
 ```c#
 if (Cpf.Validate("999.999.99-99"))
 {
-Console.WriteLine("CPF is valid");
+  Console.WriteLine("CPF is valid");
 }
 ```
 
@@ -44,7 +44,8 @@ Console.WriteLine("CPF is valid");
 Returns a CPF string with a valid checksum trailing.
 
 ```c#
-var cpf = Cpf.Complete("99999999")); // outputs "99999999999"
+// outputs "99999999999"
+var cpf = Cpf.Complete("99999999"));
 ```
 
 ### Cnpj
@@ -61,7 +62,8 @@ if (Cnpj.Validate("99.999.999/9999-99"))
 Returns a CNPJ string with a valid checksum trailing.
 
 ```c#
-var cnpj = Cnpj.Complete("999999999999")); // outputs "99999999999999"
+// outputs "99999999999999"
+var cnpj = Cnpj.Complete("999999999999"));
 ```
 
 ## NuGet Package
