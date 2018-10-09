@@ -5,7 +5,7 @@
 // <author>Adriano Ueda</author>
 //-----------------------------------------------------------------------
 
-namespace Maoli
+namespace Maoli.V1
 {
     using System;
     using System.Collections.Generic;
