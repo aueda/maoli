@@ -3,6 +3,10 @@ mono: none
 dotnet: 2.1.300
 dist: trusty
 script:
-  - cd Maoli.Tests
+  - cd Maoli.Net462.Tests
+  - dotnet restore
+  - dotnet test
+
+  - cd Maoli.NetCoreApp20.Tests
   - dotnet restore
   - dotnet test
