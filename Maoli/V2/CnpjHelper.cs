@@ -113,6 +113,11 @@ namespace Maoli.V2
         /// <returns>a CNPJ string with a valid checksum trailing</returns>
         internal static string Complete(string value)
         {
+            if (StringHelper.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException("O CNPJ é inválido");
+            }
+
             var isValid = value.Length == 12 || value.Length == 16;
 
             if (!isValid)
