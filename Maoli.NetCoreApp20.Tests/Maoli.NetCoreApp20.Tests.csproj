@@ -26,7 +26,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
-    <DotNetCliToolReference Include="dotnet-reportgenerator-cli" Version="4.0.0-rc4" />
+    <DotNetCliToolReference Include="dotnet-reportgenerator-cli" Version="4.0.4" />
   </ItemGroup>
 
   <ItemGroup>
