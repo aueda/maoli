@@ -11,7 +11,7 @@ matrix:
 
 install:
   - if [ "$DOT_NET" == "Framework" ]; then nuget restore ./Maoli/Maoli.csproj; fi
-  - if [ "$DOT_NET" == "Framework" ]; then nuget restore ./Maoli.Net462.Tests/Maoli.Net462.Tests.csproj; fi
+  - if [ "$DOT_NET" == "Framework" ]; then nuget restore ./Maoli.Net462.Tests/Maoli.Net462.Tests.csproj -PackagesDirectory ..\packages; fi
   - if [ "$DOT_NET" == "Framework" ]; then nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner; fi
  
 script:
