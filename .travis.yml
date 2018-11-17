@@ -4,10 +4,18 @@ matrix:
   include:
     - dotnet: 2.1.300
       mono: none
-      env: TEST_PROJECT="Maoli.NetCoreApp20.Tests"
+      env: DOT_NET="Core"
     - mono: latest
-      env: TEST_PROJECT="Maoli.Net462.Tests"
+      env: DOT_NET="Framework"
+
+install:
+  - if [ "$DOT_NET" == "Framework" ]; then nuget restore Maoli.sln; fi
+  - if [ "$DOT_NET" == "Framework" ]; then nuget install xunit.runners -Version 2.4.0 -OutputDirectory testrunner; fi
+ 
 script:
-  - cd $TEST_PROJECT
-  - dotnet restore
-  - dotnet test
+  - if [ "$DOT_NET" == "Framework" ]; then xbuild /p:Configuration=Release Maoli.sln; fi
+  - if [ "$DOT_NET" == "Framework" ]; then mono ./testrunner/xunit.runners.2.4.0/tools/xunit.console.clr4.exe ./Maoli.Net462.Tests/bin/Release/Maoli.Net462.Tests.dll; fi
+
+  - if [ "$DOT_NET" == "Core" ]; then cd Maoli.NetCoreApp20.Tests; fi
+  - if [ "$DOT_NET" == "Core" ]; then dotnet restore; fi
+  - if [ "$DOT_NET" == "Core" ]; then dotnet test; fi
