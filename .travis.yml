@@ -13,7 +13,10 @@ install:
   - if [ "$DOT_NET" == "Framework" ]; then nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner; fi
  
 script:
-  - if [ "$DOT_NET" == "Framework" ]; then xbuild /p:Configuration=Release ./Maoli/Maoli.csproj; fi
+  - if [ "$DOT_NET" == "Framework" ]; then cd Maoli; fi
+  - if [ "$DOT_NET" == "Framework" ]; then dotnet build; fi
+  - if [ "$DOT_NET" == "Framework" ]; then cd ..; fi
+  - if [ "$DOT_NET" == "Framework" ]; xbuild /p:Configuration=Release ./Maoli.NetCoreApp20.Tests/Maoli.NetCoreApp20.Tests.csproj; fi
   - if [ "$DOT_NET" == "Framework" ]; then mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net462.Tests/bin/Release/Maoli.Net462.Tests.dll; fi
 
   - if [ "$DOT_NET" == "Core" ]; then cd Maoli.NetCoreApp20.Tests; fi
