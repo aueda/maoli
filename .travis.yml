@@ -1,7 +1,11 @@
 language: csharp
-mono: latest
-dotnet: 2.1.300
-dist: trusty
+
+matrix:
+  include:
+    - dotnet: 2.1.300
+      mono: none
+    - mono: latest
+
 script:
   - cd Maoli.Net462.Tests
   - dotnet restore
