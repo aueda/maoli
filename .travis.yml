@@ -4,13 +4,10 @@ matrix:
   include:
     - dotnet: 2.1.300
       mono: none
+      env: TEST_PROJECT="Maoli.NetCoreApp20.Tests"
     - mono: latest
-
+      env: TEST_PROJECT="Maoli.Net462.Tests"
 script:
-  - cd Maoli.Net462.Tests
-  - dotnet restore
-  - dotnet test
-
-  - cd Maoli.NetCoreApp20.Tests
+  - cd $TEST_PROJECT
   - dotnet restore
   - dotnet test
