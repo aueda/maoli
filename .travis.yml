@@ -4,8 +4,9 @@ matrix:
   include:
     - dotnet: 2.1.300
       mono: latest
-      env: DOT_NET="Core"
-      env: FrameworkPathOverride=$TRAVIS_BUILD_DIR
+      env:
+        -DOT_NET="Core"
+        -FrameworkPathOverride=$TRAVIS_BUILD_DIR
 
 script:
   - if [ "$DOT_NET" == "Core" ]; then dotnet restore; fi
