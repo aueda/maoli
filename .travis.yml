@@ -9,4 +9,5 @@ matrix:
 
 script:
   - if [ "$DOT_NET" == "Core" ]; then dotnet restore; fi
-  - if [ "$DOT_NET" == "Core" ]; then dotnet test; fi
+  - if [ "$DOT_NET" == "Core" ]; then dotnet test Maoli.NetCoreApp20.Tests; fi
+  - if [ "$DOT_NET" == "Core" ]; then dotnet test Maoli.Net462.Tests; fi
