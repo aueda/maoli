@@ -6,7 +6,6 @@ matrix:
       mono: latest
       env:
         -DOT_NET="Core"
-        -FrameworkPathOverride=$TRAVIS_BUILD_DIR
 
 script:
   - if [ "$DOT_NET" == "Core" ]; then dotnet restore; fi
