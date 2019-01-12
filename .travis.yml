@@ -10,4 +10,4 @@ matrix:
 script:
   - if [ "$DOT_NET" == "Core" ]; then dotnet restore; fi
   - if [ "$DOT_NET" == "Core" ]; then dotnet test Maoli.NetCoreApp20.Tests; fi
-  - if [ "$DOT_NET" == "Core" ]; then xbuild /p:Configuration=Release ./Maoli.Net462.Tests/Maoli.Net462.Tests.csproj; fi
+  - if [ "$DOT_NET" == "Core" ]; then msbuild /p:Configuration=Release ./Maoli.Net462.Tests/Maoli.Net462.Tests.csproj; fi
