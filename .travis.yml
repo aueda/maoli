@@ -1,22 +1,12 @@
 language: csharp
-dist: trusty
+
 matrix:
   include:
     - dotnet: 2.1.300
-      mono: none
-      env: DOT_NET="Core"
-    - dotnet: 2.1.300
       mono: latest
-      env: DOT_NET="Framework"
+      env:
+        -DOT_NET="Core"
 
-install:
-  - if [ "$DOT_NET" == "Framework" ]; then nuget restore ./Maoli/Maoli.csproj; fi
-  - if [ "$DOT_NET" == "Framework" ]; then nuget restore ./Maoli.Net462.Tests/Maoli.Net462.Tests.csproj -PackagesDirectory ..\packages; fi
-  - if [ "$DOT_NET" == "Framework" ]; then nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner; fi
- 
 script:
-  - if [ "$DOT_NET" == "Framework" ]; then msbuild /p:Configuration=Release ./Maoli/Maoli.csproj; fi
-  - if [ "$DOT_NET" == "Framework" ]; then msbuild /p:Configuration=Release ./Maoli.Net462.Tests/Maoli.Net462.Tests.csproj; fi
-
-  - if [ "$DOT_NET" == "Core" ]; then cd Maoli.NetCoreApp20.Tests; fi
-  - if [ "$DOT_NET" == "Core" ]; then dotnet restore; fi 
+  - if [ "$DOT_NET" == "Core" ]; then dotnet restore; fi
+  - if [ "$DOT_NET" == "Core" ]; then dotnet test; fi
