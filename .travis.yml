@@ -11,4 +11,7 @@ script:
   - if [ "$DOT_NET" == "Core" ]; then dotnet restore; fi
   - if [ "$DOT_NET" == "Core" ]; then dotnet test Maoli.NetCoreApp20.Tests; fi
   - if [ "$DOT_NET" == "Core" ]; then nuget restore Maoli.sln; fi
+  - if [ "$DOT_NET" == "Core" ]; then nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner; fi
+
   - if [ "$DOT_NET" == "Core" ]; then msbuild /p:Configuration=Release ./Maoli.Net462.Tests/Maoli.Net462.Tests.csproj; fi
+  - if [ "$DOT_NET" == "Core" ]; then ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net462.Tests/bin/Release/Maoli.Net462.Tests.dll; fi
