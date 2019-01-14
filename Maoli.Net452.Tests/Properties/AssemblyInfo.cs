@@ -2,11 +2,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Maoli.Net462.Tests")]
+[assembly: AssemblyTitle("Maoli.Net452.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Maoli.Net462.Tests")]
+[assembly: AssemblyProduct("Maoli.Net452.Tests")]
 [assembly: AssemblyCopyright("Copyright © 2019 Adriano Ueda")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

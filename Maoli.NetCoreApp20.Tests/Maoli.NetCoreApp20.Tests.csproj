@@ -6,6 +6,8 @@
     <IsPackable>false</IsPackable>
 
     <RootNamespace>Maoli.Tests</RootNamespace>
+
+    <Copyright>Copyright © 2019 Adriano Ueda</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
