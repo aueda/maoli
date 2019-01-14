@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maoli.Tests", "Maoli.Tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.Net452.Tests", "Maoli.Net452.Tests\Maoli.Net452.Tests.csproj", "{0DB1222A-ABB3-4C25-9381-9CBB23812A80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.Net45.Tests", "Maoli.Ne45.Tests\Maoli.Net45.Tests.csproj", "{8A1B3102-10DA-4CDB-8BF5-E6D08C54447B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maoli.Net45.Tests", "Maoli.Net45.Tests\Maoli.Net45.Tests.csproj", "{8A1B3102-10DA-4CDB-8BF5-E6D08C54447B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
