@@ -7,6 +7,9 @@ matrix:
       env: DOT_NET="Core"
     - dotnet: 2.1.300
       mono: latest
+      env: DOT_NET="NET40"
+    - dotnet: 2.1.300
+      mono: latest
       env: DOT_NET="NET45"
     - dotnet: 2.1.300
       mono: latest
@@ -18,6 +21,11 @@ matrix:
 script:
   - if [ "$DOT_NET" == "Core" ]; then dotnet restore; fi
   - if [ "$DOT_NET" == "Core" ]; then dotnet test Maoli.NetCoreApp20.Tests; fi
+
+  - if [ "$DOT_NET" == "NET40" ]; then nuget restore Maoli.sln; fi
+  - if [ "$DOT_NET" == "NET40" ]; then nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner; fi
+  - if [ "$DOT_NET" == "NET40" ]; then msbuild /p:Configuration=Release ./Maoli.Net40.Tests/Maoli.Net40.Tests.csproj; fi
+  - if [ "$DOT_NET" == "NET40" ]; then ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net40.Tests/bin/Release/Maoli.Net40.Tests.dll; fi
 
   - if [ "$DOT_NET" == "NET45" ]; then nuget restore Maoli.sln; fi
   - if [ "$DOT_NET" == "NET45" ]; then nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner; fi
