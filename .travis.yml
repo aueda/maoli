@@ -1,8 +1,43 @@
 language: csharp
-mono: none
-dotnet: 2.1.300
 dist: trusty
+matrix:
+  include:
+    - dotnet: 2.1.300
+      mono: none
+      env: DOT_NET="Core"
+    - dotnet: 2.1.300
+      mono: latest
+      env: DOT_NET="NET40"
+    - dotnet: 2.1.300
+      mono: latest
+      env: DOT_NET="NET45"
+    - dotnet: 2.1.300
+      mono: latest
+      env: DOT_NET="NET452"
+    - dotnet: 2.1.300
+      mono: latest
+      env: DOT_NET="NET462"
+
 script:
-  - cd Maoli.Tests
-  - dotnet restore
-  - dotnet test
+  - if [ "$DOT_NET" == "Core" ]; then dotnet restore; fi
+  - if [ "$DOT_NET" == "Core" ]; then dotnet test Maoli.NetCoreApp20.Tests; fi
+
+  - if [ "$DOT_NET" == "NET40" ]; then nuget restore Maoli.sln; fi
+  - if [ "$DOT_NET" == "NET40" ]; then nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner; fi
+  - if [ "$DOT_NET" == "NET40" ]; then msbuild /p:Configuration=Release ./Maoli.Net40.Tests/Maoli.Net40.Tests.csproj; fi
+  - if [ "$DOT_NET" == "NET40" ]; then ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net40.Tests/bin/Release/Maoli.Net40.Tests.dll; fi
+
+  - if [ "$DOT_NET" == "NET45" ]; then nuget restore Maoli.sln; fi
+  - if [ "$DOT_NET" == "NET45" ]; then nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner; fi
+  - if [ "$DOT_NET" == "NET45" ]; then msbuild /p:Configuration=Release ./Maoli.Net45.Tests/Maoli.Net45.Tests.csproj; fi
+  - if [ "$DOT_NET" == "NET45" ]; then ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net45.Tests/bin/Release/Maoli.Net45.Tests.dll; fi
+
+  - if [ "$DOT_NET" == "NET452" ]; then nuget restore Maoli.sln; fi
+  - if [ "$DOT_NET" == "NET452" ]; then nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner; fi
+  - if [ "$DOT_NET" == "NET452" ]; then msbuild /p:Configuration=Release ./Maoli.Net452.Tests/Maoli.Net452.Tests.csproj; fi
+  - if [ "$DOT_NET" == "NET452" ]; then ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net452.Tests/bin/Release/Maoli.Net452.Tests.dll; fi
+
+  - if [ "$DOT_NET" == "NET462" ]; then nuget restore Maoli.sln; fi
+  - if [ "$DOT_NET" == "NET462" ]; then nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner; fi
+  - if [ "$DOT_NET" == "NET462" ]; then msbuild /p:Configuration=Release ./Maoli.Net462.Tests/Maoli.Net462.Tests.csproj; fi
+  - if [ "$DOT_NET" == "NET462" ]; then ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net462.Tests/bin/Release/Maoli.Net462.Tests.dll; fi
