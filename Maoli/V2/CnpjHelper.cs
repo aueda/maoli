@@ -1,5 +1,4 @@
-﻿
-//-----------------------------------------------------------------------
+﻿//-----------------------------------------------------------------------
 // <copyright file="CnpjHelper.cs" company="Adriano Ueda">
 //     Copyright (C) Adriano Ueda. All rights reserved.
 // </copyright>
@@ -19,7 +18,7 @@ namespace Maoli.V2
         /// Checks if a string value is a valid CNPJ representation
         /// </summary>
         /// <param name="value">a CNPJ string to be checked</param>
-        /// <param name="punctuation">the punctuation setting to 
+        /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled</param>
         /// <returns>true if CNPJ string is valid; false otherwise</returns>
         internal static bool Validate(string value, CnpjPunctuation punctuation)
@@ -150,10 +149,10 @@ namespace Maoli.V2
 
                     sum1 += (symbol - 48) * ((index1 < 4 ? 5 : 13) - index1);
                     index1++;
-                    
+
                     sum2 += (symbol - 48) * ((index2 < 5 ? 6 : 14) - index2);
                     index2++;
-                    
+
                     isValid = true;
                 }
                 else

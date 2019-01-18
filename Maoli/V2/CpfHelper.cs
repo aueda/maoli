@@ -147,7 +147,7 @@ namespace Maoli.V2
         /// Checks if a string value is a valid CPF representation
         /// </summary>
         /// <param name="value">a CPF string to be checked</param>
-        /// <param name="punctuation">the punctuation setting to 
+        /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled</param>
         /// <returns>true if CPF string is valid; false otherwise</returns>
         internal static bool Validate(string value, CpfPunctuation punctuation)
