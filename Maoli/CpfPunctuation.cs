@@ -1,9 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="CpfPunctuation.cs" company="Adriano Ueda">
-//     Copyright (C) Adriano Ueda. All rights reserved.
-// </copyright>
-// <author>Adriano Ueda</author>
-//-----------------------------------------------------------------------
+﻿// Copyright (c) Adriano Ueda. All rights reserved.
 
 namespace Maoli
 {
