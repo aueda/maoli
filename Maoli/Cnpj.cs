@@ -1,9 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="Cnpj.cs" company="Adriano Ueda">
-//     Copyright (C) Adriano Ueda. All rights reserved.
-// </copyright>
-// <author>Adriano Ueda</author>
-//-----------------------------------------------------------------------
+﻿// Copyright (c) Adriano Ueda. All rights reserved.
 
 namespace Maoli
 {
@@ -70,7 +65,7 @@ namespace Maoli
         /// Creates a new instance of <see cref="Cnpj"/> from a CNPJ string
         /// </summary>
         /// <param name="value">a CNPJ string</param>
-        /// <param name="punctuation">the punctuation setting to 
+        /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled</param>
         /// <returns>the new instance of <see cref="Cnpj"/></returns>
         public static Cnpj Parse(string value, CnpjPunctuation punctuation)
@@ -94,7 +89,7 @@ namespace Maoli
         /// </summary>
         /// <param name="value">a CNPJ string</param>
         /// <param name="cnpj">the new instance of <see cref="Cnpj"/></param>
-        /// <param name="punctuation">the punctuation setting to 
+        /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled</param>
         /// <returns>true if CNPJ string is valid; false, otherwise</returns>
         public static bool TryParse(string value, out Cnpj cnpj, CnpjPunctuation punctuation)
@@ -131,7 +126,7 @@ namespace Maoli
         /// Checks if a string value is a valid CNPJ representation
         /// </summary>
         /// <param name="value">a CNPJ string to be checked</param>
-        /// <param name="punctuation">the punctuation setting to 
+        /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled</param>
         /// <returns>true if CNPJ string is valid; otherwise, false</returns>
         public static bool Validate(string value, CnpjPunctuation punctuation)
