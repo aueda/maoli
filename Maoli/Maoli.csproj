@@ -42,6 +42,12 @@
     <DocumentationFile>bin\Release\netstandard1.1\Maoli.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Condition="'$(TRAVIS)'!='true'" Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

@@ -1,9 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="Cpf.cs" company="Adriano Ueda">
-//     Copyright (C) Adriano Ueda. All rights reserved.
-// </copyright>
-// <author>Adriano Ueda</author>
-//-----------------------------------------------------------------------
+﻿// Copyright (c) Adriano Ueda. All rights reserved.
 
 namespace Maoli
 {
@@ -33,7 +28,7 @@ namespace Maoli
         /// Initializes a new instance of the <see cref="Cpf"/> class.
         /// </summary>
         /// <param name="value">a valid CPF string</param>
-        /// <param name="punctuation">the punctuation setting to 
+        /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled</param>
         public Cpf(string value, CpfPunctuation punctuation)
         {
@@ -71,7 +66,7 @@ namespace Maoli
         /// Creates a new instance of <see cref="Cpf"/> from a CPF string
         /// </summary>
         /// <param name="value">a CPF string</param>
-        /// <param name="punctuation">the punctuation setting to 
+        /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled</param>
         /// <returns>the new instance of <see cref="Cpf"/></returns>
         public static Cpf Parse(string value, CpfPunctuation punctuation)
@@ -95,7 +90,7 @@ namespace Maoli
         /// </summary>
         /// <param name="value">a CPF string</param>
         /// <param name="cpf">the new instance of <see cref="Cpf"/></param>
-        /// <param name="punctuation">the punctuation setting to 
+        /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled</param>
         /// <returns>true if CPF string is valid; false, otherwise</returns>
         public static bool TryParse(string value, out Cpf cpf, CpfPunctuation punctuation)
@@ -132,7 +127,7 @@ namespace Maoli
         /// Checks if a string value is a valid CPF representation
         /// </summary>
         /// <param name="value">a CPF string to be checked</param>
-        /// <param name="punctuation">the punctuation setting to 
+        /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled</param>
         /// <returns>true if CPF string is valid; otherwise, false</returns>
         public static bool Validate(string value, CpfPunctuation punctuation)

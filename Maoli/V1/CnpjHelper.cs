@@ -1,9 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="CnpjHelper.cs" company="Adriano Ueda">
-//     Copyright (C) Adriano Ueda. All rights reserved.
-// </copyright>
-// <author>Adriano Ueda</author>
-//-----------------------------------------------------------------------
+﻿// Copyright (c) Adriano Ueda. All rights reserved.
 
 namespace Maoli.V1
 {
@@ -51,7 +46,7 @@ namespace Maoli.V1
         /// Checks if a string value is a valid CNPJ representation
         /// </summary>
         /// <param name="value">a CNPJ string to be checked</param>
-        /// <param name="punctuation">the punctuation setting to 
+        /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled</param>
         /// <returns>true if CNPJ string is valid; false otherwise</returns>
         internal static bool Validate(string value, CnpjPunctuation punctuation)
