@@ -2,8 +2,8 @@
 
 [![Build Status](https://travis-ci.org/aueda/maoli.svg?branch=master)](https://travis-ci.org/aueda/maoli/)
 [![NuGet Version](https://img.shields.io/nuget/v/Maoli.svg)](https://www.nuget.org/packages/Maoli/)
+[![Maoli on fuget.org](https://www.fuget.org/packages/Maoli/badge.svg)](https://www.fuget.org/packages/Maoli)
 [![Junte-se ao bate-papo em https://gitter.im/maoli-net/community](https://badges.gitter.im/maoli-net/community.svg)](https://gitter.im/maoli-net/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 
 Versão em inglês: [README.md](https://github.com/aueda/maoli/)
 
