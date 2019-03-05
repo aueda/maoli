@@ -371,6 +371,28 @@
 
             Assert.False(actual);
         }
+        
+        [Fact]
+        public void EqualsReturnsTrueIfCnpjAreEqualAndObject()
+        {
+            object cnpj1 = Cnpj.Parse(looseValidCnpj);
+            var cnpj2 = Cnpj.Parse(looseValidCnpj);
+
+            var actual = cnpj2.Equals(cnpj1);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void EqualsReturnsTrueIfCnpjAreNotEqualAndObject()
+        {
+            object cnpj1 = Cnpj.Parse(looseValidCnpj);
+            var cnpj2 = Cnpj.Parse("71418811000155");
+
+            var actual = cnpj2.Equals(cnpj1);
+
+            Assert.False(actual);
+        }
 
         [Fact]
         public void GetHashCodeAreEqualIfTwoCnpjAreEqual()
