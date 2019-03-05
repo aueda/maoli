@@ -461,6 +461,28 @@
         }
 
         [Fact]
+        public void EqualsReturnsTrueIfCpfAreEqualAndObject()
+        {
+            object cpf1 = Cpf.Parse("71402565860");
+            var cpf2 = Cpf.Parse("71402565860");
+
+            var actual = cpf2.Equals(cpf1);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void EqualsReturnsTrueIfCpfAreNotEqualAndObject()
+        {
+            object cpf1 = Cpf.Parse("71402565860");
+            var cpf2 = Cpf.Parse("77033192100");
+        
+            var actual = cpf2.Equals(cpf1);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
         public void GetHashCodeReturnsTrueIfCpfAreEqual()
         {
             var hash1 = Cpf.Parse("71402565860").GetHashCode();

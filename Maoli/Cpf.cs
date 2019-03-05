@@ -179,7 +179,7 @@ namespace Maoli
 
             unchecked
             {
-                hash = (hash * 31) + (StringHelper.IsNullOrWhiteSpace(this.parsedValue) ? 0 : this.parsedValue.GetHashCode());
+                hash = (hash * 31) + this.parsedValue.GetHashCode();
             }
 
             return hash;
