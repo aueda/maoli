@@ -194,6 +194,14 @@
         }
 
         [Fact]
+        public void ValidateReturnsFalseIfCnpjContainsInvalidChars()
+        {
+            var actual = Cnpj.Validate("6e9433l5000192");
+
+            Assert.False(actual);
+        }
+
+        [Fact]
         public void ValidateReturnsFalseIfCnpjIsEmpty()
         {
             var actual = Cnpj.Validate(string.Empty);
@@ -202,7 +210,7 @@
         }
 
         [Fact]
-        public void ValidateReturnsFalseIfCnpjContainsInvalidChars()
+        public void ValidateReturnsFalseIfCnpjContainsInvalidCharsAndItIsShorter()
         {
             var actual = Cnpj.Validate("714o256s8");
 

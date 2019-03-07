@@ -292,6 +292,14 @@
         [Fact]
         public void ValidateReturnsFalseIfCpfContainsInvalidChars()
         {
+            var actual = Cpf.Validate("714o256s860");
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void ValidateReturnsFalseIfCpfContainsInvalidCharsAndItIsShorter()
+        {
             var actual = Cpf.Validate("714o256s8");
 
             Assert.False(actual);
@@ -360,6 +368,15 @@
             Assert.Throws<ArgumentException>(() =>
             {
                 Cpf.Complete(string.Empty);
+            });
+        }
+
+        [Fact]
+        public void CompleteThrowsArgumentExceptionIfCpfTextIsShorter()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Cpf.Complete("7140256");
             });
         }
 
