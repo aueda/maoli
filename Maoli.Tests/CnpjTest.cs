@@ -258,13 +258,30 @@
         }
 
         [Fact]
-        public void CompleteThrowsArgumentExceptionIfCnpjTextIsWrong()
+        public void CompleteThrowsArgumentExceptionIfCnpjTextIsSmaller()
         {
             var actual = false;
 
             try
             {
                 Cnpj.Complete("714o256s8");
+            }
+            catch (ArgumentException)
+            {
+                actual = true;
+            }
+
+            Assert.True(actual);
+        }
+        
+        [Fact]
+        public void CompleteThrowsArgumentExceptionIfCnpjTextIsWrong()
+        {
+            var actual = false;
+
+            try
+            {
+                Cnpj.Complete("6e9433l5o001");
             }
             catch (ArgumentException)
             {

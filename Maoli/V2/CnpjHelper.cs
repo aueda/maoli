@@ -96,16 +96,6 @@ namespace Maoli.V2
         }
 
         /// <summary>
-        /// Formats a CNPJ string using the punctuation setting
-        /// </summary>
-        /// <param name="value">a CNPJ string to format</param>
-        /// <returns>A formatted CNPJ string with or without punctuation</returns>
-        internal static string Format(string value)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Completes a partial CNPJ string by appending a valid checksum trailing
         /// </summary>
         /// <param name="value">a partial CNPJ string with or without punctuation</param>
