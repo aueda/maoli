@@ -14,23 +14,18 @@ namespace Maoli
         /// <summary>
         /// Regex validations
         /// </summary>
-        private static Dictionary<CpfPunctuation, string> regexValidations;
-
-        /// <summary>
-        /// Initializes static members of the <see cref="CpfHelper"/> class.
-        /// </summary>
-        static CpfHelper()
-        {
-            CpfHelper.regexValidations = new Dictionary<CpfPunctuation, string>();
-
-            CpfHelper.regexValidations.Add(
-                CpfPunctuation.Loose,
-                @"^(\d{3}\.\d{3}\.\d{3}\-\d{2})|(\d{11})$");
-
-            CpfHelper.regexValidations.Add(
-                CpfPunctuation.Strict,
-                @"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
-        }
+        private static Dictionary<CpfPunctuation, string> regexValidations =
+            new Dictionary<CpfPunctuation, string>()
+            {
+                {
+                    CpfPunctuation.Loose,
+                    @"^(\d{3}\.\d{3}\.\d{3}\-\d{2})|(\d{11})$"
+                },
+                {
+                    CpfPunctuation.Strict,
+                    @"^\d{3}\.\d{3}\.\d{3}\-\d{2}$"
+                }
+            };
 
         /// <summary>
         /// Checks if a string value is a valid CPF representation
@@ -101,7 +96,7 @@ namespace Maoli
         {
             return value
                 .Trim()
-                .ToLowerInvariant()
+                .ToUpperInvariant()
                 .Replace(".", string.Empty)
                 .Replace("-", string.Empty);
         }

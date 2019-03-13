@@ -14,7 +14,18 @@ namespace Maoli
         /// <summary>
         /// Regex validations
         /// </summary>
-        private static Dictionary<CnpjPunctuation, string> regexValidations;
+        private static Dictionary<CnpjPunctuation, string> regexValidations =
+            new Dictionary<CnpjPunctuation, string>()
+            {
+                {
+                    CnpjPunctuation.Loose,
+                    @"^(\d{2}\.\d{3}\.\d{3}/\d{4}\-\d{2})|(\d{14})$"
+                },
+                {
+                    CnpjPunctuation.Strict,
+                    @"^\d{2}\.\d{3}\.\d{3}/\d{4}\-\d{2}$"
+                }
+            };
 
         /// <summary>
         /// Multipliers for the first check digit
@@ -25,22 +36,6 @@ namespace Maoli
         /// Multipliers for the second check digit
         /// </summary>
         private static int[] multiplier2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-
-        /// <summary>
-        /// Initializes static members of the <see cref="CnpjHelper"/> class.
-        /// </summary>
-        static CnpjHelper()
-        {
-            CnpjHelper.regexValidations = new Dictionary<CnpjPunctuation, string>();
-
-            CnpjHelper.regexValidations.Add(
-                CnpjPunctuation.Loose,
-                @"^(\d{2}\.\d{3}\.\d{3}/\d{4}\-\d{2})|(\d{14})$");
-
-            CnpjHelper.regexValidations.Add(
-                CnpjPunctuation.Strict,
-                @"^\d{2}\.\d{3}\.\d{3}/\d{4}\-\d{2}$");
-        }
 
         /// <summary>
         /// Checks if a string value is a valid CNPJ representation
@@ -104,7 +99,7 @@ namespace Maoli
         {
             return value
                 .Trim()
-                .ToLowerInvariant()
+                .ToUpperInvariant()
                 .Replace(".", string.Empty)
                 .Replace("-", string.Empty)
                 .Replace("/", string.Empty);

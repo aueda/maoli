@@ -2,7 +2,6 @@
 
 namespace Maoli
 {
-    using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
@@ -14,23 +13,18 @@ namespace Maoli
         /// <summary>
         /// Regex validations
         /// </summary>
-        private static Dictionary<CepPunctuation, string> regexValidations;
-
-        /// <summary>
-        /// Initializes static members of the <see cref="CepHelper"/> class.
-        /// </summary>
-        static CepHelper()
-        {
-            CepHelper.regexValidations = new Dictionary<CepPunctuation, string>();
-
-            CepHelper.regexValidations.Add(
-                CepPunctuation.Loose,
-                @"^(\d{5}\-\d{3}|\d{8})$");
-
-            CepHelper.regexValidations.Add(
-                CepPunctuation.Strict,
-                @"^(\d{5}\-\d{3})$");
-        }
+        private static Dictionary<CepPunctuation, string> regexValidations =
+            new Dictionary<CepPunctuation, string>()
+            {
+                {
+                    CepPunctuation.Loose,
+                    @"^(\d{5}\-\d{3}|\d{8})$"
+                },
+                {
+                    CepPunctuation.Strict,
+                    @"^(\d{5}\-\d{3})$"
+                }
+            };
 
         /// <summary>
         /// Checks if a string value is a valid CNPJ representation
