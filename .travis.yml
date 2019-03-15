@@ -33,9 +33,9 @@ script:
   - if [ "$DOT_NET" == "NET45" ]; then ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net45.Tests/bin/Release/Maoli.Net45.Tests.dll; fi
 
   - if [ "$DOT_NET" == "NET452" ]; then nuget restore Maoli.sln; fi
-  - if [ "$DOT_NET" == "NET452" ]; then nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner; fi
+  - if [ "$DOT_NET" == "NET452" ]; then nuget install xunit.runner.console -Version 2.4.1 -OutputDirectory testrunner; fi
   - if [ "$DOT_NET" == "NET452" ]; then msbuild /p:Configuration=Release ./Maoli.Net452.Tests/Maoli.Net452.Tests.csproj; fi
-  - if [ "$DOT_NET" == "NET452" ]; then ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net452.Tests/bin/Release/Maoli.Net452.Tests.dll; fi
+  - if [ "$DOT_NET" == "NET452" ]; then ./testrunner/xunit.runner.console.2.4.1/tools/net452/xunit.console.exe ./Maoli.Net452.Tests/bin/Release/Maoli.Net452.Tests.dll; fi
 
   - if [ "$DOT_NET" == "NET462" ]; then nuget restore Maoli.sln; fi
   - if [ "$DOT_NET" == "NET462" ]; then nuget install xunit.runner.console -Version 2.4.1 -OutputDirectory testrunner; fi
