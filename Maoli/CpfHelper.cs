@@ -4,6 +4,7 @@ namespace Maoli
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Text.RegularExpressions;
 
     /// <summary>
@@ -53,8 +54,13 @@ namespace Maoli
                 return false;
             }
 
-            var inputDigit1 = int.Parse(value.Substring(9, 1));
-            var inputDigit2 = int.Parse(value.Substring(10, 1));
+            var inputDigit1 = int.Parse(
+                value.Substring(9, 1),
+                CultureInfo.InvariantCulture);
+
+            var inputDigit2 = int.Parse(
+                value.Substring(10, 1),
+                CultureInfo.InvariantCulture);
 
             var calcDigit1 = CpfHelper.CreateChecksum(value.Substring(0, 9));
             var calcDigit2 = CpfHelper.CreateChecksum(value.Substring(0, 10));
@@ -74,7 +80,17 @@ namespace Maoli
 
             for (var i = text.Length - 1; i > -1; i--)
             {
-                sum += int.Parse(text[i].ToString()) * (text.Length + 1 - i);
+#if NETSTANDARD1_1
+                var number = int.Parse(
+                    text[i].ToString(),
+                    CultureInfo.InvariantCulture);
+#else
+                var number = int.Parse(
+                    text[i].ToString(CultureInfo.InvariantCulture),
+                    CultureInfo.InvariantCulture);
+#endif
+
+                sum += number * (text.Length + 1 - i);
             }
 
             digit = 11 - (sum % 11);
@@ -121,9 +137,12 @@ namespace Maoli
             }
 
             int digit1 = CpfHelper.CreateChecksum(value);
-            int digit2 = CpfHelper.CreateChecksum(value + digit1.ToString());
+            int digit2 = CpfHelper.CreateChecksum(value + digit1.ToString(CultureInfo.InvariantCulture));
 
-            return value + digit1.ToString() + digit2.ToString();
+            return
+                value +
+                digit1.ToString(CultureInfo.InvariantCulture) +
+                digit2.ToString(CultureInfo.InvariantCulture);
         }
 
         /// <summary>

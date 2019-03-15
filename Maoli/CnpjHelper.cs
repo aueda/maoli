@@ -4,6 +4,7 @@ namespace Maoli
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Text.RegularExpressions;
 
     /// <summary>
@@ -58,8 +59,13 @@ namespace Maoli
 
             value = CnpjHelper.Sanitize(value);
 
-            var inputDigit1 = int.Parse(value.Substring(12, 1));
-            var inputDigit2 = int.Parse(value.Substring(13, 1));
+            var inputDigit1 = int.Parse(
+                value.Substring(12, 1),
+                CultureInfo.InvariantCulture);
+
+            var inputDigit2 = int.Parse(
+                value.Substring(13, 1),
+                CultureInfo.InvariantCulture);
 
             var calcDigit1 = CnpjHelper.CreateChecksum(value.Substring(0, 12), CnpjHelper.multiplier1);
             var calcDigit2 = CnpjHelper.CreateChecksum(value.Substring(0, 13), CnpjHelper.multiplier2);
@@ -81,7 +87,17 @@ namespace Maoli
 
             for (var i = text.Length - 1; i > -1; i--)
             {
-                sum += int.Parse(text[i].ToString()) * multiplier[i];
+#if NETSTANDARD1_1
+                var number = int.Parse(
+                    text[i].ToString(),
+                    CultureInfo.InvariantCulture);
+#else
+                var number = int.Parse(
+                    text[i].ToString(CultureInfo.InvariantCulture),
+                    CultureInfo.InvariantCulture);
+#endif
+
+                sum += number * multiplier[i];
             }
 
             remainder = sum % 11;
@@ -125,9 +141,15 @@ namespace Maoli
             }
 
             int digit1 = CnpjHelper.CreateChecksum(value, CnpjHelper.multiplier1);
-            int digit2 = CnpjHelper.CreateChecksum(value + digit1.ToString(), CnpjHelper.multiplier2);
 
-            return value + digit1.ToString() + digit2.ToString();
+            int digit2 = CnpjHelper.CreateChecksum(
+                value + digit1.ToString(CultureInfo.InvariantCulture),
+                CnpjHelper.multiplier2);
+
+            return
+                value +
+                digit1.ToString(CultureInfo.InvariantCulture) +
+                digit2.ToString(CultureInfo.InvariantCulture);
         }
     }
 }
