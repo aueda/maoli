@@ -2,7 +2,6 @@
 
 namespace Maoli
 {
-    using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
@@ -14,22 +13,30 @@ namespace Maoli
         /// <summary>
         /// Regex validations
         /// </summary>
-        private static Dictionary<CepPunctuation, string> regexValidations;
+        private static Dictionary<CepPunctuation, string> regexValidations =
+            new Dictionary<CepPunctuation, string>()
+            {
+                {
+                    CepPunctuation.Loose,
+                    @"^(\d{5}\-\d{3}|\d{8})$"
+                },
+                {
+                    CepPunctuation.Strict,
+                    @"^(\d{5}\-\d{3})$"
+                }
+            };
 
         /// <summary>
-        /// Initializes static members of the <see cref="CepHelper"/> class.
+        /// Removes punctuation and trim from a CEP string
         /// </summary>
-        static CepHelper()
+        /// <param name="value">a CEP string</param>
+        /// <returns>a trimmed CEP string without punctuation</returns>
+        internal static string Sanitize(string value)
         {
-            CepHelper.regexValidations = new Dictionary<CepPunctuation, string>();
-
-            CepHelper.regexValidations.Add(
-                CepPunctuation.Loose,
-                @"^(\d{5}\-\d{3}|\d{8})$");
-
-            CepHelper.regexValidations.Add(
-                CepPunctuation.Strict,
-                @"^(\d{5}\-\d{3})$");
+            return value
+                .Trim()
+                .ToUpperInvariant()
+                .Replace("-", string.Empty);
         }
 
         /// <summary>

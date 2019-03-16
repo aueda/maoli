@@ -350,7 +350,15 @@
         {
             var actual = Cpf.Complete("714025658");
 
+#if NET40 || NET45
+#pragma warning disable xUnit2006
+#endif
+
             Assert.Equal(CpfTest.looseValidCpf, actual);
+
+#if NET40 || NET45
+#pragma warning restore xUnit2006
+#endif
         }
 
         [Fact]
@@ -534,7 +542,15 @@
             var expected = "71402565860";
             var actual = cpf.ToString();
 
+#if NET40 || NET45
+#pragma warning disable xUnit2006
+#endif
+
             Assert.Equal(expected, actual);
+
+#if NET40 || NET45
+#pragma warning restore xUnit2006
+#endif
         }
 
         [Fact]
@@ -545,35 +561,41 @@
             var expected = "71402565860";
             var actual = cpf.ToString();
 
+#if NET40 || NET45
+#pragma warning disable xUnit2006
+#endif
             Assert.Equal(expected, actual);
+
+#if NET40 || NET45
+#pragma warning disable xUnit2006
+#endif
         }
 
         [Fact]
         public void TryParseReturnsFalseIfCpfIsInvalid()
         {
-            Cpf cpf = null;
-
-            var actual = Cpf.TryParse("71402565862", out cpf);
+            var actual = Cpf.TryParse("71402565862", out Cpf cpf);
 
             Assert.False(actual);
+            Assert.Null(cpf);
         }
 
         [Fact]
         public void TryParseReturnsTrueIfCpfIsValid()
         {
-            Cpf cpf = null;
-
-            var actual = Cpf.TryParse("71402565860", out cpf);
+            var actual = Cpf.TryParse("71402565860", out Cpf cpf);
 
             Assert.True(actual);
+            Assert.NotNull(cpf);
         }
 
         [Fact]
         public void StrictTryParseReturnsFalseIfCpfIsInvalid()
         {
-            Cpf cpf = null;
-
-            var actual = Cpf.TryParse("71402565860", out cpf, CpfPunctuation.Strict);
+            var actual = Cpf.TryParse(
+                "71402565860",
+                out Cpf cpf,
+                CpfPunctuation.Strict);
 
             Assert.False(actual);
         }
@@ -581,13 +603,13 @@
         [Fact]
         public void StrictTryParseReturnsTruefCpfIsValidAndHasPunctuation()
         {
-            Cpf cpf = null;
-
-            var actual = Cpf.TryParse("714.025.658-60", out cpf, CpfPunctuation.Strict);
+            var actual = Cpf.TryParse(
+                "714.025.658-60",
+                out Cpf cpf,
+                CpfPunctuation.Strict);
 
             Assert.True(actual);
+            Assert.NotNull(cpf);
         }
-
-
     }
 }
