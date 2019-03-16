@@ -1,9 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="CpfHelper.cs" company="Adriano Ueda">
-//     Copyright (C) Adriano Ueda. All rights reserved.
-// </copyright>
-// <author>Adriano Ueda</author>
-//-----------------------------------------------------------------------
+﻿// Copyright (c) Adriano Ueda. All rights reserved.
 
 namespace Maoli.V2
 {
@@ -15,27 +10,6 @@ namespace Maoli.V2
     /// </summary>
     internal static class CpfHelper
     {
-        /// <summary>
-        /// Regex validations
-        /// </summary>
-        private static Dictionary<CpfPunctuation, string> regexValidations;
-
-        /// <summary>
-        /// Initializes static members of the <see cref="CpfHelper"/> class.
-        /// </summary>
-        static CpfHelper()
-        {
-            CpfHelper.regexValidations = new Dictionary<CpfPunctuation, string>();
-
-            CpfHelper.regexValidations.Add(
-                CpfPunctuation.Loose,
-                @"^(\d{3}\.\d{3}\.\d{3}\-\d{2})|(\d{11})$");
-
-            CpfHelper.regexValidations.Add(
-                CpfPunctuation.Strict,
-                @"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
-        }
-
         /// <summary>
         /// Completes a partial CPF string by appending a valid checksum trailing
         /// </summary>
