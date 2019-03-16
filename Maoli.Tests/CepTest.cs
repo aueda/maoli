@@ -23,6 +23,24 @@
         }
 
         [Fact]
+        public void ConstructorThrowsExceptionIfCepIsNull()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var cep = new Cep(null);
+            });
+        }
+
+        [Fact]
+        public void ConstructorThrowsExceptionIfCepIsEmpty()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var cep = new Cep(string.Empty);
+            });
+        }
+
+        [Fact]
         public void ConstructorThrowsExceptionIfCepIsInvalidAndLoose()
         {
             Assert.Throws<ArgumentException>(() =>
