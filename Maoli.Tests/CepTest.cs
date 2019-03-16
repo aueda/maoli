@@ -7,6 +7,40 @@
     public class CepTest
     {
         [Fact]
+        public void ConstructorCreatesCepIfPunctuationIsStrict()
+        {
+            var cep = new Cep("01234-001", CepPunctuation.Strict);
+
+            Assert.NotNull(cep);
+        }
+
+        [Fact]
+        public void ConstructorCreatesCepIfPunctuationIsLoose()
+        {
+            var cep = new Cep("01234-001");
+
+            Assert.NotNull(cep);
+        }
+
+        [Fact]
+        public void ConstructorThrowsExceptionIfCepIsInvalidAndLoose()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var cep = new Cep("012e501", CepPunctuation.Loose);
+            });
+        }
+
+        [Fact]
+        public void ConstructorThrowsExceptionIfCepIsInvalidAndStrict()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var cep = new Cep("01234001", CepPunctuation.Strict);
+            });
+        }
+
+        [Fact]
         public void ValidateReturnsTrueIfCepIsEmpty()
         {
             var actual = Cep.Validate(string.Empty);
