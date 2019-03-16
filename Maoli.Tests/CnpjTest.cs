@@ -446,41 +446,43 @@
         [Fact]
         public void TryParseReturnsFalseIfCnpjIsInvalid()
         {
-            Cnpj Cnpj = null;
-
-            var actual = Cnpj.TryParse(looseInvalidCnpj, out Cnpj);
+            var actual = Cnpj.TryParse(looseInvalidCnpj, out Cnpj cnpj);
 
             Assert.False(actual);
+            Assert.Null(cnpj);
         }
 
         [Fact]
         public void TryParseReturnsTrueIfCnpjIsValid()
         {
-            Cnpj Cnpj = null;
-
-            var actual = Cnpj.TryParse(looseValidCnpj, out Cnpj);
+            var actual = Cnpj.TryParse(looseValidCnpj, out Cnpj cnpj);
 
             Assert.True(actual);
+            Assert.NotNull(cnpj);
         }
 
         [Fact]
         public void StrictTryParseReturnsFalseIfCnpjIsInvalid()
         {
-            Cnpj Cnpj = null;
-
-            var actual = Cnpj.TryParse(looseInvalidCnpj, out Cnpj, CnpjPunctuation.Strict);
+            var actual = Cnpj.TryParse(
+                looseInvalidCnpj,
+                out Cnpj cnpj,
+                CnpjPunctuation.Strict);
 
             Assert.False(actual);
+            Assert.Null(cnpj);
         }
 
         [Fact]
         public void StrictTryParseReturnsTrueIfCnpjIsValidAndHasPunctuation()
         {
-            Cnpj Cnpj = null;
-
-            var actual = Cnpj.TryParse(strictValidCnpj, out Cnpj, CnpjPunctuation.Strict);
+            var actual = Cnpj.TryParse(
+                strictValidCnpj,
+                out Cnpj cnpj,
+                CnpjPunctuation.Strict);
 
             Assert.True(actual);
+            Assert.NotNull(cnpj);
         }
     }
 }
