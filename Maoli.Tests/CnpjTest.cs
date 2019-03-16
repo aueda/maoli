@@ -254,7 +254,15 @@
         {
             var actual = Cnpj.Complete("639433150001");
 
+#if NET40 || NET45
+#pragma warning disable xUnit2006
+#endif
+
             Assert.Equal(CnpjTest.looseValidCnpj, actual);
+
+#if NET40 || NET45
+#pragma warning restore xUnit2006
+#endif
         }
 
         [Fact]
@@ -429,7 +437,15 @@
             var expected = looseValidCnpj;
             var actual = Cnpj.ToString();
 
+#if NET40 || NET45
+#pragma warning disable xUnit2006
+#endif
+
             Assert.Equal(expected, actual);
+
+#if NET40 || NET45
+#pragma warning restore xUnit2006
+#endif
         }
 
         [Fact]
@@ -440,7 +456,15 @@
             var expected = looseValidCnpj;
             var actual = Cnpj.ToString();
 
+#if NET40 || NET45
+#pragma warning disable xUnit2006
+#endif
+
             Assert.Equal(expected, actual);
+
+#if NET40 || NET45
+#pragma warning restore xUnit2006
+#endif
         }
 
         [Fact]
