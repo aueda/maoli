@@ -4,6 +4,7 @@ namespace Maoli
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Text.RegularExpressions;
 
     /// <summary>
@@ -14,23 +15,18 @@ namespace Maoli
         /// <summary>
         /// Regex validations
         /// </summary>
-        private static Dictionary<CpfPunctuation, string> regexValidations;
-
-        /// <summary>
-        /// Initializes static members of the <see cref="CpfHelper"/> class.
-        /// </summary>
-        static CpfHelper()
-        {
-            CpfHelper.regexValidations = new Dictionary<CpfPunctuation, string>();
-
-            CpfHelper.regexValidations.Add(
-                CpfPunctuation.Loose,
-                @"^(\d{3}\.\d{3}\.\d{3}\-\d{2})|(\d{11})$");
-
-            CpfHelper.regexValidations.Add(
-                CpfPunctuation.Strict,
-                @"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
-        }
+        private static Dictionary<CpfPunctuation, string> regexValidations =
+            new Dictionary<CpfPunctuation, string>()
+            {
+                {
+                    CpfPunctuation.Loose,
+                    @"^(\d{3}\.\d{3}\.\d{3}\-\d{2})|(\d{11})$"
+                },
+                {
+                    CpfPunctuation.Strict,
+                    @"^\d{3}\.\d{3}\.\d{3}\-\d{2}$"
+                }
+            };
 
         /// <summary>
         /// Checks if a string value is a valid CPF representation
@@ -58,8 +54,13 @@ namespace Maoli
                 return false;
             }
 
-            var inputDigit1 = int.Parse(value.Substring(9, 1));
-            var inputDigit2 = int.Parse(value.Substring(10, 1));
+            var inputDigit1 = int.Parse(
+                value.Substring(9, 1),
+                CultureInfo.InvariantCulture);
+
+            var inputDigit2 = int.Parse(
+                value.Substring(10, 1),
+                CultureInfo.InvariantCulture);
 
             var calcDigit1 = CpfHelper.CreateChecksum(value.Substring(0, 9));
             var calcDigit2 = CpfHelper.CreateChecksum(value.Substring(0, 10));
@@ -79,7 +80,17 @@ namespace Maoli
 
             for (var i = text.Length - 1; i > -1; i--)
             {
-                sum += int.Parse(text[i].ToString()) * (text.Length + 1 - i);
+#if NETSTANDARD1_1
+                var number = int.Parse(
+                    text[i].ToString(),
+                    CultureInfo.InvariantCulture);
+#else
+                var number = int.Parse(
+                    text[i].ToString(CultureInfo.InvariantCulture),
+                    CultureInfo.InvariantCulture);
+#endif
+
+                sum += number * (text.Length + 1 - i);
             }
 
             digit = 11 - (sum % 11);
@@ -101,7 +112,7 @@ namespace Maoli
         {
             return value
                 .Trim()
-                .ToLowerInvariant()
+                .ToUpperInvariant()
                 .Replace(".", string.Empty)
                 .Replace("-", string.Empty);
         }
@@ -126,9 +137,12 @@ namespace Maoli
             }
 
             int digit1 = CpfHelper.CreateChecksum(value);
-            int digit2 = CpfHelper.CreateChecksum(value + digit1.ToString());
+            int digit2 = CpfHelper.CreateChecksum(value + digit1.ToString(CultureInfo.InvariantCulture));
 
-            return value + digit1.ToString() + digit2.ToString();
+            return
+                value +
+                digit1.ToString(CultureInfo.InvariantCulture) +
+                digit2.ToString(CultureInfo.InvariantCulture);
         }
 
         /// <summary>

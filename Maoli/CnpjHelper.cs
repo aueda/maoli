@@ -4,6 +4,7 @@ namespace Maoli
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Text.RegularExpressions;
 
     /// <summary>
@@ -14,7 +15,18 @@ namespace Maoli
         /// <summary>
         /// Regex validations
         /// </summary>
-        private static Dictionary<CnpjPunctuation, string> regexValidations;
+        private static Dictionary<CnpjPunctuation, string> regexValidations =
+            new Dictionary<CnpjPunctuation, string>()
+            {
+                {
+                    CnpjPunctuation.Loose,
+                    @"^(\d{2}\.\d{3}\.\d{3}/\d{4}\-\d{2})|(\d{14})$"
+                },
+                {
+                    CnpjPunctuation.Strict,
+                    @"^\d{2}\.\d{3}\.\d{3}/\d{4}\-\d{2}$"
+                }
+            };
 
         /// <summary>
         /// Multipliers for the first check digit
@@ -25,22 +37,6 @@ namespace Maoli
         /// Multipliers for the second check digit
         /// </summary>
         private static int[] multiplier2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-
-        /// <summary>
-        /// Initializes static members of the <see cref="CnpjHelper"/> class.
-        /// </summary>
-        static CnpjHelper()
-        {
-            CnpjHelper.regexValidations = new Dictionary<CnpjPunctuation, string>();
-
-            CnpjHelper.regexValidations.Add(
-                CnpjPunctuation.Loose,
-                @"^(\d{2}\.\d{3}\.\d{3}/\d{4}\-\d{2})|(\d{14})$");
-
-            CnpjHelper.regexValidations.Add(
-                CnpjPunctuation.Strict,
-                @"^\d{2}\.\d{3}\.\d{3}/\d{4}\-\d{2}$");
-        }
 
         /// <summary>
         /// Checks if a string value is a valid CNPJ representation
@@ -63,8 +59,13 @@ namespace Maoli
 
             value = CnpjHelper.Sanitize(value);
 
-            var inputDigit1 = int.Parse(value.Substring(12, 1));
-            var inputDigit2 = int.Parse(value.Substring(13, 1));
+            var inputDigit1 = int.Parse(
+                value.Substring(12, 1),
+                CultureInfo.InvariantCulture);
+
+            var inputDigit2 = int.Parse(
+                value.Substring(13, 1),
+                CultureInfo.InvariantCulture);
 
             var calcDigit1 = CnpjHelper.CreateChecksum(value.Substring(0, 12), CnpjHelper.multiplier1);
             var calcDigit2 = CnpjHelper.CreateChecksum(value.Substring(0, 13), CnpjHelper.multiplier2);
@@ -86,7 +87,17 @@ namespace Maoli
 
             for (var i = text.Length - 1; i > -1; i--)
             {
-                sum += int.Parse(text[i].ToString()) * multiplier[i];
+#if NETSTANDARD1_1
+                var number = int.Parse(
+                    text[i].ToString(),
+                    CultureInfo.InvariantCulture);
+#else
+                var number = int.Parse(
+                    text[i].ToString(CultureInfo.InvariantCulture),
+                    CultureInfo.InvariantCulture);
+#endif
+
+                sum += number * multiplier[i];
             }
 
             remainder = sum % 11;
@@ -104,7 +115,7 @@ namespace Maoli
         {
             return value
                 .Trim()
-                .ToLowerInvariant()
+                .ToUpperInvariant()
                 .Replace(".", string.Empty)
                 .Replace("-", string.Empty)
                 .Replace("/", string.Empty);
@@ -130,9 +141,15 @@ namespace Maoli
             }
 
             int digit1 = CnpjHelper.CreateChecksum(value, CnpjHelper.multiplier1);
-            int digit2 = CnpjHelper.CreateChecksum(value + digit1.ToString(), CnpjHelper.multiplier2);
 
-            return value + digit1.ToString() + digit2.ToString();
+            int digit2 = CnpjHelper.CreateChecksum(
+                value + digit1.ToString(CultureInfo.InvariantCulture),
+                CnpjHelper.multiplier2);
+
+            return
+                value +
+                digit1.ToString(CultureInfo.InvariantCulture) +
+                digit2.ToString(CultureInfo.InvariantCulture);
         }
     }
 }
