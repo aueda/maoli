@@ -274,6 +274,22 @@
         }
 
         [Fact]
+        public void CompleteReturnsAValidCnpjIfHasPunctuaction()
+        {
+            var actual = Cnpj.Complete("63.943.315/0001");
+
+#if NET40 || NET45
+#pragma warning disable xUnit2006
+#endif
+
+            Assert.Equal(CnpjTest.looseValidCnpj, actual);
+
+#if NET40 || NET45
+#pragma warning restore xUnit2006
+#endif
+        }
+
+        [Fact]
         public void CompleteThrowsArgumentExceptionIfCnpjTextIsSmaller()
         {
             var actual = false;

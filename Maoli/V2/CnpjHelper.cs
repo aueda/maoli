@@ -102,7 +102,7 @@ namespace Maoli.V2
                 throw new ArgumentException("O CNPJ é inválido");
             }
 
-            var isValid = value.Length == 12 || value.Length == 16;
+            var isValid = value.Length == 12 || value.Length == 15;
 
             if (!isValid)
             {
