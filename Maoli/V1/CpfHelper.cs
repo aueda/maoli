@@ -154,11 +154,6 @@ namespace Maoli.V1
         {
             var sameDigitRegex = @"^(\d)\1+$";
 
-            if (StringHelper.IsNullOrWhiteSpace(value))
-            {
-                return false;
-            }
-
             if (Regex.IsMatch(value, sameDigitRegex))
             {
                 return true;
