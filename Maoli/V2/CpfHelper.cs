@@ -22,7 +22,7 @@ namespace Maoli.V2
                 throw new ArgumentException("O CPF é inválido");
             }
 
-            var isValid = value.Length == 9 || value.Length == 12;
+            var isValid = value.Length == 9 || value.Length == 11;
 
             if (!isValid)
             {

@@ -362,6 +362,22 @@
         }
 
         [Fact]
+        public void CompleteReturnsAValidCpfIfHasPunctuaction()
+        {
+            var actual = Cpf.Complete("714.025.658");
+
+#if NET40 || NET45
+#pragma warning disable xUnit2006
+#endif
+
+            Assert.Equal(CpfTest.looseValidCpf, actual);
+
+#if NET40 || NET45
+#pragma warning restore xUnit2006
+#endif
+        }
+
+        [Fact]
         public void CompleteThrowsArgumentExceptionIfCpfTextIsNull()
         {
             Assert.Throws<ArgumentException>(() =>
