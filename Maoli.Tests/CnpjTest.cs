@@ -233,10 +233,22 @@
             Assert.False(actual);
         }
 
+#if NET40 || NET45
         [Fact]
         public void ValidateReturnsTrueIfCnpjIsValidAndStrict()
+#else
+        [InlineData("63.943.315/0001-92")]
+        [InlineData("22.678.874/0001-35")]
+        [InlineData("04.581.245/0001-00")]
+        [Theory]
+        public void ValidateReturnsTrueIfCnpjIsValidAndStrict(string strictCnpjString)
+#endif
         {
+#if NET40 || NET45
             var actual = Cnpj.Validate(CnpjTest.strictValidCnpj, CnpjPunctuation.Strict);
+#else
+            var actual = Cnpj.Validate(strictCnpjString, CnpjPunctuation.Strict);
+#endif
 
             Assert.True(actual);
         }
