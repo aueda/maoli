@@ -269,37 +269,53 @@
             Assert.False(actual);
         }
 
+#if NET40 || NET45
+#pragma warning disable xUnit2006
         [Fact]
         public void CompleteReturnsAValidCnpj()
         {
             var actual = Cnpj.Complete("639433150001");
 
+            Assert.Equal(CnpjTest.looseValidCnpj, actual);
+        }
+#pragma warning restore xUnit2006
+#else
+        [InlineData("045812450001", "04581245000100")]
+        [InlineData("639433150001", "63943315000192")]
+        [Theory]
+        public void CompleteReturnsAValidCnpj(
+            string cnpjString,
+            string expectedCnpjString)
+        {
+            var actual = Cnpj.Complete(cnpjString);
+
+            Assert.Equal(expectedCnpjString, actual);
+        }
+#endif
+
 #if NET40 || NET45
 #pragma warning disable xUnit2006
-#endif
-
-            Assert.Equal(CnpjTest.looseValidCnpj, actual);
-
-#if NET40 || NET45
-#pragma warning restore xUnit2006
-#endif
-        }
-
         [Fact]
         public void CompleteReturnsAValidCnpjIfHasPunctuaction()
         {
             var actual = Cnpj.Complete("63.943.315/0001");
 
-#if NET40 || NET45
-#pragma warning disable xUnit2006
-#endif
-
             Assert.Equal(CnpjTest.looseValidCnpj, actual);
-
-#if NET40 || NET45
-#pragma warning restore xUnit2006
-#endif
         }
+#pragma warning restore xUnit2006
+#else
+        [InlineData("04.581.245/0001", "04581245000100")]
+        [InlineData("63.943.315/0001", "63943315000192")]
+        [Theory]
+        public void CompleteReturnsAValidCnpjIfHasPunctuaction(
+            string cnpjString,
+            string expectedCnpj)
+        { 
+            var actual = Cnpj.Complete(cnpjString);
+
+            Assert.Equal(expectedCnpj, actual);
+        }
+#endif
 
         [Fact]
         public void CompleteThrowsArgumentExceptionIfCnpjTextIsSmaller()
