@@ -369,6 +369,7 @@
 #pragma warning restore xUnit2006
 #else
         [InlineData("066663484", "06666348400")]
+        [InlineData("721703364", "72170336400")]
         [InlineData("714025658", "71402565860")]
         [Theory]
         public void CompleteReturnsAValidCpf(
