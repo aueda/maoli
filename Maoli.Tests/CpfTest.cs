@@ -329,6 +329,7 @@
             Assert.False(actual);
         }
 
+#if NET40 || NET45
         [Fact]
         public void ValidateReturnsTrueIfCpfIsValidAndStrict()
         {
@@ -336,6 +337,17 @@
 
             Assert.True(actual);
         }
+#else
+        [InlineData("714.025.658-60")]
+        [InlineData("066.663.484-00")]
+        [Theory]
+        public void ValidateReturnsTrueIfCpfIsValidAndStrict(string cnpj)
+        {
+            var actual = Cpf.Validate(cnpj, CpfPunctuation.Strict);
+
+            Assert.True(actual);
+        }
+#endif
 
         [Fact]
         public void ValidateReturnsFalseIfCpfIsInvalidAndStrict()
