@@ -371,6 +371,7 @@
         [InlineData("066663484", "06666348400")]
         [InlineData("721703364", "72170336400")]
         [InlineData("714025658", "71402565860")]
+        [InlineData("750475604", "75047560406")]
         [Theory]
         public void CompleteReturnsAValidCpf(
             string cpfString,
