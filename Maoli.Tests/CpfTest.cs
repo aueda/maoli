@@ -340,6 +340,8 @@
 #else
         [InlineData("714.025.658-60")]
         [InlineData("066.663.484-00")]
+        [InlineData("721.703.364-00")]
+        [InlineData("750.475.604-06")]
         [Theory]
         public void ValidateReturnsTrueIfCpfIsValidAndStrict(string cnpj)
         {

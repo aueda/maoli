@@ -55,7 +55,7 @@ namespace Maoli.V2
                     sum1 += (symbol - 48) * (10 - index1);
                     index1++;
 
-                    sum2 += (symbol - 48) * (10 - index2);
+                    sum2 += (symbol - 48) * (11 - index2);
                     index2++;
 
                     isValid = true;
@@ -74,7 +74,7 @@ namespace Maoli.V2
                     ? 0
                     : checksum1;
 
-                sum2 += checksum1 * (10 - index2);
+                sum2 += checksum1 * (11 - index2);
 
                 var checksum2 = 11 - (sum2 % 11);
 
@@ -178,7 +178,7 @@ namespace Maoli.V2
 
                     if (index2 < 10)
                     {
-                        sum2 += (symbol - 48) * (10 - index2);
+                        sum2 += (symbol - 48) * (11 - index2);
                         index2++;
                     }
 
