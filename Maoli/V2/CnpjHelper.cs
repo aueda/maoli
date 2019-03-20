@@ -151,7 +151,7 @@ namespace Maoli.V2
                 var checksum1 = sum1 % 11;
                 checksum1 = (checksum1 < 2) ? 0 : 11 - checksum1;
 
-                sum2 += checksum1 * ((index2 < 5 ? 6 : 14) - index2);
+                sum2 += checksum1 * (14 - index2);
 
                 var checksum2 = sum2 % 11;
                 checksum2 = (checksum2 < 2) ? 0 : 11 - checksum2;
