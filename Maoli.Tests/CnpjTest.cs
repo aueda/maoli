@@ -237,9 +237,11 @@
         [Fact]
         public void ValidateReturnsTrueIfCnpjIsValidAndStrict()
 #else
-        [InlineData("63.943.315/0001-92")]
-        [InlineData("22.678.874/0001-35")]
+       
         [InlineData("04.581.245/0001-00")]
+        [InlineData("73.693.087/0001-01")]
+        [InlineData("22.678.874/0001-35")]
+        [InlineData("63.943.315/0001-92")]
         [Theory]
         public void ValidateReturnsTrueIfCnpjIsValidAndStrict(string strictCnpjString)
 #endif
@@ -281,6 +283,7 @@
 #pragma warning restore xUnit2006
 #else
         [InlineData("045812450001", "04581245000100")]
+        [InlineData("736930870001", "73693087000101")]
         [InlineData("639433150001", "63943315000192")]
         [Theory]
         public void CompleteReturnsAValidCnpj(
