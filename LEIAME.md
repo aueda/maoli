@@ -77,6 +77,13 @@ Install-Package Maoli
 
 Veja o [website do NuGet](https://www.nuget.org/packages/Maoli/).
 
+## .NET Fiddles
+
+Os seguintes [.NET Fiddles](https://dotnetfiddle.net) estão disponíveis para testar o Maoli: 
+
+* Validação de CPF: [https://dotnetfiddle.net/7h7X00](https://dotnetfiddle.net/7h7X00)
+* Validação de CNPJ: [https://dotnetfiddle.net/IpEEmC](https://dotnetfiddle.net/IpEEmC)
+
 ## Código-fonte
 
 O código-fonte está disponível em [GitHub](https://github.com/aueda/maoli/).
