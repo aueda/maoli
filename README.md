@@ -5,10 +5,11 @@
 [![NuGet Version](https://img.shields.io/nuget/v/Maoli.svg)](https://www.nuget.org/packages/Maoli/)
 [![Maoli no fuget.org](https://www.fuget.org/packages/Maoli/badge.svg)](https://www.fuget.org/packages/Maoli)
 [![Join the chat at https://gitter.im/maoli-net/community](https://badges.gitter.im/maoli-net/community.svg)](https://gitter.im/maoli-net/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![BuitlWithDot.Net shield](https://builtwithdot.net/project/143/maoli/badge)](https://builtwithdot.net/project/143/maoli)
 
 Versão em português: [LEIAME.md](https://github.com/aueda/maoli/blob/master/LEIAME.md)
 
-Maoli is C# helper library for common brazilian business rules (CEP, CPF and CNPJ),
+Maoli is a C# helper library for common Brazilian business rules (CEP, CPF and CNPJ),
 compatible with .NET Framework 4.0 and above.
 
 Currently implements:
@@ -78,6 +79,13 @@ Install-Package Maoli
 ```
 
 See the [NuGet website](https://www.nuget.org/packages/Maoli/).
+
+## .NET Fiddles
+
+The following [.NET Fiddles](https://dotnetfiddle.net) are available to test Maoli: 
+
+* CPF validation: [https://dotnetfiddle.net/7h7X00](https://dotnetfiddle.net/7h7X00)
+* CNPJ validation: [https://dotnetfiddle.net/IpEEmC](https://dotnetfiddle.net/IpEEmC)
 
 ## Source Code
 

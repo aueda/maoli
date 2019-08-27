@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
+    <Copyright>Copyright (c) 2019 Adriano Ueda</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
