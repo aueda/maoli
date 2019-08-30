@@ -3,6 +3,7 @@
 namespace Maoli
 {
     using System;
+    using Maoli.V2;
 
     /// <summary>
     /// Represents a valid CPF number

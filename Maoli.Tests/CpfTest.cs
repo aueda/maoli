@@ -292,6 +292,14 @@
         [Fact]
         public void ValidateReturnsFalseIfCpfContainsInvalidChars()
         {
+            var actual = Cpf.Validate("714o256s860");
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void ValidateReturnsFalseIfCpfContainsInvalidCharsAndItIsShorter()
+        {
             var actual = Cpf.Validate("714o256s8");
 
             Assert.False(actual);
@@ -321,6 +329,7 @@
             Assert.False(actual);
         }
 
+#if NET40 || NET45
         [Fact]
         public void ValidateReturnsTrueIfCpfIsValidAndStrict()
         {
@@ -328,6 +337,19 @@
 
             Assert.True(actual);
         }
+#else
+        [InlineData("714.025.658-60")]
+        [InlineData("066.663.484-00")]
+        [InlineData("721.703.364-00")]
+        [InlineData("750.475.604-06")]
+        [Theory]
+        public void ValidateReturnsTrueIfCpfIsValidAndStrict(string cnpj)
+        {
+            var actual = Cpf.Validate(cnpj, CpfPunctuation.Strict);
+
+            Assert.True(actual);
+        }
+#endif
 
         [Fact]
         public void ValidateReturnsFalseIfCpfIsInvalidAndStrict()
@@ -337,10 +359,36 @@
             Assert.False(actual);
         }
 
+#if NET40 || NET45
+#pragma warning disable xUnit2006
         [Fact]
         public void CompleteReturnsAValidCpf()
         {
             var actual = Cpf.Complete("714025658");
+
+            Assert.Equal(CpfTest.looseValidCpf, actual);
+        }
+#pragma warning restore xUnit2006
+#else
+        [InlineData("066663484", "06666348400")]
+        [InlineData("721703364", "72170336400")]
+        [InlineData("714025658", "71402565860")]
+        [InlineData("750475604", "75047560406")]
+        [Theory]
+        public void CompleteReturnsAValidCpf(
+            string cpfString,
+            string expected)
+        {
+            var actual = Cpf.Complete(cpfString);
+
+            Assert.Equal(expected, actual);
+        }
+#endif
+
+        [Fact]
+        public void CompleteReturnsAValidCpfIfHasPunctuaction()
+        {
+            var actual = Cpf.Complete("714.025.658");
 
 #if NET40 || NET45
 #pragma warning disable xUnit2006
@@ -368,6 +416,15 @@
             Assert.Throws<ArgumentException>(() =>
             {
                 Cpf.Complete(string.Empty);
+            });
+        }
+
+        [Fact]
+        public void CompleteThrowsArgumentExceptionIfCpfTextIsShorter()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Cpf.Complete("7140256");
             });
         }
 
