@@ -13,6 +13,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageTags>aspnet aspnetcore xamarin cnpj cpf cep</PackageTags>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
