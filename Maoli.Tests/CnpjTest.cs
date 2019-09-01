@@ -194,6 +194,14 @@
         }
 
         [Fact]
+        public void ValidateReturnsFalseIfCnpjContainsInvalidChars()
+        {
+            var actual = Cnpj.Validate("6e9433l5000192");
+
+            Assert.False(actual);
+        }
+
+        [Fact]
         public void ValidateReturnsFalseIfCnpjIsEmpty()
         {
             var actual = Cnpj.Validate(string.Empty);
@@ -202,7 +210,7 @@
         }
 
         [Fact]
-        public void ValidateReturnsFalseIfCnpjContainsInvalidChars()
+        public void ValidateReturnsFalseIfCnpjContainsInvalidCharsAndItIsShorter()
         {
             var actual = Cnpj.Validate("714o256s8");
 
@@ -225,10 +233,24 @@
             Assert.False(actual);
         }
 
+#if NET40 || NET45
         [Fact]
         public void ValidateReturnsTrueIfCnpjIsValidAndStrict()
+#else
+       
+        [InlineData("04.581.245/0001-00")]
+        [InlineData("73.693.087/0001-01")]
+        [InlineData("22.678.874/0001-35")]
+        [InlineData("63.943.315/0001-92")]
+        [Theory]
+        public void ValidateReturnsTrueIfCnpjIsValidAndStrict(string strictCnpjString)
+#endif
         {
+#if NET40 || NET45
             var actual = Cnpj.Validate(CnpjTest.strictValidCnpj, CnpjPunctuation.Strict);
+#else
+            var actual = Cnpj.Validate(strictCnpjString, CnpjPunctuation.Strict);
+#endif
 
             Assert.True(actual);
         }
@@ -249,22 +271,72 @@
             Assert.False(actual);
         }
 
+#if NET40 || NET45
+#pragma warning disable xUnit2006
         [Fact]
         public void CompleteReturnsAValidCnpj()
         {
             var actual = Cnpj.Complete("639433150001");
 
+            Assert.Equal(CnpjTest.looseValidCnpj, actual);
+        }
+#pragma warning restore xUnit2006
+#else
+        [InlineData("045812450001", "04581245000100")]
+        [InlineData("736930870001", "73693087000101")]
+        [InlineData("639433150001", "63943315000192")]
+        [Theory]
+        public void CompleteReturnsAValidCnpj(
+            string cnpjString,
+            string expectedCnpjString)
+        {
+            var actual = Cnpj.Complete(cnpjString);
+
+            Assert.Equal(expectedCnpjString, actual);
+        }
+#endif
+
 #if NET40 || NET45
 #pragma warning disable xUnit2006
-#endif
+        [Fact]
+        public void CompleteReturnsAValidCnpjIfHasPunctuaction()
+        {
+            var actual = Cnpj.Complete("63.943.315/0001");
 
             Assert.Equal(CnpjTest.looseValidCnpj, actual);
-
-#if NET40 || NET45
-#pragma warning restore xUnit2006
-#endif
         }
+#pragma warning restore xUnit2006
+#else
+        [InlineData("04.581.245/0001", "04581245000100")]
+        [InlineData("63.943.315/0001", "63943315000192")]
+        [Theory]
+        public void CompleteReturnsAValidCnpjIfHasPunctuaction(
+            string cnpjString,
+            string expectedCnpj)
+        { 
+            var actual = Cnpj.Complete(cnpjString);
 
+            Assert.Equal(expectedCnpj, actual);
+        }
+#endif
+
+        [Fact]
+        public void CompleteThrowsArgumentExceptionIfCnpjTextIsSmaller()
+        {
+            var actual = false;
+
+            try
+            {
+                Cnpj.Complete("714o256s8");
+            }
+            catch (ArgumentException)
+            {
+                actual = true;
+            }
+
+            Assert.True(actual);
+        }
+        
         [Fact]
         public void CompleteThrowsArgumentExceptionIfCnpjTextIsWrong()
         {
@@ -272,7 +344,7 @@
 
             try
             {
-                Cnpj.Complete("714o256s8");
+                Cnpj.Complete("6e9433l5o001");
             }
             catch (ArgumentException)
             {
