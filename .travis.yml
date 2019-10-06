@@ -10,4 +10,4 @@ mono: latest
 script:
   - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet build
-  - dotnet test
+  - dotnet test Maoli.Net40.Tests/Maoli.Net40.Tests.csproj --configuration Release
