@@ -6,7 +6,7 @@ addons:
     channel: latest
 sudo: required
 language: csharp
-mono: none
+mono: latest
 script:
   - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet build
