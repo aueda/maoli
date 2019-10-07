@@ -9,6 +9,6 @@ language: csharp
 mono: latest
 script:
   - sudo snap alias dotnet-sdk.dotnet dotnet
-  - dotnet build
+  - dotnet build --configuration Release
   - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
   - ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net40.Tests/bin/Release/net40/Maoli.Net40.Tests.dll
