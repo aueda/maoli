@@ -10,6 +10,5 @@ mono: latest
 script:
   - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet build
-  - dotnet test Maoli.Net452.Tests/Maoli.Net452.Tests.csproj --configuration Release
-  - dotnet test Maoli.Net462.Tests/Maoli.Net462.Tests.csproj --configuration Release
-  - dotnet test Maoli.Net472.Tests/Maoli.Net472.Tests.csproj --configuration Release
+  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
+  - ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net40.Tests/bin/Release/Maoli.Net40.Tests.dll
