@@ -15,3 +15,4 @@ script:
   - ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net45.Tests/bin/Release/net45/Maoli.Net45.Tests.dll
   - nuget install xunit.runner.console -Version 2.4.1 -OutputDirectory testrunner241
   - ./testrunner241/xunit.runner.console.2.4.1/tools/net452/xunit.console.exe ./Maoli.Net452.Tests/bin/Release/net452/Maoli.Net452.Tests.dll
+  - ./testrunner241/xunit.runner.console.2.4.1/tools/net462/xunit.console.exe ./Maoli.Net462.Tests/bin/Release/net462/Maoli.Net462.Tests.dll
