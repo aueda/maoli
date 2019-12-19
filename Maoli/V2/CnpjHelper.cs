@@ -20,6 +20,11 @@ namespace Maoli.V2
         {
             var isValid = false;
 
+            if (value == null)
+            {
+                return isValid;
+            }
+
             if (punctuation == CnpjPunctuation.Strict)
             {
                 isValid =

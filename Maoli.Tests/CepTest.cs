@@ -59,6 +59,22 @@
         }
 
         [Fact]
+        public void ValidateReturnsFalseIfCepIsNull()
+        {
+            var actual = Cep.Validate(null);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void StrictValidateReturnsFalseIfCepIsNull()
+        {
+            var actual = Cep.Validate(null, CepPunctuation.Strict);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
         public void ValidateReturnsTrueIfCepIsEmpty()
         {
             var actual = Cep.Validate(string.Empty);

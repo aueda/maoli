@@ -68,6 +68,22 @@
         }
 
         [Fact]
+        public void ValidateReturnsFalseIfCpfIsNull()
+        {
+            var actual = Cpf.Validate(null);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void StrictValidateReturnsFalseIfCpfIsNull()
+        {
+            var actual = Cpf.Validate(null, CpfPunctuation.Strict);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
         public void LooseParseThrowsArgumentExceptionIfCpfIsEmpty()
         {
             var actual = false;
