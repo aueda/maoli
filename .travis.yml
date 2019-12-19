@@ -10,7 +10,7 @@ mono: latest
 install:
   - sudo apt-get install gtk-sharp2
   - curl -sS https://globalcdn.nuget.org/packages/mono.cecil.0.11.1.nupkg > /tmp/mono.cecil.0.11.1.nupkg.zip
-  - unzip /mono.cecil.0.11.1.nupkg.zip -d /tmp/cecil
+  - unzip /tmp/mono.cecil.0.11.1.nupkg.zip -d /tmp/cecil
   - cp /tmp/cecil/lib/net40/Mono.Cecil.dll .
   - cp /tmp/cecil/lib/net40/Mono.Cecil.dll /tmp/cecil/
   - git clone --depth=50 git://github.com/csMACnz/monocov.git ../../csMACnz/monocov
