@@ -3,7 +3,7 @@
 namespace Maoli
 {
     /// <summary>
-    /// Helper class for string operations
+    /// Helper class for string operations.
     /// </summary>
     internal static class StringHelper
     {
