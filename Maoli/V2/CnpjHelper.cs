@@ -5,17 +5,17 @@ namespace Maoli.V2
     using System;
 
     /// <summary>
-    /// Helper class for <see cref="Cnpj"/> class
+    /// Helper class for <see cref="Cnpj"/> class.
     /// </summary>
     internal static class CnpjHelper
     {
         /// <summary>
-        /// Checks if a string value is a valid CNPJ representation
+        /// Checks if a string value is a valid CNPJ representation.
         /// </summary>
-        /// <param name="value">a CNPJ string to be checked</param>
+        /// <param name="value">a CNPJ string to be checked.</param>
         /// <param name="punctuation">the punctuation setting to
-        /// how validation must be handled</param>
-        /// <returns>true if CNPJ string is valid; false otherwise</returns>
+        /// how validation must be handled.</param>
+        /// <returns>true if CNPJ string is valid; false otherwise.</returns>
         internal static bool Validate(string value, CnpjPunctuation punctuation)
         {
             var isValid = false;
@@ -91,10 +91,14 @@ namespace Maoli.V2
         }
 
         /// <summary>
-        /// Completes a partial CNPJ string by appending a valid checksum trailing
+        /// Completes a partial CNPJ string by appending
+        /// a valid checksum trailing.
         /// </summary>
-        /// <param name="value">a partial CNPJ string with or without punctuation</param>
-        /// <returns>a CNPJ string with a valid checksum trailing</returns>
+        /// <param name="value">a partial CNPJ string
+        /// with or without punctuation.</param>
+        /// <returns>
+        /// a CNPJ string with a valid checksum trailing.
+        /// </returns>
         internal static string Complete(string value)
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
@@ -168,10 +172,12 @@ namespace Maoli.V2
         }
 
         /// <summary>
-        /// Removes punctuation and trim from a CNPJ string
+        /// Removes punctuation and trim from a CNPJ string.
         /// </summary>
-        /// <param name="value">a CNPJ string</param>
-        /// <returns>a trimmed CNPJ string without punctuation</returns>
+        /// <param name="value">a CNPJ string.</param>
+        /// <returns>
+        /// a trimmed CNPJ string without punctuation.
+        /// </returns>
         internal static string Sanitize(string value)
         {
             var sanitizedValue = string.Empty;

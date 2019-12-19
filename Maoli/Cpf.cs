@@ -6,19 +6,19 @@ namespace Maoli
     using Maoli.V2;
 
     /// <summary>
-    /// Represents a valid CPF number
+    /// Represents a valid CPF number.
     /// </summary>
     public class Cpf
     {
         /// <summary>
-        /// Stores the CPF number without punctuation
+        /// Stores the CPF number without punctuation.
         /// </summary>
         private string parsedValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Cpf"/> class.
         /// </summary>
-        /// <param name="value">a valid CPF string</param>
+        /// <param name="value">a valid CPF string.</param>
         public Cpf(string value)
             : this(value, CpfPunctuation.Loose)
         {
@@ -27,9 +27,9 @@ namespace Maoli
         /// <summary>
         /// Initializes a new instance of the <see cref="Cpf"/> class.
         /// </summary>
-        /// <param name="value">a valid CPF string</param>
+        /// <param name="value">a valid CPF string.</param>
         /// <param name="punctuation">the punctuation setting to
-        /// how validation must be handled</param>
+        /// how validation must be handled.</param>
         public Cpf(string value, CpfPunctuation punctuation)
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
@@ -48,51 +48,51 @@ namespace Maoli
         }
 
         /// <summary>
-        /// Gets the punctuation setting
+        /// Gets the punctuation setting.
         /// </summary>
         public CpfPunctuation Punctuation { get; private set; }
 
         /// <summary>
-        /// Creates a new instance of <see cref="Cpf"/> from a CPF string
+        /// Creates a new instance of <see cref="Cpf"/> from a CPF string.
         /// </summary>
-        /// <param name="value">a CPF string</param>
-        /// <returns>the new instance of <see cref="Cpf"/></returns>
+        /// <param name="value">a CPF string.</param>
+        /// <returns>the new instance of <see cref="Cpf"/>.</returns>
         public static Cpf Parse(string value)
         {
             return Cpf.Parse(value, CpfPunctuation.Loose);
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="Cpf"/> from a CPF string
+        /// Creates a new instance of <see cref="Cpf"/> from a CPF string.
         /// </summary>
-        /// <param name="value">a CPF string</param>
+        /// <param name="value">a CPF string.</param>
         /// <param name="punctuation">the punctuation setting to
-        /// how validation must be handled</param>
-        /// <returns>the new instance of <see cref="Cpf"/></returns>
+        /// how validation must be handled.</param>
+        /// <returns>the new instance of <see cref="Cpf"/>.</returns>
         public static Cpf Parse(string value, CpfPunctuation punctuation)
         {
             return new Cpf(value, punctuation);
         }
 
         /// <summary>
-        /// Tries to create a new instance of <see cref="Cpf"/> from a CPF string
+        /// Tries to create a new instance of <see cref="Cpf"/> from a CPF string.
         /// </summary>
-        /// <param name="value">a CPF string</param>
-        /// <param name="cpf">the new instance of <see cref="Cpf"/></param>
-        /// <returns>true if CPF string is valid; false, otherwise</returns>
+        /// <param name="value">a CPF string.</param>
+        /// <param name="cpf">the new instance of <see cref="Cpf"/>.</param>
+        /// <returns>true if CPF string is valid; false, otherwise.</returns>
         public static bool TryParse(string value, out Cpf cpf)
         {
             return Cpf.TryParse(value, out cpf, CpfPunctuation.Loose);
         }
 
         /// <summary>
-        /// Tries to create a new instance of <see cref="Cpf"/> from a CPF string
+        /// Tries to create a new instance of <see cref="Cpf"/> from a CPF string.
         /// </summary>
-        /// <param name="value">a CPF string</param>
-        /// <param name="cpf">the new instance of <see cref="Cpf"/></param>
+        /// <param name="value">a CPF string.</param>
+        /// <param name="cpf">the new instance of <see cref="Cpf"/>.</param>
         /// <param name="punctuation">the punctuation setting to
-        /// how validation must be handled</param>
-        /// <returns>true if CPF string is valid; false, otherwise</returns>
+        /// how validation must be handled.</param>
+        /// <returns>true if CPF string is valid; false, otherwise.</returns>
         public static bool TryParse(string value, out Cpf cpf, CpfPunctuation punctuation)
         {
             var parsed = false;
@@ -114,52 +114,58 @@ namespace Maoli
         }
 
         /// <summary>
-        /// Checks if a string value is a valid CPF representation
+        /// Checks if a string value is a valid CPF representation.
         /// </summary>
-        /// <param name="value">a CPF string to be checked</param>
-        /// <returns>true if CPF string is valid; false otherwise</returns>
+        /// <param name="value">a CPF string to be checked.</param>
+        /// <returns>true if CPF string is valid; false otherwise.</returns>
         public static bool Validate(string value)
         {
             return CpfHelper.Validate(value, CpfPunctuation.Loose);
         }
 
         /// <summary>
-        /// Checks if a string value is a valid CPF representation
+        /// Checks if a string value is a valid CPF representation.
         /// </summary>
-        /// <param name="value">a CPF string to be checked</param>
+        /// <param name="value">a CPF string to be checked.</param>
         /// <param name="punctuation">the punctuation setting to
-        /// how validation must be handled</param>
-        /// <returns>true if CPF string is valid; otherwise, false</returns>
+        /// how validation must be handled.</param>
+        /// <returns>true if CPF string is valid; otherwise, false.</returns>
         public static bool Validate(string value, CpfPunctuation punctuation)
         {
             return CpfHelper.Validate(value, punctuation);
         }
 
         /// <summary>
-        /// Completes a partial CPF string by appending a valid checksum trailing
+        /// Completes a partial CPF string by appending a valid checksum trailing.
         /// </summary>
-        /// <param name="value">a partial CPF string with or without punctuation</param>
-        /// <returns>a CPF string with a valid checksum trailing</returns>
+        /// <param name="value">a partial CPF string
+        /// with or without punctuation.</param>
+        /// <returns>a CPF string with a valid checksum trailing.</returns>
         public static string Complete(string value)
         {
             return CpfHelper.Complete(value);
         }
 
         /// <summary>
-        /// Determines whether this instance and a specified object, which must also be a <see cref="Cpf"/> object, have the same value
+        /// Determines whether this instance and a specified object,
+        /// which must also be a <see cref="Cpf"/> object, have the same value.
         /// </summary>
-        /// <param name="obj">The CPF to compare to this instance</param>
-        /// <returns>if the value of the value parameter is the same as this instance; otherwise, false</returns>
+        /// <param name="obj">The CPF to compare to this instance.</param>
+        /// <returns>if the value of the value parameter is
+        /// the same as this instance; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             return this.Equals(obj as Cpf);
         }
 
         /// <summary>
-        /// Determines whether this instance and another specified <see cref="Cpf"/> object have the same value
+        /// Determines whether this instance and another specified
+        /// <see cref="Cpf"/> object have the same value.
         /// </summary>
-        /// <param name="cpf">The CPF to compare to this instance</param>
-        /// <returns>if the value of the value parameter is the same as this instance; otherwise, false</returns>
+        /// <param name="cpf">The CPF to compare to this instance.</param>
+        /// <returns>if the value of the value parameter is
+        /// the same as this instance; otherwise, false.
+        /// </returns>
         public bool Equals(Cpf cpf)
         {
             if (cpf == null)
@@ -171,9 +177,9 @@ namespace Maoli
         }
 
         /// <summary>
-        /// Returns the hash code for this CPF
+        /// Returns the hash code for this CPF.
         /// </summary>
-        /// <returns>A 32-bit signed integer hash code</returns>
+        /// <returns>A 32-bit signed integer hash code.</returns>
         public override int GetHashCode()
         {
             int hash = 17;
@@ -187,9 +193,10 @@ namespace Maoli
         }
 
         /// <summary>
-        /// Converts the value of this instance to a <seealso cref="string"/>String.
+        /// Converts the value of this instance to a
+        /// <seealso cref="string"/>String.
         /// </summary>
-        /// <returns>The CPF as string</returns>
+        /// <returns>The CPF as string.</returns>
         public override string ToString()
         {
             return this.parsedValue;

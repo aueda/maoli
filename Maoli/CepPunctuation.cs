@@ -3,7 +3,7 @@
 namespace Maoli
 {
     /// <summary>
-    /// Indicates how punctuation must be validated
+    /// Indicates how punctuation must be validated.
     /// </summary>
     public enum CepPunctuation
     {
@@ -15,6 +15,6 @@ namespace Maoli
         /// <summary>
         /// A valid CEP must have punctuation
         /// </summary>
-        Strict = 1
+        Strict = 1,
     }
 }
