@@ -202,6 +202,22 @@
         }
 
         [Fact]
+        public void ValidateReturnsFalseIfCnpjIsNull()
+        {
+            var actual = Cnpj.Validate(null);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void StrictValidateReturnsFalseIfCnpjIsNull()
+        {
+            var actual = Cnpj.Validate(null, CnpjPunctuation.Strict);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
         public void ValidateReturnsFalseIfCnpjIsEmpty()
         {
             var actual = Cnpj.Validate(string.Empty);
