@@ -7,6 +7,18 @@ addons:
 sudo: required
 language: csharp
 mono: latest
+install:
+  - sudo apt-get install gtk-sharp2
+  - curl -sS https://globalcdn.nuget.org/packages/mono.cecil.0.11.1.nupkg > /tmp/mono.cecil.0.11.1.nupkg.zip
+  - unzip /mono.cecil.0.11.1.nupkg.zip -d /tmp/cecil
+  - cp /tmp/cecil/lib/net40/Mono.Cecil.dll .
+  - cp /tmp/cecil/lib/net40/Mono.Cecil.dll /tmp/cecil/
+  - git clone --depth=50 git://github.com/csMACnz/monocov.git ../../csMACnz/monocov
+  - cd ../../csMACnz/monocov
+  - cp /tmp/cecil/Mono.Cecil.dll .
+  - ./configure
+  - make
+  - sudo make install
 script:
   - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet build --configuration Release
@@ -17,3 +29,4 @@ script:
   - mono --debug --profile=monocov:outfile=net452coverage.cov,+[Maoli],+[Maoli.Tests] ./testrunner241/xunit.runner.console.2.4.1/tools/net452/xunit.console.exe ./Maoli.Net452.Tests/bin/Release/net452/Maoli.Net452.Tests.dll
   - mono --debug --profile=monocov:outfile=net462coverage.cov,+[Maoli],+[Maoli.Tests] ./testrunner241/xunit.runner.console.2.4.1/tools/net462/xunit.console.exe ./Maoli.Net462.Tests/bin/Release/net462/Maoli.Net462.Tests.dll
   - mono --debug --profile=monocov:outfile=net462coverage.cov,+[Maoli],+[Maoli.Tests] ./testrunner241/xunit.runner.console.2.4.1/tools/net472/xunit.console.exe ./Maoli.Net472.Tests/bin/Release/net472/Maoli.Net472.Tests.dll
+  - monocov
