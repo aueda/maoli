@@ -17,4 +17,3 @@ script:
   - mono --debug --profile=monocov:outfile=net452coverage.cov,+[Maoli],+[Maoli.Tests] ./testrunner241/xunit.runner.console.2.4.1/tools/net452/xunit.console.exe ./Maoli.Net452.Tests/bin/Release/net452/Maoli.Net452.Tests.dll
   - mono --debug --profile=monocov:outfile=net462coverage.cov,+[Maoli],+[Maoli.Tests] ./testrunner241/xunit.runner.console.2.4.1/tools/net462/xunit.console.exe ./Maoli.Net462.Tests/bin/Release/net462/Maoli.Net462.Tests.dll
   - mono --debug --profile=monocov:outfile=net462coverage.cov,+[Maoli],+[Maoli.Tests] ./testrunner241/xunit.runner.console.2.4.1/tools/net472/xunit.console.exe ./Maoli.Net472.Tests/bin/Release/net472/Maoli.Net472.Tests.dll
-  - monocov
