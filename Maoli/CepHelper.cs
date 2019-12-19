@@ -6,12 +6,12 @@ namespace Maoli
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// Helper class for <see cref="Cep"/> class
+    /// Helper class for <see cref="Cep"/> class.
     /// </summary>
     internal static class CepHelper
     {
         /// <summary>
-        /// Regex validations
+        /// Regex validations.
         /// </summary>
         private static Dictionary<CepPunctuation, string> regexValidations =
             new Dictionary<CepPunctuation, string>()
@@ -23,14 +23,14 @@ namespace Maoli
                 {
                     CepPunctuation.Strict,
                     @"^(\d{5}\-\d{3})$"
-                }
+                },
             };
 
         /// <summary>
-        /// Removes punctuation and trim from a CEP string
+        /// Removes punctuation and trim from a CEP string.
         /// </summary>
-        /// <param name="value">a CEP string</param>
-        /// <returns>a trimmed CEP string without punctuation</returns>
+        /// <param name="value">a CEP string.</param>
+        /// <returns>a trimmed CEP string without punctuation.</returns>
         internal static string Sanitize(string value)
         {
             return value
@@ -40,12 +40,12 @@ namespace Maoli
         }
 
         /// <summary>
-        /// Checks if a string value is a valid CNPJ representation
+        /// Checks if a string value is a valid CNPJ representation.
         /// </summary>
-        /// <param name="value">a CNPJ string to be checked</param>
+        /// <param name="value">a CNPJ string to be checked.</param>
         /// <param name="punctuation">the punctuation setting to
-        /// how validation must be handled</param>
-        /// <returns>true if CNPJ string is valid; false otherwise</returns>
+        /// how validation must be handled.</param>
+        /// <returns>true if CNPJ string is valid; false otherwise.</returns>
         internal static bool Validate(string value, CepPunctuation punctuation)
         {
             if (StringHelper.IsNullOrWhiteSpace(value))

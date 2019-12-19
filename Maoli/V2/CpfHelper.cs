@@ -6,15 +6,17 @@ namespace Maoli.V2
     using System.Collections.Generic;
 
     /// <summary>
-    /// Helper class for <see cref="Cpf"/> class
+    /// Helper class for <see cref="Cpf"/> class.
     /// </summary>
     internal static class CpfHelper
     {
         /// <summary>
-        /// Completes a partial CPF string by appending a valid checksum trailing
+        /// Completes a partial CPF string by appending
+        /// a valid checksum trailing.
         /// </summary>
-        /// <param name="value">a partial CPF string with or without punctuation</param>
-        /// <returns>a CPF string with a valid checksum trailing</returns>
+        /// <param name="value">a partial CPF strin
+        /// with or without punctuation.</param>
+        /// <returns>a CPF string with a valid checksum trailing.</returns>
         internal static string Complete(string value)
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
@@ -94,10 +96,10 @@ namespace Maoli.V2
         }
 
         /// <summary>
-        /// Removes punctuation and trim from a CPF string
+        /// Removes punctuation and trim from a CPF string.
         /// </summary>
-        /// <param name="value">a CPF string</param>
-        /// <returns>a trimmed CPF string without punctuation</returns>
+        /// <param name="value">a CPF string.</param>
+        /// <returns>a trimmed CPF string without punctuation.</returns>
         internal static string Sanitize(string value)
         {
             var sanitizedValue = new char[11];
@@ -118,12 +120,12 @@ namespace Maoli.V2
         }
 
         /// <summary>
-        /// Checks if a string value is a valid CPF representation
+        /// Checks if a string value is a valid CPF representation.
         /// </summary>
-        /// <param name="value">a CPF string to be checked</param>
+        /// <param name="value">a CPF string to be checked.</param>
         /// <param name="punctuation">the punctuation setting to
-        /// how validation must be handled</param>
-        /// <returns>true if CPF string is valid; false otherwise</returns>
+        /// how validation must be handled.</param>
+        /// <returns>true if CPF string is valid; false otherwise.</returns>
         internal static bool Validate(string value, CpfPunctuation punctuation)
         {
             var isValid = false;
