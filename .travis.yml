@@ -10,6 +10,7 @@ mono: latest
 install:
   - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet tool install --global coveralls.net --version 1.0.0
+  - export PATH="$PATH:/home/travis/.dotnet/tools"
 script:
   - dotnet build --configuration Release
   - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
