@@ -3,6 +3,9 @@
 namespace Maoli
 {
     using System;
+    using System.Globalization;
+    using System.Reflection;
+    using System.Resources;
 
     /// <summary>
     /// Represents a valid CEP number.
@@ -33,15 +36,35 @@ namespace Maoli
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
+                var resManager = new ResourceManager(
+                    "ErrorMessages",
+#if NETSTANDARD1_1
+                    typeof(Cep).GetTypeInfo().Assembly);
+#else
+                    Assembly.GetExecutingAssembly());
+#endif
+
                 throw new ArgumentException(
-                    "O CEP não pode ser nulo ou branco",
+                    resManager.GetString(
+                        "Cep.Required",
+                        CultureInfo.CurrentCulture),
                     nameof(value));
             }
 
             if (!CepHelper.Validate(value, punctuation))
             {
+                var resManager = new ResourceManager(
+                    "ErrorMessages",
+#if NETSTANDARD1_1
+                    typeof(Cep).GetTypeInfo().Assembly);
+#else
+                    Assembly.GetExecutingAssembly());
+#endif
+
                 throw new ArgumentException(
-                    "O CEP não é válido",
+                    resManager.GetString(
+                        "Cep.Invalid",
+                        CultureInfo.CurrentCulture),
                     nameof(value));
             }
 
