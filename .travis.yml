@@ -3,22 +3,21 @@ addons:
   snaps:
   - name: dotnet-sdk
     confinement: classic
-    channel: latest
+    channel: 2.1/stable
+  - name: dotnet-sdk
+    confinement: classic
+    channel: 2.2/stable
+  - name: dotnet-sdk
+    confinement: classic
+    channel: 3.0/stable
+  - name: dotnet-sdk
+    confinement: classic
+    channel: 3.1/stable
 sudo: required
 language: csharp
-mono: latest
 install:
   - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet tool install --global coveralls.net --version 1.0.0
   - export PATH="$PATH:/home/travis/.dotnet/tools"
 script:
   - dotnet build --configuration Release
-  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
-  - mono --debug --profile=monocov:outfile=net40coverage.cov,+[Maoli],+[Maoli.Tests] ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net40.Tests/bin/Release/net40/Maoli.Net40.Tests.dll /noshadow
-  - mono --debug --profile=monocov:outfile=net45coverage.cov,+[Maoli],+[Maoli.Tests] ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Maoli.Net45.Tests/bin/Release/net45/Maoli.Net45.Tests.dll /noshadow
-  - nuget install xunit.runner.console -Version 2.4.1 -OutputDirectory testrunner241
-  - mono --debug --profile=monocov:outfile=net452coverage.cov,+[Maoli],+[Maoli.Tests] ./testrunner241/xunit.runner.console.2.4.1/tools/net452/xunit.console.exe ./Maoli.Net452.Tests/bin/Release/net452/Maoli.Net452.Tests.dll
-  - mono --debug --profile=monocov:outfile=net462coverage.cov,+[Maoli],+[Maoli.Tests] ./testrunner241/xunit.runner.console.2.4.1/tools/net462/xunit.console.exe ./Maoli.Net462.Tests/bin/Release/net462/Maoli.Net462.Tests.dll
-  - mono --debug --profile=monocov:outfile=net462coverage.cov,+[Maoli],+[Maoli.Tests] ./testrunner241/xunit.runner.console.2.4.1/tools/net472/xunit.console.exe ./Maoli.Net472.Tests/bin/Release/net472/Maoli.Net472.Tests.dll
-  - dotnet test /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutputFormat=opencover --framework netcoreapp2.1 --configuration Release
-  - csmacnz.Coveralls --opencover -i ./Maoli.Tests/coverage.opencover.xml --useRelativePaths --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci
