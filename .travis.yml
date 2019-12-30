@@ -21,10 +21,6 @@ script:
 
   - dotnet build --configuration Release
 
-  - dotnet test --framework netcoreapp3.1 --configuration Release
-  - dotnet test --framework netcoreapp3.0 --configuration Release
-  - dotnet test --framework netcoreapp2.2 --configuration Release
-
   - dotnet test --framework netcoreapp2.0 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=json /p:Mergewith=../TestResult/coverage.json
   - dotnet test --framework netcoreapp2.1 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=json /p:Mergewith=../TestResult/coverage.json
   - dotnet test --framework netcoreapp2.2 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=json /p:Mergewith=../TestResult/coverage.json
