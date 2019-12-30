@@ -1,22 +1,19 @@
 dist: xenial
-addons:
-  snaps:
-  - name: dotnet-sdk
-    confinement: classic
-    channel: 2.1/stable
-  - name: dotnet-sdk
-    confinement: classic
-    channel: 2.2/stable
-  - name: dotnet-sdk
-    confinement: classic
-    channel: 3.0/stable
-  - name: dotnet-sdk
-    confinement: classic
-    channel: 3.1/stable
 sudo: required
-language: csharp
 install:
-  - sudo snap alias dotnet-sdk.dotnet dotnet
+  - sudo wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+  - sudo dpkg -i packages-microsoft-prod.deb
+
+  - sudo apt-get update
+  - sudo apt-get install apt-transport-https
+  - sudo apt-get update
+  - sudo apt-get install dotnet-sdk-3.1
+
+  - sudo apt-get update
+  - sudo apt-get install apt-transport-https
+  - sudo apt-get update
+  - sudo apt-get install dotnet-sdk-2.2
+
   - dotnet tool install --global coveralls.net --version 1.0.0
   - export PATH="$PATH:/home/travis/.dotnet/tools"
 script:
