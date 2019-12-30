@@ -1,12 +1,29 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp3;netcoreapp2.2;netcoreapp2.1;netcoreapp2.0;net472;net461;net46;net45;net40</TargetFrameworks>
     <Copyright>Copyright (c) 2019 Adriano Ueda</Copyright>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'!='net40' And '$(TargetFramework)'!='net45'">
     <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.utility" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net40' Or '$(TargetFramework)'=='net45'">
+    <PackageReference Include="xunit" Version="1.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net40' Or '$(TargetFramework)'=='net45' Or '$(TargetFramework)'=='net46' Or '$(TargetFramework)'=='net461' Or '$(TargetFramework)'=='net472'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
