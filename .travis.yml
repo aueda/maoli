@@ -4,14 +4,9 @@ install:
   - sudo wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
   - sudo dpkg -i packages-microsoft-prod.deb
 
-  - sudo apt-get update
   - sudo apt-get install apt-transport-https
   - sudo apt-get update
   - sudo apt-get install dotnet-sdk-3.1
-
-  - sudo apt-get update
-  - sudo apt-get install apt-transport-https
-  - sudo apt-get update
   - sudo apt-get install dotnet-sdk-2.2
 
   - dotnet tool install --global coveralls.net --version 1.0.0
@@ -22,10 +17,10 @@ script:
   - dotnet build --configuration Release
 
   - dotnet test --framework netcoreapp2.0 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=json
-  - dotnet test --framework netcoreapp2.1 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=json /p:Mergewith=./TestResult/coverage.json
-  - dotnet test --framework netcoreapp2.2 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=json /p:Mergewith=./TestResult/coverage.json
-  - dotnet test --framework netcoreapp3.0 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=json /p:Mergewith=./TestResult/coverage.json
-  - dotnet test --framework netcoreapp3.1 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=opencover /p:Mergewith=./TestResult/coverage.json
+  - dotnet test --framework netcoreapp2.1 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=json /p:Mergewith=../TestResult/coverage.json
+  - dotnet test --framework netcoreapp2.2 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=json /p:Mergewith=../TestResult/coverage.json
+  - dotnet test --framework netcoreapp3.0 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=json /p:Mergewith=../TestResult/coverage.json
+  - dotnet test --framework netcoreapp3.1 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=opencover /p:Mergewith=../TestResult/coverage.json
 
   - csmacnz.Coveralls --opencover -i ./TestResult/coverage.opencover.xml --useRelativePaths --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci
 global:
