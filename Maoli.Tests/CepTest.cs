@@ -25,37 +25,53 @@
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsNull()
         {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                var cep = new Cep(null);
-            });
+            Assert.Throws<ArgumentException>(
+#if !NET40 && !NET45
+                "value",
+#endif
+                () =>
+                {
+                    var cep = new Cep(null);
+                });
         }
 
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsEmpty()
         {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                var cep = new Cep(string.Empty);
-            });
+            Assert.Throws<ArgumentException>(
+#if !NET40 && !NET45
+                "value",
+#endif
+                () =>
+                {
+                    var cep = new Cep(string.Empty);
+                });
         }
 
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsInvalidAndLoose()
         {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                var cep = new Cep("012e501", CepPunctuation.Loose);
-            });
+            Assert.Throws<ArgumentException>(
+#if !NET40 && !NET45
+                "value",
+#endif
+                () =>
+                {
+                    var cep = new Cep("012e501", CepPunctuation.Loose);
+                });
         }
 
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsInvalidAndStrict()
         {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                var cep = new Cep("01234001", CepPunctuation.Strict);
-            });
+            Assert.Throws<ArgumentException>(
+#if !NET40 && !NET45
+                "value",
+#endif
+                () =>
+                {
+                    var cep = new Cep("01234001", CepPunctuation.Strict);
+                });
         }
 
         [Fact]
