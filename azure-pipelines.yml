@@ -1,0 +1,68 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: test
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test (coverage)'
+  inputs:
+    command: test
+    arguments: '--framework netcoreapp3.1 --configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)\TestResult\Coverage\'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet reportgenerator'
+  inputs:
+    command: custom
+    custom: reportgenerator
+    arguments: '--framework netcoreapp3.1 --configuration $(BuildConfiguration) "-reports:$(Build.SourcesDirectory)\TestResult\Coverage\coverage.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
+    workingDirectory: Maoli.Tests
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: pack
+    packagesToPack: Maoli/Maoli.csproj
+    includesymbols: true
+    versioningScheme: byPrereleaseNumber
+    majorVersion: '$(Package.MajorVersion)'
+    minorVersion: '$(Package.MinorVersion)'
+    patchVersion: '$(Package.PatchVersion)'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: |
+     **\*.nupkg
+     **\*.snupkg
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage from $(Build.SourcesDirectory)\TestResult\Coverage\**\coverage.cobertura.xml'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(Build.SourcesDirectory)\TestResult\Coverage\**\coverage.cobertura.xml'
+    reportDirectory: '$(Build.SourcesDirectory)\TestResult\Coverage\Reports'
