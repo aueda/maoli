@@ -32,7 +32,7 @@ steps:
   inputs:
     command: custom
     custom: reportgenerator
-    arguments: '--framework netcoreapp3.1 --configuration $(BuildConfiguration) "-reports:$(Build.SourcesDirectory)\TestResult\Coverage\coverage.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
+    arguments: '"-reports:$(Build.SourcesDirectory)\TestResult\Coverage\coverage.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
     workingDirectory: Maoli.Tests
 
 - task: DotNetCoreCLI@2
