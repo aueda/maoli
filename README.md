@@ -15,8 +15,8 @@ compatible with .NET Framework 4.0 and above.
 Currently implements:
 
 *   CEP validation
-*  CPF validation
-*  CNPJ validation
+*   CPF validation
+*   CNPJ validation
 
 For client-side validation of CPF and CNPJ, please see [Maoli.js](https://github.com/aueda/maoli.js/).
 
