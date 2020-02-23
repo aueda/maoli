@@ -9,6 +9,7 @@ namespace Maoli
     /// Represents a valid CPF number.
     /// </summary>
     public class Cpf
+        : IEquatable<Cpf>
     {
         /// <summary>
         /// Stores the CPF number without punctuation.

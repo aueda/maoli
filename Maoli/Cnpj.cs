@@ -9,6 +9,7 @@ namespace Maoli
     /// Represents a valid CNPJ number.
     /// </summary>
     public class Cnpj
+        : IEquatable<Cnpj>
     {
         /// <summary>
         /// Stores the CNPJ number without punctuation.
