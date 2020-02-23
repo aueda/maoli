@@ -14,7 +14,7 @@ namespace Maoli
         /// Regex validations.
         /// </summary>
         private static Dictionary<CepPunctuation, string> regexValidations =
-            new Dictionary<CepPunctuation, string>()
+            new Dictionary<CepPunctuation, string>
             {
                 {
                     CepPunctuation.Loose,
@@ -25,19 +25,6 @@ namespace Maoli
                     @"^(\d{5}\-\d{3})$"
                 },
             };
-
-        /// <summary>
-        /// Removes punctuation and trim from a CEP string.
-        /// </summary>
-        /// <param name="value">a CEP string.</param>
-        /// <returns>a trimmed CEP string without punctuation.</returns>
-        internal static string Sanitize(string value)
-        {
-            return value
-                .Trim()
-                .ToUpperInvariant()
-                .Replace("-", string.Empty);
-        }
 
         /// <summary>
         /// Checks if a string value is a valid CNPJ representation.
