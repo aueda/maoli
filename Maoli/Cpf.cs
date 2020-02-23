@@ -163,18 +163,20 @@ namespace Maoli
         /// Determines whether this instance and another specified
         /// <see cref="Cpf"/> object have the same value.
         /// </summary>
-        /// <param name="cpf">The CPF to compare to this instance.</param>
+        /// <param name="other">
+        /// The other CPF to compare to this instance.
+        /// </param>
         /// <returns>if the value of the value parameter is
         /// the same as this instance; otherwise, false.
         /// </returns>
-        public bool Equals(Cpf cpf)
+        public bool Equals(Cpf other)
         {
-            if (cpf == null)
+            if (other == null)
             {
                 return false;
             }
 
-            return this.parsedValue == cpf.parsedValue;
+            return this.parsedValue == other.parsedValue;
         }
 
         /// <summary>

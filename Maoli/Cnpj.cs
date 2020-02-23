@@ -165,17 +165,19 @@ namespace Maoli
         /// Determines whether this instance and another
         /// specified <see cref="Cnpj"/> object have the same value.
         /// </summary>
-        /// <param name="cnpj">The CNPJ to compare to this instance.</param>
+        /// <param name="other">
+        /// The other CNPJ to compare to this instance.
+        /// </param>
         /// <returns>if the value of the value parameter is
         /// the same as this instance; otherwise, false.</returns>
-        public bool Equals(Cnpj cnpj)
+        public bool Equals(Cnpj other)
         {
-            if (cnpj == null)
+            if (other == null)
             {
                 return false;
             }
 
-            return this.parsedValue == cnpj.parsedValue;
+            return this.parsedValue == other.parsedValue;
         }
 
         /// <summary>
