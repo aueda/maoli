@@ -3,6 +3,7 @@
 namespace Maoli.V2
 {
     using System;
+    using System.Text;
 
     /// <summary>
     /// Helper class for <see cref="Cnpj"/> class.
@@ -185,7 +186,7 @@ namespace Maoli.V2
         /// </returns>
         internal static string Sanitize(string value)
         {
-            var sanitizedValue = string.Empty;
+            var sb = new StringBuilder();
 
             for (var i = 0; i < value.Length; i++)
             {
@@ -193,11 +194,11 @@ namespace Maoli.V2
 
                 if (char.IsDigit(symbol))
                 {
-                    sanitizedValue += symbol;
+                    sb.Append(symbol);
                 }
             }
 
-            return sanitizedValue;
+            return sb.ToString();
         }
     }
 }
