@@ -27,19 +27,6 @@ namespace Maoli
             };
 
         /// <summary>
-        /// Removes punctuation and trim from a CEP string.
-        /// </summary>
-        /// <param name="value">a CEP string.</param>
-        /// <returns>a trimmed CEP string without punctuation.</returns>
-        internal static string Sanitize(string value)
-        {
-            return value
-                .Trim()
-                .ToUpperInvariant()
-                .Replace("-", string.Empty);
-        }
-
-        /// <summary>
         /// Checks if a string value is a valid CNPJ representation.
         /// </summary>
         /// <param name="value">a CNPJ string to be checked.</param>
