@@ -2,6 +2,7 @@
 
 namespace Maoli
 {
+    using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
@@ -36,7 +37,16 @@ namespace Maoli
             return value
                 .Trim()
                 .ToUpperInvariant()
-                .Replace("-", string.Empty);
+#if NETSTANDARD2_1
+                .Replace(
+                    "-",
+                    string.Empty,
+                    StringComparison.InvariantCultureIgnoreCase);
+#else
+                .Replace(
+                    "-",
+                    string.Empty);
+#endif
         }
 
         /// <summary>

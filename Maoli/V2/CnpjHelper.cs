@@ -3,6 +3,9 @@
 namespace Maoli.V2
 {
     using System;
+    using System.Globalization;
+    using System.Reflection;
+    using System.Resources;
 
     /// <summary>
     /// Helper class for <see cref="Cnpj"/> class.
@@ -108,14 +111,18 @@ namespace Maoli.V2
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException("O CNPJ é inválido");
+                throw new ArgumentException(
+                    Properties.Resources.CnpjRequired,
+                    nameof(value));
             }
 
             var isValid = value.Length == 12 || value.Length == 15;
 
             if (!isValid)
             {
-                throw new ArgumentException("O CNPJ é inválido");
+                throw new ArgumentException(
+                    Properties.Resources.CnpjInvalid,
+                    nameof(value));
             }
 
             var index1 = 0;
@@ -170,7 +177,9 @@ namespace Maoli.V2
             }
             else
             {
-                throw new ArgumentException("O CNPJ é inválido");
+                throw new ArgumentException(
+                    Properties.Resources.CnpjInvalid,
+                    nameof(value));
             }
 
             return new string(result);

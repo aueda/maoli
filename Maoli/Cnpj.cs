@@ -34,12 +34,16 @@ namespace Maoli
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException("O CNPJ não pode ser nulo ou branco");
+                throw new ArgumentNullException(
+                    nameof(value),
+                    Properties.Resources.CnpjRequired);
             }
 
             if (!CnpjHelper.Validate(value, punctuation))
             {
-                throw new ArgumentException("O CNPJ não é válido");
+                throw new ArgumentException(
+                    Properties.Resources.CnpjInvalid,
+                    nameof(value));
             }
 
             this.parsedValue = CnpjHelper.Sanitize(value);
@@ -98,7 +102,7 @@ namespace Maoli
             out Cnpj cnpj,
             CnpjPunctuation punctuation)
         {
-            var parsed = false;
+            bool parsed;
 
             try
             {
@@ -187,7 +191,13 @@ namespace Maoli
 
             unchecked
             {
-                hash = (hash * 31) + this.parsedValue.GetHashCode();
+                hash = (hash * 31) +
+#if NETSTANDARD2_1
+                    this.parsedValue.GetHashCode(
+                        StringComparison.InvariantCultureIgnoreCase);
+#else
+                    this.parsedValue.GetHashCode();
+#endif
             }
 
             return hash;

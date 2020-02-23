@@ -34,12 +34,16 @@ namespace Maoli
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException("O CPF não pode ser nulo ou branco");
+                throw new ArgumentNullException(
+                    nameof(value),
+                    Properties.Resources.CpfRequired);
             }
 
             if (!CpfHelper.Validate(value, punctuation))
             {
-                throw new ArgumentException("O CPF não é válido");
+                throw new ArgumentException(
+                    Properties.Resources.CpfInvalid,
+                    nameof(value));
             }
 
             this.parsedValue = CpfHelper.Sanitize(value);
@@ -95,7 +99,7 @@ namespace Maoli
         /// <returns>true if CPF string is valid; false, otherwise.</returns>
         public static bool TryParse(string value, out Cpf cpf, CpfPunctuation punctuation)
         {
-            var parsed = false;
+            bool parsed;
 
             try
             {
@@ -186,7 +190,13 @@ namespace Maoli
 
             unchecked
             {
-                hash = (hash * 31) + this.parsedValue.GetHashCode();
+                hash = (hash * 31) +
+#if NETSTANDARD2_1
+                    this.parsedValue.GetHashCode(
+                        StringComparison.InvariantCultureIgnoreCase);
+#else
+                    this.parsedValue.GetHashCode();
+#endif
             }
 
             return hash;

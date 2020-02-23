@@ -21,14 +21,18 @@ namespace Maoli.V2
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException("O CPF é inválido");
+                throw new ArgumentNullException(
+                    nameof(value),
+                    Properties.Resources.CpfRequired);
             }
 
             var isValid = value.Length == 9 || value.Length == 11;
 
             if (!isValid)
             {
-                throw new ArgumentException("O CPF é inválido");
+                throw new ArgumentException(
+                    Properties.Resources.CpfInvalid,
+                    nameof(value));
             }
 
             var index1 = 0;
@@ -89,7 +93,9 @@ namespace Maoli.V2
             }
             else
             {
-                throw new ArgumentException("O CPF é inválido");
+                throw new ArgumentException(
+                    Properties.Resources.CpfInvalid,
+                    nameof(value));
             }
 
             return new string(result);

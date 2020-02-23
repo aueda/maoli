@@ -1,6 +1,8 @@
 ﻿namespace Maoli.Tests
 {
     using System;
+    using System.Globalization;
+    using System.Threading;
     using Maoli;
     using Xunit;
 
@@ -368,6 +370,57 @@
             }
 
             Assert.True(actual);
+        }
+
+        [Fact]
+        public void CompleteThrowsExceptionWithErrorMessageInDefaultCulture()
+        {
+            var actual = false;
+            var actualMessage = string.Empty;
+            var expectedMessage = "The CNPJ is invalid.";
+
+            try
+            {
+                Cnpj.Complete("714o256s8");
+            }
+            catch (ArgumentException ex)
+            {
+                actual = true;
+                actualMessage = ex.Message;
+            }
+
+            Assert.True(actual);
+            Assert.Equal(expectedMessage, actualMessage);
+        }
+
+        [Fact]
+        public void CompleteThrowsExceptionWithLocalizedErrorMessage()
+        {
+            var actual = false;
+            var actualMessage = string.Empty;
+            var expectedMessage = "O CNPJ é inválido.";
+
+            var currentCulture = Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                Thread.CurrentThread.CurrentCulture =
+                    new CultureInfo("pt-BR");
+
+                Cnpj.Complete("714o256s8");
+            }
+            catch (ArgumentException ex)
+            {
+                actual = true;
+                actualMessage = ex.Message;
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentCulture = currentCulture;
+            }
+
+            Assert.True(actual);
+            Assert.Equal(expectedMessage, actualMessage);
         }
 
         [Fact]

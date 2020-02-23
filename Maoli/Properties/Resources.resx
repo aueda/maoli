@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,13 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Cep.Invalid" xml:space="preserve">
+  <data name="CepInvalid" xml:space="preserve">
     <value>The CEP is invalid.</value>
   </data>
-  <data name="Cep.Required" xml:space="preserve">
+  <data name="CepRequired" xml:space="preserve">
     <value>The CEP cannot be null or blank.</value>
   </data>
-  <data name="Cnpj.Invalid" xml:space="preserve">
+  <data name="CnpjInvalid" xml:space="preserve">
     <value>The CNPJ is invalid.</value>
+  </data>
+  <data name="CnpjRequired" xml:space="preserve">
+    <value>The CNPJ cannot be null or blank.</value>
+  </data>
+  <data name="CpfInvalid" xml:space="preserve">
+    <value>The CPF is invalid.</value>
+  </data>
+  <data name="CpfRequired" xml:space="preserve">
+    <value>The CPF cannot be null or blank.</value>
   </data>
 </root>

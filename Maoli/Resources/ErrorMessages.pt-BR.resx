@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cep.Invalid" xml:space="preserve">
-    <value>The CEP is invalid.</value>
+    <value>O CEP não é válido.</value>
   </data>
   <data name="Cep.Required" xml:space="preserve">
-    <value>The CEP cannot be null or blank.</value>
+    <value>O CEP não pode ser nulo ou branco.</value>
   </data>
   <data name="Cnpj.Invalid" xml:space="preserve">
-    <value>The CNPJ is invalid.</value>
+    <value>O CNPJ é inválido.</value>
   </data>
 </root>
