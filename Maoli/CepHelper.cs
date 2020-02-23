@@ -14,7 +14,7 @@ namespace Maoli
         /// Regex validations.
         /// </summary>
         private static Dictionary<CepPunctuation, string> regexValidations =
-            new Dictionary<CepPunctuation, string>()
+            new Dictionary<CepPunctuation, string>
             {
                 {
                     CepPunctuation.Loose,
