@@ -74,7 +74,7 @@ var cnpj = Cnpj.Complete("999999999999"));
 
 To install Maoli using NuGet, run the following command in the Package Manager Console:
 
-```
+```poweshell
 Install-Package Maoli
 ```
 
