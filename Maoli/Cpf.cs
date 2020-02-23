@@ -13,7 +13,7 @@ namespace Maoli
         /// <summary>
         /// Stores the CPF number without punctuation.
         /// </summary>
-        private string parsedValue;
+        private readonly string parsedValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Cpf"/> class.

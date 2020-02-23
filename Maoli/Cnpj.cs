@@ -13,7 +13,7 @@ namespace Maoli
         /// <summary>
         /// Stores the CNPJ number without punctuation.
         /// </summary>
-        private string parsedValue;
+        private readonly string parsedValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Cnpj"/> class.
@@ -98,7 +98,7 @@ namespace Maoli
             out Cnpj cnpj,
             CnpjPunctuation punctuation)
         {
-            var parsed = false;
+            bool parsed;
 
             try
             {
