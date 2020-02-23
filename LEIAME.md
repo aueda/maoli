@@ -71,7 +71,7 @@ var cnpj = Cnpj.Complete("999999999999"));
 
 Para instalar o Maoli usando o NuGet, execute o seguinte comando na linha de comando do console de Gerenciador de Pacotes:
 
-```
+```powershell
 Install-Package Maoli
 ```
 
