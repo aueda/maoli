@@ -13,9 +13,9 @@ Maoli é uma biblioteca de regras de negócio brasileiras comuns, compatível co
 
 Atualmente implementa:
 
-  * Validação de CEP
-  * Validação de CPF
-  * Validação de CNPJ
+*   Validação de CEP
+*   Validação de CPF
+*   Validação de CNPJ
 
 Para validação em cliente, consulte [Maoli.js](https://github.com/aueda/maoli.js/).
 
