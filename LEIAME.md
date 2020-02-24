@@ -1,6 +1,7 @@
 # Maoli
 
 [![Build Status](https://travis-ci.org/aueda/maoli.svg?branch=master)](https://travis-ci.org/aueda/maoli/)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a4cff971e9c4380826bb3176a668a4d)](https://app.codacy.com/manual/aueda/maoli?utm_source=github.com&utm_medium=referral&utm_content=aueda/maoli&utm_campaign=Badge_Grade_Dashboard)
 [![Coverage Status](https://coveralls.io/repos/github/aueda/maoli/badge.svg)](https://coveralls.io/github/aueda/maoli)
 [![NuGet Version](https://img.shields.io/nuget/v/Maoli.svg)](https://www.nuget.org/packages/Maoli/)
 [![Maoli on fuget.org](https://www.fuget.org/packages/Maoli/badge.svg)](https://www.fuget.org/packages/Maoli)
