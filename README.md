@@ -15,9 +15,9 @@ compatible with .NET Framework 4.0 and above.
 
 Currently implements:
 
-* CEP validation
-* CPF validation
-* CNPJ validation
+*   CEP validation
+*   CPF validation
+*   CNPJ validation
 
 For client-side validation of CPF and CNPJ, please see [Maoli.js](https://github.com/aueda/maoli.js/).
 
@@ -75,7 +75,7 @@ var cnpj = Cnpj.Complete("999999999999"));
 
 To install Maoli using NuGet, run the following command in the Package Manager Console:
 
-```
+```poweshell
 Install-Package Maoli
 ```
 
@@ -85,8 +85,8 @@ See the [NuGet website](https://www.nuget.org/packages/Maoli/).
 
 The following [.NET Fiddles](https://dotnetfiddle.net) are available to test Maoli: 
 
-* CPF validation: [https://dotnetfiddle.net/7h7X00](https://dotnetfiddle.net/7h7X00)
-* CNPJ validation: [https://dotnetfiddle.net/IpEEmC](https://dotnetfiddle.net/IpEEmC)
+*   CPF validation: [https://dotnetfiddle.net/7h7X00](https://dotnetfiddle.net/7h7X00)
+*   CNPJ validation: [https://dotnetfiddle.net/IpEEmC](https://dotnetfiddle.net/IpEEmC)
 
 ## Source Code
 

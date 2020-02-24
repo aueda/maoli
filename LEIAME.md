@@ -14,9 +14,9 @@ Maoli é uma biblioteca de regras de negócio brasileiras comuns, compatível co
 
 Atualmente implementa:
 
-* Validação de CEP
-* Validação de CPF
-* Validação de CNPJ
+*   Validação de CEP
+*   Validação de CPF
+*   Validação de CNPJ
 
 Para validação em cliente, consulte [Maoli.js](https://github.com/aueda/maoli.js/).
 
@@ -72,7 +72,7 @@ var cnpj = Cnpj.Complete("999999999999"));
 
 Para instalar o Maoli usando o NuGet, execute o seguinte comando na linha de comando do console de Gerenciador de Pacotes:
 
-```
+```powershell
 Install-Package Maoli
 ```
 
@@ -82,8 +82,8 @@ Veja o [website do NuGet](https://www.nuget.org/packages/Maoli/).
 
 Os seguintes [.NET Fiddles](https://dotnetfiddle.net) estão disponíveis para testar o Maoli: 
 
-* Validação de CPF: [https://dotnetfiddle.net/7h7X00](https://dotnetfiddle.net/7h7X00)
-* Validação de CNPJ: [https://dotnetfiddle.net/IpEEmC](https://dotnetfiddle.net/IpEEmC)
+*   Validação de CPF: [https://dotnetfiddle.net/7h7X00](https://dotnetfiddle.net/7h7X00)
+*   Validação de CNPJ: [https://dotnetfiddle.net/IpEEmC](https://dotnetfiddle.net/IpEEmC)
 
 ## Código-fonte
 

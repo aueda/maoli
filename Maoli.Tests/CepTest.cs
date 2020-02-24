@@ -25,37 +25,53 @@
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsNull()
         {
+            Cep cep = null;
+
             Assert.Throws<ArgumentException>(() =>
             {
-                var cep = new Cep(null);
+                cep = new Cep(null);
             });
+
+            Assert.Null(cep);
         }
 
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsEmpty()
         {
+            Cep cep = null;
+
             Assert.Throws<ArgumentException>(() =>
             {
-                var cep = new Cep(string.Empty);
+                cep = new Cep(string.Empty);
             });
+
+            Assert.Null(cep);
         }
 
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsInvalidAndLoose()
         {
+            Cep cep = null;
+
             Assert.Throws<ArgumentException>(() =>
             {
-                var cep = new Cep("012e501", CepPunctuation.Loose);
+                cep = new Cep("012e501", CepPunctuation.Loose);
             });
+
+            Assert.Null(cep);
         }
 
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsInvalidAndStrict()
         {
+            Cep cep = null;
+
             Assert.Throws<ArgumentException>(() =>
             {
-                var cep = new Cep("01234001", CepPunctuation.Strict);
+                cep = new Cep("01234001", CepPunctuation.Strict);
             });
+
+            Assert.Null(cep);
         }
 
         [Fact]
