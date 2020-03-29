@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <!--<DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />-->
-    <DotNetCliToolReference Include="dotnet-reportgenerator-cli" Version="4.0.4" />
+    <DotNetCliToolReference Include="dotnet-reportgenerator-cli" Version="4.5.2" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'!='net40' And '$(TargetFramework)'!='net45'">
@@ -21,7 +21,7 @@
 
   <ItemGroup Condition="'$(TargetFramework)'=='net40' Or '$(TargetFramework)'=='net45'">
     <PackageReference Include="xunit" Version="1.9.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net40' Or '$(TargetFramework)'=='net45' Or '$(TargetFramework)'=='net46' Or '$(TargetFramework)'=='net461' Or '$(TargetFramework)'=='net472'">
