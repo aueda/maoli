@@ -9,6 +9,9 @@ install:
   - sudo apt-get install dotnet-sdk-3.1
   - sudo apt-get install dotnet-sdk-2.2
 
+  - sudo wget -q https://aka.ms/install-dotnet-preview -O install-dotnet-preview.sh
+  - sudo bash install-dotnet-preview.sh
+
   - dotnet tool install --global coveralls.net --version 1.0.0
   - export PATH="$PATH:/home/travis/.dotnet/tools"
 script:
