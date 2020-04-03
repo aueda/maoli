@@ -1,5 +1,12 @@
 dist: xenial
 sudo: required
+
+addons:
+  snaps:
+  - name: dotnet-sdk
+    classic: true
+    channel: latest/beta
+
 install:
   - sudo wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
   - sudo dpkg -i packages-microsoft-prod.deb
@@ -9,11 +16,9 @@ install:
   - sudo apt-get install dotnet-sdk-3.1
   - sudo apt-get install dotnet-sdk-2.2
 
-  - sudo wget -q https://aka.ms/install-dotnet-preview -O install-dotnet-preview.sh
-
-  - dotnet tool install --global coveralls.net --version 1.0.0
-  - export PATH="$PATH:/home/travis/.dotnet/tools"
 script:
+
+  - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet --list-sdks
 
   - dotnet build --configuration Release
