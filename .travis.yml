@@ -9,29 +9,29 @@ addons:
   snaps:
   - name: dotnet-sdk
     confinement: classic
-    channel: 5.0/beta
+    channel: 3.1/stable
+
+install:
+  - sudo snap alias dotnet-sdk.dotnet dotnet
 
 script:
-
-  - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet --list-sdks
 
-  - dotnet build --framework netcoreapp5.0 --configuration Release
+  - sudo snap refresh dotnet-sdk --channel=5.0/beta
+  - dotnet --list-sdks
+
   - dotnet test --framework netcoreapp5.0 --configuration Release
 
-  - sudo wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-  - sudo dpkg -i packages-microsoft-prod.deb
-
-  - sudo apt-get install apt-transport-https
-  - sudo apt-get update
-  - sudo apt-get install dotnet-sdk-3.1
-  - sudo apt-get install dotnet-sdk-2.2
-
+  - sudo snap refresh dotnet-sdk --channel=2.1/stable
   - dotnet --list-sdks
 
   - dotnet test --framework netcoreapp2.0 --configuration Release
   - dotnet test --framework netcoreapp2.1 --configuration Release
   - dotnet test --framework netcoreapp2.2 --configuration Release
+
+  - sudo snap refresh dotnet-sdk --channel=3.1/stable
+  - dotnet --list-sdks
+
   - dotnet test --framework netcoreapp3.0 --configuration Release
   - dotnet test --framework netcoreapp3.1 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:UseSourceLink=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=opencover
 
