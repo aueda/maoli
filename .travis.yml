@@ -1,7 +1,7 @@
 dist: xenial
 sudo: required
 
-env:
+global:
   - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
   - DOTNET_CLI_TELEMETRY_OPTOUT=1
 
@@ -11,18 +11,17 @@ addons:
     confinement: classic
     channel: 3.1/stable
 
-install:
-  - sudo snap alias dotnet-sdk.dotnet dotnet
-
 script:
   - dotnet --list-sdks
 
   - sudo snap refresh dotnet-sdk --channel=5.0/beta
+  - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet --list-sdks
 
   - dotnet test --framework netcoreapp5.0 --configuration Release
 
   - sudo snap refresh dotnet-sdk --channel=2.1/stable
+  - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet --list-sdks
 
   - dotnet test --framework netcoreapp2.0 --configuration Release
@@ -30,6 +29,7 @@ script:
   - dotnet test --framework netcoreapp2.2 --configuration Release
 
   - sudo snap refresh dotnet-sdk --channel=3.1/stable
+  - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet --list-sdks
 
   - dotnet test --framework netcoreapp3.0 --configuration Release
