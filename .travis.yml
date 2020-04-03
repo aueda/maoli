@@ -12,8 +12,6 @@ addons:
     channel: 3.1/stable
 
 script:
-  - dotnet --list-sdks
-
   - sudo snap refresh dotnet-sdk --channel=5.0/beta
   - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet --list-sdks
@@ -21,7 +19,6 @@ script:
   - dotnet test --framework netcoreapp5.0 --configuration Release
 
   - sudo snap refresh dotnet-sdk --channel=2.1/stable
-  - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet --list-sdks
 
   - dotnet test --framework netcoreapp2.0 --configuration Release
@@ -29,7 +26,6 @@ script:
   - dotnet test --framework netcoreapp2.2 --configuration Release
 
   - sudo snap refresh dotnet-sdk --channel=3.1/stable
-  - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet --list-sdks
 
   - dotnet test --framework netcoreapp3.0 --configuration Release
