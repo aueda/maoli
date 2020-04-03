@@ -1,26 +1,27 @@
 dist: xenial
 sudo: required
+install:
+  - sudo wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+  - sudo dpkg -i packages-microsoft-prod.deb
 
-global:
-  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-  - DOTNET_CLI_TELEMETRY_OPTOUT=1
+  - sudo apt-get install apt-transport-https
+  - sudo apt-get update
+  - sudo apt-get install dotnet-sdk-3.1
+  - sudo apt-get install dotnet-sdk-2.2
 
-addons:
-  snaps:
-  - name: dotnet-sdk
-    confinement: classic
-    channel: 3.1/stable
-
+  - dotnet tool install --global coveralls.net --version 1.0.0
+  - export PATH="$PATH:/home/travis/.dotnet/tools"
 script:
-  - sudo snap refresh dotnet-sdk --channel=5.0/beta
-  - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet --list-sdks
 
-  - dotnet build --framework netcoreapp5.0 --configuration Release
-  - dotnet test --framework netcoreapp5.0 --configuration Release
+  - dotnet build --framework netcoreapp2.0 --configuration Release
+  - dotnet test --framework netcoreapp2.0 --configuration Release
 
-  - sudo snap refresh dotnet-sdk --channel=3.1/stable
-  - dotnet --list-sdks
+  - dotnet build --framework netcoreapp2.1 --configuration Release
+  - dotnet test --framework netcoreapp2.1 --configuration Release
+
+  - dotnet build --framework netcoreapp2.2 --configuration Release
+  - dotnet test --framework netcoreapp2.2 --configuration Release
 
   - dotnet build --framework netcoreapp3.0 --configuration Release
   - dotnet test --framework netcoreapp3.0 --configuration Release
@@ -29,3 +30,6 @@ script:
   - dotnet test --framework netcoreapp3.1 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:UseSourceLink=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=opencover
 
   - csmacnz.Coveralls --opencover -i ./TestResult/coverage.opencover.xml --useRelativePaths --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci
+global:
+  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
+  - DOTNET_CLI_TELEMETRY_OPTOUT=1
