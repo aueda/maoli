@@ -390,7 +390,11 @@
             }
 
             Assert.True(actual);
-            Assert.Equal(expectedMessage, actualMessage);
+#if NET40 || NET45
+            Assert.Contains(expectedMessage, actualMessage);
+#else
+            Assert.StartsWith(expectedMessage, actualMessage);
+#endif
         }
 
         [Fact]
