@@ -37,7 +37,7 @@
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsNull()
         {
-            Assert.Throws<ArgumentException>(
+            Assert.Throws<ArgumentNullException>(
 #if !NET40 && !NET45
                 "value",
 #endif
@@ -50,7 +50,7 @@
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsEmpty()
         {
-            Assert.Throws<ArgumentException>(
+            Assert.Throws<ArgumentNullException>(
 #if !NET40 && !NET45
                 "value",
 #endif

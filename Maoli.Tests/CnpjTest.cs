@@ -394,36 +394,6 @@
         }
 
         [Fact]
-        public void CompleteThrowsExceptionWithLocalizedErrorMessage()
-        {
-            var actual = false;
-            var actualMessage = string.Empty;
-            var expectedMessage = "O CNPJ é inválido.";
-
-            var currentCulture = Thread.CurrentThread.CurrentCulture;
-
-            try
-            {
-                Thread.CurrentThread.CurrentCulture =
-                    new CultureInfo("pt-BR");
-
-                Cnpj.Complete("714o256s8");
-            }
-            catch (ArgumentException ex)
-            {
-                actual = true;
-                actualMessage = ex.Message;
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = currentCulture;
-            }
-
-            Assert.True(actual);
-            Assert.Equal(expectedMessage, actualMessage);
-        }
-
-        [Fact]
         public void CompleteThrowsArgumentExceptionIfCnpjTextIsNull()
         {
             Assert.Throws<ArgumentException>(() =>

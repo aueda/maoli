@@ -31,35 +31,15 @@ namespace Maoli
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                var resManager = new ResourceManager(
-                    "ErrorMessages",
-#if NETSTANDARD1_1
-                    typeof(Cep).GetTypeInfo().Assembly);
-#else
-                    Assembly.GetExecutingAssembly());
-#endif
-
-                throw new ArgumentException(
-                    resManager.GetString(
-                        "Cep.Required",
-                        CultureInfo.CurrentCulture),
-                    nameof(value));
+                throw new ArgumentNullException(
+                    nameof(value),
+                    Properties.Resources.CepRequired);
             }
 
             if (!CepHelper.Validate(value, punctuation))
             {
-                var resManager = new ResourceManager(
-                    "ErrorMessages",
-#if NETSTANDARD1_1
-                    typeof(Cep).GetTypeInfo().Assembly);
-#else
-                    Assembly.GetExecutingAssembly());
-#endif
-
                 throw new ArgumentException(
-                    resManager.GetString(
-                        "Cep.Invalid",
-                        CultureInfo.CurrentCulture),
+                    Properties.Resources.CepInvalid,
                     nameof(value));
             }
 

@@ -420,28 +420,40 @@
         [Fact]
         public void CompleteThrowsArgumentExceptionIfCpfTextIsNull()
         {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                Cpf.Complete(null);
-            });
+            Assert.Throws<ArgumentNullException>(
+#if !NET40 && !NET45
+                "value",
+#endif
+                () =>
+                {
+                    Cpf.Complete(null);
+                });
         }
 
         [Fact]
         public void CompleteThrowsArgumentExceptionIfCpfTextIsEmpty()
         {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                Cpf.Complete(string.Empty);
-            });
+            Assert.Throws<ArgumentNullException>(
+#if !NET40 && !NET45
+                "value",
+#endif               
+                () =>
+                {
+                    Cpf.Complete(string.Empty);
+                });
         }
 
         [Fact]
         public void CompleteThrowsArgumentExceptionIfCpfTextIsShorter()
         {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                Cpf.Complete("7140256");
-            });
+            Assert.Throws<ArgumentException>(
+#if !NET40 && !NET45
+                "value",
+#endif
+                () =>
+                {
+                    Cpf.Complete("7140256");
+                });
         }
 
         [Fact]

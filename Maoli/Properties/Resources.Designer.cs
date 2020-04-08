@@ -10,8 +10,10 @@
 
 namespace Maoli.Properties {
     using System;
-    
-    
+#if NETSTANDARD1_1
+    using System.Reflection;
+#endif
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -39,7 +41,11 @@ namespace Maoli.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
+#if NETSTANDARD1_1
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Maoli.Properties.Resources", typeof(Resources).GetTypeInfo().Assembly);
+#else
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Maoli.Properties.Resources", typeof(Resources).Assembly);
+#endif
                     resourceMan = temp;
                 }
                 return resourceMan;
