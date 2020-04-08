@@ -9,22 +9,16 @@ install:
   - sudo apt-get install dotnet-sdk-3.1
   - sudo apt-get install dotnet-sdk-2.2
 
+  - wget -q https://download.visualstudio.microsoft.com/download/pr/727a5825-d29a-4f45-beaa-053399f8b5ee/5f15827ceb4851ef87a008f5de0acf6c/dotnet-sdk-5.0.100-preview.2.20176.6-linux-x64.tar.gz
+  - tar zxf dotnet-sdk-5.0.100-preview.2.20176.6-linux-x64.tar.gz -C /usr/share/dotnet
+
   - dotnet tool install --global coveralls.net --version 1.0.0
   - export PATH="$PATH:/home/travis/.dotnet/tools"
 script:
   - dotnet --list-sdks
 
-  - dotnet build --framework netcoreapp2.0 --configuration Release
-  - dotnet test --framework netcoreapp2.0 --configuration Release
-
-  - dotnet build --framework netcoreapp2.1 --configuration Release
-  - dotnet test --framework netcoreapp2.1 --configuration Release
-
-  - dotnet build --framework netcoreapp2.2 --configuration Release
-  - dotnet test --framework netcoreapp2.2 --configuration Release
-
-  - dotnet build --framework netcoreapp3.0 --configuration Release
-  - dotnet test --framework netcoreapp3.0 --configuration Release
+  - dotnet build --configuration Release
+  - dotnet test --configuration Release
 
   - dotnet build --framework netcoreapp3.1 --configuration Release
   - dotnet test --framework netcoreapp3.1 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:UseSourceLink=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=opencover
