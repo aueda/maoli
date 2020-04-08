@@ -7,6 +7,18 @@
     public class CepTest
     {
         [Fact]
+        public void ConstructorSetsPunctuation()
+        {
+            var cep = new Cep("01234-001", CepPunctuation.Strict);
+
+            var expected = CepPunctuation.Strict;
+
+            var actual = cep.Punctuation;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void ConstructorCreatesCepIfPunctuationIsStrict()
         {
             var cep = new Cep("01234-001", CepPunctuation.Strict);
