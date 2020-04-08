@@ -13,11 +13,6 @@ namespace Maoli
     public class Cep
     {
         /// <summary>
-        /// Stores the CEP number without punctuation.
-        /// </summary>
-        private readonly string parsedValue;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Cep"/> class.
         /// </summary>
         /// <param name="value">a valid CEP string.</param>
@@ -67,8 +62,6 @@ namespace Maoli
                         CultureInfo.CurrentCulture),
                     nameof(value));
             }
-
-            this.parsedValue = CepHelper.Sanitize(value);
 
             this.Punctuation = punctuation;
         }

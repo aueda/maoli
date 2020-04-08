@@ -1,6 +1,7 @@
 # Maoli
 
 [![Build Status](https://travis-ci.org/aueda/maoli.svg?branch=master)](https://travis-ci.org/aueda/maoli/)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a4cff971e9c4380826bb3176a668a4d)](https://app.codacy.com/manual/aueda/maoli?utm_source=github.com&utm_medium=referral&utm_content=aueda/maoli&utm_campaign=Badge_Grade_Dashboard)
 [![Coverage Status](https://coveralls.io/repos/github/aueda/maoli/badge.svg)](https://coveralls.io/github/aueda/maoli)
 [![NuGet Version](https://img.shields.io/nuget/v/Maoli.svg)](https://www.nuget.org/packages/Maoli/)
 [![Maoli on fuget.org](https://www.fuget.org/packages/Maoli/badge.svg)](https://www.fuget.org/packages/Maoli)
@@ -13,9 +14,9 @@ Maoli é uma biblioteca de regras de negócio brasileiras comuns, compatível co
 
 Atualmente implementa:
 
-* Validação de CEP
-* Validação de CPF
-* Validação de CNPJ
+*   Validação de CEP
+*   Validação de CPF
+*   Validação de CNPJ
 
 Para validação em cliente, consulte [Maoli.js](https://github.com/aueda/maoli.js/).
 
@@ -71,7 +72,7 @@ var cnpj = Cnpj.Complete("999999999999"));
 
 Para instalar o Maoli usando o NuGet, execute o seguinte comando na linha de comando do console de Gerenciador de Pacotes:
 
-```
+```powershell
 Install-Package Maoli
 ```
 
@@ -81,8 +82,8 @@ Veja o [website do NuGet](https://www.nuget.org/packages/Maoli/).
 
 Os seguintes [.NET Fiddles](https://dotnetfiddle.net) estão disponíveis para testar o Maoli: 
 
-* Validação de CPF: [https://dotnetfiddle.net/7h7X00](https://dotnetfiddle.net/7h7X00)
-* Validação de CNPJ: [https://dotnetfiddle.net/IpEEmC](https://dotnetfiddle.net/IpEEmC)
+*   Validação de CPF: [https://dotnetfiddle.net/7h7X00](https://dotnetfiddle.net/7h7X00)
+*   Validação de CNPJ: [https://dotnetfiddle.net/IpEEmC](https://dotnetfiddle.net/IpEEmC)
 
 ## Código-fonte
 

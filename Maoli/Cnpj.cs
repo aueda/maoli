@@ -9,11 +9,12 @@ namespace Maoli
     /// Represents a valid CNPJ number.
     /// </summary>
     public class Cnpj
+        : IEquatable<Cnpj>
     {
         /// <summary>
         /// Stores the CNPJ number without punctuation.
         /// </summary>
-        private string parsedValue;
+        private readonly string parsedValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Cnpj"/> class.
@@ -168,17 +169,19 @@ namespace Maoli
         /// Determines whether this instance and another
         /// specified <see cref="Cnpj"/> object have the same value.
         /// </summary>
-        /// <param name="cnpj">The CNPJ to compare to this instance.</param>
+        /// <param name="other">
+        /// The other CNPJ to compare to this instance.
+        /// </param>
         /// <returns>if the value of the value parameter is
         /// the same as this instance; otherwise, false.</returns>
-        public bool Equals(Cnpj cnpj)
+        public bool Equals(Cnpj other)
         {
-            if (cnpj == null)
+            if (other == null)
             {
                 return false;
             }
 
-            return this.parsedValue == cnpj.parsedValue;
+            return this.parsedValue == other.parsedValue;
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;netstandard2.0;netstandard1.1;net472;net461;net46;net45;net40</TargetFrameworks>
+    <TargetFrameworks>netcoreapp5.0;netstandard2.1;netstandard2.0;netstandard1.1;net472;net461;net46;net45;net40</TargetFrameworks>
     <Authors>Adriano Ueda</Authors>
     <Company />
     <Copyright>Copyright © 2020 Adriano Ueda</Copyright>
