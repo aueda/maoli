@@ -26,7 +26,7 @@ script:
   - dotnet test --framework netcoreapp5.0 --configuration Release
   - dotnet test --framework netcoreapp3.1 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:UseSourceLink=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=opencover
 
-  - csmacnz.Coveralls --opencover -i ./TestResult/coverage.opencover.xml --useRelativePaths --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci
+  - csmacnz.Coveralls --opencover -i ./TestResult/coverage.netcoreapp3.1.opencover.xml --useRelativePaths --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci
 global:
   - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
   - DOTNET_CLI_TELEMETRY_OPTOUT=1
