@@ -13,7 +13,7 @@
   <ItemGroup Condition="'$(TargetFramework)'!='net40' And '$(TargetFramework)'!='net45'">
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.utility" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -21,7 +21,7 @@
 
   <ItemGroup Condition="'$(TargetFramework)'=='net40' Or '$(TargetFramework)'=='net45'">
     <PackageReference Include="xunit" Version="1.9.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net40' Or '$(TargetFramework)'=='net45' Or '$(TargetFramework)'=='net46' Or '$(TargetFramework)'=='net461' Or '$(TargetFramework)'=='net472'">
