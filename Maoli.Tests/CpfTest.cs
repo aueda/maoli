@@ -629,6 +629,7 @@
                 CpfPunctuation.Strict);
 
             Assert.False(actual);
+            Assert.Null(cpf);
         }
 
         [Fact]

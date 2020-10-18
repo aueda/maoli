@@ -96,7 +96,7 @@ namespace Maoli
         /// <returns>true if CPF string is valid; false, otherwise.</returns>
         public static bool TryParse(string value, out Cpf cpf, CpfPunctuation punctuation)
         {
-            var parsed = false;
+            bool parsed;
 
             try
             {
