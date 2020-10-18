@@ -190,7 +190,13 @@ namespace Maoli
 
             unchecked
             {
-                hash = (hash * 31) + this.parsedValue.GetHashCode();
+                hash = (hash * 31) +
+#if NETSTANDARD2_1 || NET5_0
+                    this.parsedValue.GetHashCode(
+                        StringComparison.InvariantCultureIgnoreCase);
+#else
+                    this.parsedValue.GetHashCode();
+#endif
             }
 
             return hash;
