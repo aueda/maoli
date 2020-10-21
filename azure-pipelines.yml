@@ -51,7 +51,19 @@ steps:
   displayName: 'dotnet test'
   inputs:
     command: test
-    arguments: '--configuration $(BuildConfiguration)'
+    arguments: '--configuration $(BuildConfiguration) --framework netcoreapp2.1'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: test
+    arguments: '--configuration $(BuildConfiguration) --framework netcoreapp3.1'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: test
+    arguments: '--configuration $(BuildConfiguration) --framework net5.0'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test (coverage)'

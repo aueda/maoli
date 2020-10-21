@@ -376,7 +376,6 @@
         }
 
 #if NET40 || NET45
-#pragma warning disable xUnit2006
         [Fact]
         public void CompleteReturnsAValidCpf()
         {
@@ -384,7 +383,6 @@
 
             Assert.Equal(CpfTest.looseValidCpf, actual);
         }
-#pragma warning restore xUnit2006
 #else
         [InlineData("066663484", "06666348400")]
         [InlineData("721703364", "72170336400")]
@@ -406,15 +404,7 @@
         {
             var actual = Cpf.Complete("714.025.658");
 
-#if NET40 || NET45
-#pragma warning disable xUnit2006
-#endif
-
             Assert.Equal(CpfTest.looseValidCpf, actual);
-
-#if NET40 || NET45
-#pragma warning restore xUnit2006
-#endif
         }
 
         [Fact]
@@ -610,15 +600,7 @@
             var expected = "71402565860";
             var actual = cpf.ToString();
 
-#if NET40 || NET45
-#pragma warning disable xUnit2006
-#endif
-
             Assert.Equal(expected, actual);
-
-#if NET40 || NET45
-#pragma warning restore xUnit2006
-#endif
         }
 
         [Fact]
@@ -629,14 +611,7 @@
             var expected = "71402565860";
             var actual = cpf.ToString();
 
-#if NET40 || NET45
-#pragma warning disable xUnit2006
-#endif
             Assert.Equal(expected, actual);
-
-#if NET40 || NET45
-#pragma warning disable xUnit2006
-#endif
         }
 
         [Fact]
@@ -666,6 +641,7 @@
                 CpfPunctuation.Strict);
 
             Assert.False(actual);
+            Assert.Null(cpf);
         }
 
         [Fact]

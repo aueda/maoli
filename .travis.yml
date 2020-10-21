@@ -9,8 +9,8 @@ install:
   - sudo apt-get install dotnet-sdk-3.1
   - sudo apt-get install dotnet-sdk-2.2
 
-  - sudo wget -q https://download.visualstudio.microsoft.com/download/pr/727a5825-d29a-4f45-beaa-053399f8b5ee/5f15827ceb4851ef87a008f5de0acf6c/dotnet-sdk-5.0.100-preview.2.20176.6-linux-x64.tar.gz
-  - sudo tar zxf dotnet-sdk-5.0.100-preview.2.20176.6-linux-x64.tar.gz -C /usr/share/dotnet
+  - sudo wget -q https://download.visualstudio.microsoft.com/download/pr/69cb8922-7bb0-4d3a-aa92-8cb885fdd0a6/2fd4da9e026f661caf8db9c1602e7b2f/dotnet-sdk-5.0.100-rc.2.20479.15-linux-x64.tar.gz
+  - sudo tar zxf dotnet-sdk-5.0.100-rc.2.20479.15-linux-x64.tar.gz -C /usr/share/dotnet
 
   - dotnet tool install --global coveralls.net --version 1.0.0
   - export PATH="$PATH:/home/travis/.dotnet/tools"
