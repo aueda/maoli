@@ -84,10 +84,11 @@ steps:
   displayName: 'Copy bin and obj folders'
   inputs:
     Contents: | 
+      $(Build.SourcesDirectory)\Maoli\LICENSE.txt
       $(Build.SourcesDirectory)\Maoli\bin\**\*.*
       $(Build.SourcesDirectory)\Maoli\obj\project.assets.json
       $(Build.SourcesDirectory)\Maoli\Maoli.csproj
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\Maoli'
     CleanTargetFolder: true
     OverWrite: true
 
