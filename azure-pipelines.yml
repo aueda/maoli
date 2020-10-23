@@ -46,6 +46,7 @@ steps:
   displayName: 'dotnet build'
   inputs:
     projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
@@ -79,30 +80,24 @@ steps:
     arguments: '"-reports:$(Build.SourcesDirectory)\TestResult\Coverage\coverage.netcoreapp3.1.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
     workingDirectory: Maoli.Tests
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet pack'
-  inputs:
-    command: pack
-    packagesToPack: Maoli/Maoli.csproj
-    includesymbols: true
-    versioningScheme: byPrereleaseNumber
-    majorVersion: '$(Package.MajorVersion)'
-    minorVersion: '$(Package.MinorVersion)'
-    patchVersion: '$(Package.PatchVersion)'
-
 - task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  displayName: 'Copy bin and obj folders'
   inputs:
-    SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: |
-     **\*.nupkg
-     **\*.snupkg
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    Contents: | 
+      $(Build.SourcesDirectory)\LICENSE.txt
+      $(Build.SourcesDirectory)\Maoli\bin\**\*.*
+      $(Build.SourcesDirectory)\Maoli\obj\project.assets.json
+      $(Build.SourcesDirectory)\Maoli\Maoli.csproj
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\Maoli'
+    CleanTargetFolder: true
+    OverWrite: true
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+  displayName: 'Publish artifacts'
   inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish code coverage from $(Build.SourcesDirectory)\TestResult\Coverage\**\coverage.netcoreapp3.1.cobertura.xml'
