@@ -1,5 +1,7 @@
 dist: xenial
-sudo: required
+os: linux
+env:
+  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true DOTNET_CLI_TELEMETRY_OPTOUT=1
 install:
   - sudo wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
   - sudo dpkg -i packages-microsoft-prod.deb
@@ -9,8 +11,8 @@ install:
   - sudo apt-get install dotnet-sdk-3.1
   - sudo apt-get install dotnet-sdk-2.2
 
-  - sudo wget -q https://download.visualstudio.microsoft.com/download/pr/69cb8922-7bb0-4d3a-aa92-8cb885fdd0a6/2fd4da9e026f661caf8db9c1602e7b2f/dotnet-sdk-5.0.100-rc.2.20479.15-linux-x64.tar.gz
-  - sudo tar zxf dotnet-sdk-5.0.100-rc.2.20479.15-linux-x64.tar.gz -C /usr/share/dotnet
+  - sudo wget -q https://download.visualstudio.microsoft.com/download/pr/820db713-c9a5-466e-b72a-16f2f5ed00e2/628aa2a75f6aa270e77f4a83b3742fb8/dotnet-sdk-5.0.100-linux-x64.tar.gz
+  - sudo tar zxf dotnet-sdk-5.0.100-linux-x64.tar.gz -C /usr/share/dotnet
 
   - dotnet tool install --global coveralls.net --version 1.0.0
   - export PATH="$PATH:/home/travis/.dotnet/tools"
@@ -23,10 +25,7 @@ script:
   - dotnet test --framework netcoreapp2.1 --configuration Release
   - dotnet test --framework netcoreapp2.2 --configuration Release
   - dotnet test --framework netcoreapp3.0 --configuration Release
-  - dotnet test --framework netcoreapp5.0 --configuration Release
+  - dotnet test --framework net5.0 --configuration Release
   - dotnet test --framework netcoreapp3.1 --configuration Release /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:UseSourceLink=true /p:CoverletOutput=../TestResult/ /p:CoverletOutputFormat=opencover /p:ExcludeByAttribute=CompilerGeneratedAttribute
 
   - csmacnz.Coveralls --opencover -i ./TestResult/coverage.netcoreapp3.1.opencover.xml --useRelativePaths --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci
-global:
-  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-  - DOTNET_CLI_TELEMETRY_OPTOUT=1

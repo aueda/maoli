@@ -16,7 +16,7 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '5.x'
-    includePreviewVersions: true
+    includePreviewVersions: false
 
 - task: UseDotNet@2
   displayName: 'Use .NET Core 3.1.x'
@@ -46,6 +46,7 @@ steps:
   displayName: 'dotnet build'
   inputs:
     projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
@@ -69,44 +70,38 @@ steps:
   displayName: 'dotnet test (coverage)'
   inputs:
     command: test
-    arguments: '--framework netcoreapp3.1 --configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)\TestResult\Coverage\ /p:ExcludeByAttribute=CompilerGeneratedAttribute'
+    arguments: '--framework net5.0 --configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)\TestResult\Coverage\' /p:ExcludeByAttribute=CompilerGeneratedAttribute'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet reportgenerator'
   inputs:
     command: custom
     custom: reportgenerator
-    arguments: '"-reports:$(Build.SourcesDirectory)\TestResult\Coverage\coverage.netcoreapp3.1.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
+    arguments: '"-reports:$(Build.SourcesDirectory)\TestResult\Coverage\coverage.net5.0.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
     workingDirectory: Maoli.Tests
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet pack'
-  inputs:
-    command: pack
-    packagesToPack: Maoli/Maoli.csproj
-    includesymbols: true
-    versioningScheme: byPrereleaseNumber
-    majorVersion: '$(Package.MajorVersion)'
-    minorVersion: '$(Package.MinorVersion)'
-    patchVersion: '$(Package.PatchVersion)'
-
 - task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  displayName: 'Copy bin and obj folders'
   inputs:
-    SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: |
-     **\*.nupkg
-     **\*.snupkg
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    Contents: | 
+      $(Build.SourcesDirectory)\LICENSE.txt
+      $(Build.SourcesDirectory)\Maoli\bin\**\*.*
+      $(Build.SourcesDirectory)\Maoli\obj\project.assets.json
+      $(Build.SourcesDirectory)\Maoli\Maoli.csproj
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\Maoli'
+    CleanTargetFolder: true
+    OverWrite: true
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+  displayName: 'Publish artifacts'
   inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 - task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage from $(Build.SourcesDirectory)\TestResult\Coverage\**\coverage.netcoreapp3.1.cobertura.xml'
+  displayName: 'Publish code coverage from $(Build.SourcesDirectory)\TestResult\Coverage\**\coverage.net5.0.cobertura.xml'
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: '$(Build.SourcesDirectory)\TestResult\Coverage\**\coverage.netcoreapp3.1.cobertura.xml'
+    summaryFileLocation: '$(Build.SourcesDirectory)\TestResult\Coverage\**\coverage.net5.0.cobertura.xml'
     reportDirectory: '$(Build.SourcesDirectory)\TestResult\Coverage\Reports'

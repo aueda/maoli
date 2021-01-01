@@ -6,7 +6,7 @@
     <Company />
     <Copyright>Copyright © 2020 Adriano Ueda</Copyright>
     <Description>Maoli is a C# helper library for common Brazilian business rules (CPF, CNPJ and CEP). For documentation visit https://github.com/aueda/maoli</Description>
-    <Version>0.5.0-rc2</Version>
+    <Version>1.0.0</Version>
     <PackageProjectUrl>https://github.com/aueda/maoli</PackageProjectUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -36,7 +36,7 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
