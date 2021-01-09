@@ -35,16 +35,12 @@ namespace Maoli
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentNullException(
-                    nameof(value),
-                    Properties.Resources.CnpjRequired);
+                throw new ArgumentException("O CNPJ não pode ser nulo ou branco");
             }
 
             if (!CnpjHelper.Validate(value, punctuation))
             {
-                throw new ArgumentException(
-                    Properties.Resources.CnpjInvalid,
-                    nameof(value));
+                throw new ArgumentException("O CNPJ não é válido");
             }
 
             this.parsedValue = CnpjHelper.Sanitize(value);

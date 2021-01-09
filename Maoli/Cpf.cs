@@ -35,16 +35,12 @@ namespace Maoli
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentNullException(
-                    nameof(value),
-                    Properties.Resources.CpfRequired);
+                throw new ArgumentException("O CPF não pode ser nulo ou branco");
             }
 
             if (!CpfHelper.Validate(value, punctuation))
             {
-                throw new ArgumentException(
-                    Properties.Resources.CpfInvalid,
-                    nameof(value));
+                throw new ArgumentException("O CPF não é válido");
             }
 
             this.parsedValue = CpfHelper.Sanitize(value);

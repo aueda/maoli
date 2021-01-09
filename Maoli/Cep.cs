@@ -3,15 +3,17 @@
 namespace Maoli
 {
     using System;
-    using System.Globalization;
-    using System.Reflection;
-    using System.Resources;
 
     /// <summary>
     /// Represents a valid CEP number.
     /// </summary>
     public class Cep
     {
+        /// <summary>
+        /// Stores the CEP number without punctuation.
+        /// </summary>
+        private readonly string parsedValue;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Cep"/> class.
         /// </summary>
@@ -31,17 +33,19 @@ namespace Maoli
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentNullException(
-                    nameof(value),
-                    Properties.Resources.CepRequired);
+                throw new ArgumentException(
+                    "O CEP não pode ser nulo ou branco",
+                    nameof(value));
             }
 
             if (!CepHelper.Validate(value, punctuation))
             {
                 throw new ArgumentException(
-                    Properties.Resources.CepInvalid,
+                    "O CEP não é válido",
                     nameof(value));
             }
+
+            //this.parsedValue = CepHelper.Sanitize(value);
 
             this.Punctuation = punctuation;
         }

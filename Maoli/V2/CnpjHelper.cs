@@ -109,18 +109,14 @@ namespace Maoli.V2
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException(
-                    Properties.Resources.CnpjRequired,
-                    nameof(value));
+                throw new ArgumentException("O CNPJ é inválido");
             }
 
             var isValid = value.Length == 12 || value.Length == 15;
 
             if (!isValid)
             {
-                throw new ArgumentException(
-                    Properties.Resources.CnpjInvalid,
-                    nameof(value));
+                throw new ArgumentException("O CNPJ é inválido");
             }
 
             var index1 = 0;
@@ -175,9 +171,7 @@ namespace Maoli.V2
             }
             else
             {
-                throw new ArgumentException(
-                    Properties.Resources.CnpjInvalid,
-                    nameof(value));
+                throw new ArgumentException("O CNPJ é inválido");
             }
 
             return new string(result);
