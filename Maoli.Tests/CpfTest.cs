@@ -410,7 +410,7 @@
         [Fact]
         public void CompleteThrowsArgumentExceptionIfCpfTextIsNull()
         {
-            Assert.Throws<ArgumentNullException>(
+            Assert.Throws<ArgumentException>(
 #if !NET40 && !NET45
                 "value",
 #endif
@@ -423,7 +423,7 @@
         [Fact]
         public void CompleteThrowsArgumentExceptionIfCpfTextIsEmpty()
         {
-            Assert.Throws<ArgumentNullException>(
+            Assert.Throws<ArgumentException>(
 #if !NET40 && !NET45
                 "value",
 #endif               

@@ -373,31 +373,6 @@
         }
 
         [Fact]
-        public void CompleteThrowsExceptionWithErrorMessageInDefaultCulture()
-        {
-            var actual = false;
-            var actualMessage = string.Empty;
-            var expectedMessage = "The CNPJ is invalid.";
-
-            try
-            {
-                Cnpj.Complete("714o256s8");
-            }
-            catch (ArgumentException ex)
-            {
-                actual = true;
-                actualMessage = ex.Message;
-            }
-
-            Assert.True(actual);
-#if NET40 || NET45
-            Assert.Contains(expectedMessage, actualMessage);
-#else
-            Assert.StartsWith(expectedMessage, actualMessage);
-#endif
-        }
-
-        [Fact]
         public void CompleteThrowsArgumentExceptionIfCnpjTextIsNull()
         {
             Assert.Throws<ArgumentException>(() =>
