@@ -70,7 +70,7 @@ steps:
   displayName: 'dotnet test (coverage)'
   inputs:
     command: test
-    arguments: '--framework net5.0 --configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)\TestResult\Coverage\' /p:ExcludeByAttribute=CompilerGeneratedAttribute'
+    arguments: '--framework net5.0 --configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)\TestResult\Coverage\ /p:ExcludeByAttribute=CompilerGeneratedAttribute'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet reportgenerator'
