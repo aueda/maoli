@@ -107,8 +107,8 @@ steps:
     publishLocation: 'Container'
 
 - task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage from $(Build.SourcesDirectory)\TestResult\Coverage\**\coverage.net5.0.cobertura.xml'
+  displayName: 'Publish code coverage'
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: '$(Build.SourcesDirectory)\TestResult\Coverage\**\coverage.net5.0.cobertura.xml'
+    summaryFileLocation: '$(Agent.TempDirectory)\**\coverage.cobertura.xml'
     reportDirectory: '$(Build.SourcesDirectory)\TestResult\Coverage\Reports'
