@@ -77,14 +77,14 @@ steps:
   displayName: 'dotnet test (coverage)'
   inputs:
     command: test
-    arguments: '--framework net5.0 --no-build --no-restore --configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)\TestResult\Coverage\'
+    arguments: '--framework net5.0 --no-build --no-restore --configuration $(BuildConfiguration) --collect:"XPlat Code Coverage"' 
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet reportgenerator'
   inputs:
     command: custom
     custom: reportgenerator
-    arguments: '"-reports:$(Build.SourcesDirectory)\TestResult\Coverage\coverage.net5.0.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
+    arguments: '"-reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
     workingDirectory: Maoli.Tests
 
 - task: CopyFiles@2
