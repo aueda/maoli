@@ -4,9 +4,9 @@
     <TargetFrameworks>net6.0;net5.0;netstandard2.1;netstandard2.0;netstandard1.1;net472;net461;net46;net45;net40</TargetFrameworks>
     <Authors>Adriano Ueda</Authors>
     <Company />
-    <Copyright>Copyright © 2020 Adriano Ueda</Copyright>
+    <Copyright>Copyright © 2021 Adriano Ueda</Copyright>
     <Description>Maoli is a C# helper library for common Brazilian business rules (CPF, CNPJ and CEP). For documentation visit https://github.com/aueda/maoli</Description>
-    <Version>1.1.0</Version>
+    <Version>2.0.0-beta1</Version>
     <PackageProjectUrl>https://github.com/aueda/maoli</PackageProjectUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
