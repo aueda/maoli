@@ -77,7 +77,7 @@ steps:
   displayName: 'dotnet test (coverage)'
   inputs:
     command: test
-    arguments: '--framework net5.0 --no-build --no-restore --configuration $(BuildConfiguration) --collect:"XPlat Code Coverage"' 
+    arguments: '--framework net6.0 --no-build --no-restore --configuration $(BuildConfiguration) --collect:"XPlat Code Coverage"' 
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet reportgenerator'
