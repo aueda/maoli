@@ -67,10 +67,17 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --framework net6.0 --no-build --no-restore'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet tool install (reportgenerator)'
+  inputs:
+    command: 'custom'
+    custom: 'tool'
+    arguments: 'install --global dotnet-reportgenerator-globaltool --version 4.8.13'
+
+- task: DotNetCoreCLI@2
   displayName: 'dotnet test (coverage)'
   inputs:
     command: test
-    arguments: '--framework net5.0 --configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)\TestResult\Coverage\'
+    arguments: '--framework net5.0 --no-build --no-restore --configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)\TestResult\Coverage\'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet reportgenerator'
@@ -79,6 +86,7 @@ steps:
     custom: reportgenerator
     arguments: '"-reports:$(Build.SourcesDirectory)\TestResult\Coverage\coverage.net5.0.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
     workingDirectory: Maoli.Tests
+  enabled: false
 
 - task: CopyFiles@2
   displayName: 'Copy bin and obj folders'
