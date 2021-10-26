@@ -12,18 +12,11 @@ variables:
 steps:
 
 - task: UseDotNet@2
-  displayName: 'Use .NET 5'
+  displayName: 'Use .NET 6'
   inputs:
     packageType: 'sdk'
     version: '6.x'
     includePreviewVersions: true
-
-- task: UseDotNet@2
-  displayName: 'Use .NET 5'
-  inputs:
-    packageType: 'sdk'
-    version: '5.x'
-    includePreviewVersions: false
 
 - task: UseDotNet@2
   displayName: 'Use .NET Core 3.1.x'
@@ -59,25 +52,19 @@ steps:
   displayName: 'dotnet test'
   inputs:
     command: test
-    arguments: '--configuration $(BuildConfiguration) --framework netcoreapp2.1'
+    arguments: '--configuration $(BuildConfiguration) --framework netcoreapp2.1 --no-build --no-restore'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
   inputs:
     command: test
-    arguments: '--configuration $(BuildConfiguration) --framework netcoreapp3.1'
+    arguments: '--configuration $(BuildConfiguration) --framework netcoreapp3.1 --no-build --no-restore'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
   inputs:
     command: test
-    arguments: '--configuration $(BuildConfiguration) --framework net5.0'
-
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
-  inputs:
-    command: test
-    arguments: '--configuration $(BuildConfiguration) --framework net6.0'
+    arguments: '--configuration $(BuildConfiguration) --framework net6.0 --no-build --no-restore'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test (coverage)'
