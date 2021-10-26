@@ -15,6 +15,13 @@ steps:
   displayName: 'Use .NET 5'
   inputs:
     packageType: 'sdk'
+    version: '6.x'
+    includePreviewVersions: true
+
+- task: UseDotNet@2
+  displayName: 'Use .NET 5'
+  inputs:
+    packageType: 'sdk'
     version: '5.x'
     includePreviewVersions: false
 
@@ -65,6 +72,12 @@ steps:
   inputs:
     command: test
     arguments: '--configuration $(BuildConfiguration) --framework net5.0'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: test
+    arguments: '--configuration $(BuildConfiguration) --framework net6.0'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test (coverage)'
