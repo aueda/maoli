@@ -50,31 +50,17 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --framework net5.0 --no-build --no-restore'
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
-  inputs:
-    command: test
-    arguments: '--configuration $(BuildConfiguration) --framework net6.0 --no-build --no-restore'
-
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet tool install (reportgenerator)'
-  inputs:
-    command: 'custom'
-    custom: 'tool'
-    arguments: 'install --global dotnet-reportgenerator-globaltool --version 4.8.13'
-
-- task: DotNetCoreCLI@2
   displayName: 'dotnet test (coverage)'
   inputs:
     command: test
     arguments: '--framework net6.0 --no-build --no-restore --configuration $(BuildConfiguration) --collect:"XPlat Code Coverage"' 
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet reportgenerator'
-  inputs:
-    command: custom
-    custom: reportgenerator
-    arguments: '"-reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
-    workingDirectory: Maoli.Tests
+- script: 'dotnet tool install --global dotnet-reportgenerator-globaltool --version 4.8.13'  
+  displayName: 'Install ReportGenerator tool'  
+
+- script: 'reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/coverlet/reports -reporttypes:"Cobertura;HtmlInline_AzurePipelines"'  
+  displayName: 'Create reports'
+  workingDirectory: Maoli.Tests
 
 - task: CopyFiles@2
   displayName: 'Copy bin and obj folders'
