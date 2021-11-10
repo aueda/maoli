@@ -1,5 +1,5 @@
 trigger:
-- master
+- main
 
 pool:
   vmImage: 'windows-latest'
@@ -16,6 +16,13 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '5.x'
+    includePreviewVersions: false
+
+- task: UseDotNet@2
+  displayName: 'Use .NET 6'
+  inputs:
+    packageType: 'sdk'
+    version: '6.x'
     includePreviewVersions: false
 
 - task: UseDotNet@2
@@ -52,32 +59,45 @@ steps:
   displayName: 'dotnet test'
   inputs:
     command: test
-    arguments: '--configuration $(BuildConfiguration) --framework netcoreapp2.1'
+    arguments: '--configuration $(BuildConfiguration) --framework netcoreapp2.1 --no-build --no-restore'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
   inputs:
     command: test
-    arguments: '--configuration $(BuildConfiguration) --framework netcoreapp3.1'
+    arguments: '--configuration $(BuildConfiguration) --framework netcoreapp3.1 --no-build --no-restore'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
   inputs:
     command: test
-    arguments: '--configuration $(BuildConfiguration) --framework net5.0'
+    arguments: '--configuration $(BuildConfiguration) --framework net5.0 --no-build --no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: test
+    arguments: '--configuration $(BuildConfiguration) --framework net6.0 --no-build --no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet tool install (reportgenerator)'
+  inputs:
+    command: 'custom'
+    custom: 'tool'
+    arguments: 'install --global dotnet-reportgenerator-globaltool --version 4.8.13'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test (coverage)'
   inputs:
     command: test
-    arguments: '--framework net5.0 --configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)\TestResult\Coverage\'
+    arguments: '--framework net6.0 --no-build --no-restore --configuration $(BuildConfiguration) --collect:"XPlat Code Coverage"' 
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet reportgenerator'
   inputs:
     command: custom
     custom: reportgenerator
-    arguments: '"-reports:$(Build.SourcesDirectory)\TestResult\Coverage\coverage.net5.0.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
+    arguments: '"-reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\TestResult\Coverage\Reports" -tag:$(Build.BuildNumber) -reportTypes:HtmlInline_AzurePipelines;htmlInline'
     workingDirectory: Maoli.Tests
 
 - task: CopyFiles@2
@@ -100,8 +120,8 @@ steps:
     publishLocation: 'Container'
 
 - task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage from $(Build.SourcesDirectory)\TestResult\Coverage\**\coverage.net5.0.cobertura.xml'
+  displayName: 'Publish code coverage'
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: '$(Build.SourcesDirectory)\TestResult\Coverage\**\coverage.net5.0.cobertura.xml'
+    summaryFileLocation: '$(Agent.TempDirectory)\**\coverage.cobertura.xml'
     reportDirectory: '$(Build.SourcesDirectory)\TestResult\Coverage\Reports'
