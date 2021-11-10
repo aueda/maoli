@@ -16,7 +16,7 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '6.x'
-    includePreviewVersions: true
+    includePreviewVersions: false
 
 - task: UseDotNet@2
   displayName: 'Use .NET Core 3.1.x'
@@ -59,6 +59,12 @@ steps:
   inputs:
     command: test
     arguments: '--configuration $(BuildConfiguration) --framework netcoreapp3.1 --no-build --no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: test
+    arguments: '--configuration $(BuildConfiguration) --framework net5.0 --no-build --no-restore'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
