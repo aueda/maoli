@@ -1,13 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netcoreapp2.1;net472;net461;net46</TargetFrameworks>
+		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1;net472;net461;net46</TargetFrameworks>
 		<Copyright>Copyright (c) 2021 Adriano Ueda</Copyright>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<DotNetCliToolReference Include="dotnet-reportgenerator-cli" Version="4.6.7" />
-	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'!='net40' And '$(TargetFramework)'!='net45'">
 		<PackageReference Include="xunit" Version="2.4.1" />
@@ -25,7 +21,7 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='netcoreapp2.0' Or '$(TargetFramework)'=='netcoreapp2.1' Or '$(TargetFramework)'=='netcoreapp2.2' Or '$(TargetFramework)'=='netcoreapp3.0' Or '$(TargetFramework)'=='netcoreapp3.1'">
+	<ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
 		<PackageReference Include="coverlet.msbuild" Version="2.9.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
