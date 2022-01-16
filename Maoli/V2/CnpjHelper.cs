@@ -26,18 +26,26 @@ namespace Maoli.V2
                 return isValid;
             }
 
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+            ReadOnlySpan<char> valueSpan =
+                value.AsSpan();
+#else
+            var valueSpan =
+                value;
+#endif
+
             if (punctuation == CnpjPunctuation.Strict)
             {
                 isValid =
-                    value.Length == 18 &&
-                    value[2] == '.' &&
-                    value[6] == '.' &&
-                    value[10] == '/' &&
-                    value[15] == '-';
+                    valueSpan.Length == 18 &&
+                    valueSpan[2] == '.' &&
+                    valueSpan[6] == '.' &&
+                    valueSpan[10] == '/' &&
+                    valueSpan[15] == '-';
             }
             else
             {
-                isValid = value.Length == 14 || value.Length == 18;
+                isValid = valueSpan.Length == 14 || valueSpan.Length == 18;
             }
 
             var index1 = 0;
@@ -46,9 +54,9 @@ namespace Maoli.V2
             var sum1 = 0;
             var sum2 = 0;
 
-            for (var i = 0; isValid && i < value.Length; i++)
+            for (var i = 0; isValid && i < valueSpan.Length; i++)
             {
-                var symbol = value[i];
+                var symbol = valueSpan[i];
 
                 if (symbol == '-' || symbol == '.' || symbol == '/')
                 {
@@ -79,8 +87,8 @@ namespace Maoli.V2
 
             if (isValid)
             {
-                var lastDigit1 = value[value.Length - 2] - 48;
-                var lastDigit2 = value[value.Length - 1] - 48;
+                var lastDigit1 = valueSpan[valueSpan.Length - 2] - 48;
+                var lastDigit2 = valueSpan[valueSpan.Length - 1] - 48;
 
                 var checksum1 = sum1 % 11;
                 checksum1 = (checksum1 < 2) ? 0 : 11 - checksum1;
