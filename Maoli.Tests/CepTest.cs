@@ -1,4 +1,6 @@
-﻿namespace Maoli.Tests
+﻿// Copyright (c) Adriano Ueda. All rights reserved.
+
+namespace Maoli.Tests
 {
     using System;
     using Maoli;
@@ -51,12 +53,9 @@
         public void ConstructorThrowsExceptionIfCepIsEmpty()
         {
             Assert.Throws<ArgumentException>(
-#if !NET40 && !NET45
-                "value",
-#endif
                 () =>
                 {
-                    var cep = new Cep(string.Empty);
+                    _ = new Cep(string.Empty);
                 });
         }
 
@@ -64,12 +63,9 @@
         public void ConstructorThrowsExceptionIfCepIsInvalidAndLoose()
         {
             Assert.Throws<ArgumentException>(
-#if !NET40 && !NET45
-                "value",
-#endif
                 () =>
                 {
-                    var cep = new Cep("012e501", CepPunctuation.Loose);
+                    _ = new Cep("012e501", CepPunctuation.Loose);
                 });
         }
 
@@ -77,9 +73,6 @@
         public void ConstructorThrowsExceptionIfCepIsInvalidAndStrict()
         {
             Assert.Throws<ArgumentException>(
-#if !NET40 && !NET45
-                "value",
-#endif
                 () =>
                 {
                     var cep = new Cep("01234001", CepPunctuation.Strict);

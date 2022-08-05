@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1;net472;net461;net46</TargetFrameworks>
+		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1;net48;net472;net462</TargetFrameworks>
 		<Copyright>Copyright (c) 2021 Adriano Ueda</Copyright>
 	</PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net46' Or '$(TargetFramework)'=='net461' Or '$(TargetFramework)'=='net462' Or '$(TargetFramework)'=='net472'">
+	<ItemGroup Condition="'$(TargetFramework)'=='net46' Or '$(TargetFramework)'=='net461' Or '$(TargetFramework)'=='net462' Or '$(TargetFramework)'=='net472' Or '$(TargetFramework)'=='net48'">
 		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

@@ -1,4 +1,6 @@
-﻿namespace Maoli.Tests
+﻿// Copyright (c) Adriano Ueda. All rights reserved.
+
+namespace Maoli.Tests
 {
     using System;
     using System.Globalization;
@@ -55,103 +57,55 @@
         [Fact]
         public void LooseParseThrowsArgumentExceptionIfCnpjIsNotValid()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cnpj.Parse(CnpjTest.looseInvalidCnpj);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cnpj.Parse(CnpjTest.looseInvalidCnpj);
+            });
         }
 
         [Fact]
         public void LooseParseThrowsArgumentExceptionIfCnpjIsEmpty()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cnpj.Parse(string.Empty);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cnpj.Parse(string.Empty);
+            });
         }
 
         [Fact]
         public void LooseParseThrowsArgumentExceptionIfCnpjIsNull()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cnpj.Parse(null);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cnpj.Parse(null);
+            });
         }
 
         [Fact]
         public void StrictParseThrowsArgumentExceptionACnpjObjectIfCnpjIsEmpty()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cnpj.Parse(string.Empty, CnpjPunctuation.Strict);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cnpj.Parse(string.Empty, CnpjPunctuation.Strict);
+            });
         }
 
         [Fact]
         public void StrictParseThrowsArgumentExceptionACnpjObjectIfCnpjIsInvalid()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cnpj.Parse(CnpjTest.looseValidCnpj, CnpjPunctuation.Strict);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cnpj.Parse(CnpjTest.looseValidCnpj, CnpjPunctuation.Strict);
+            });
         }
 
         [Fact]
         public void StrictParseThrowsArgumentExceptionACnpjObjectIfCnpjIsNull()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cnpj.Parse(null, CnpjPunctuation.Strict);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cnpj.Parse(null, CnpjPunctuation.Strict);
+            });
         }
 
         [Fact]
@@ -165,18 +119,10 @@
         [Fact]
         public void StrictParseThrowsArgumentExceptionIfCnpjIsFormatted()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cnpj.Parse(CnpjTest.looseValidCnpj, CnpjPunctuation.Strict);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cnpj.Parse(CnpjTest.looseValidCnpj, CnpjPunctuation.Strict);
+            });
         }
 
         [Fact]
@@ -341,35 +287,19 @@
         [Fact]
         public void CompleteThrowsArgumentExceptionIfCnpjTextIsSmaller()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cnpj.Complete("714o256s8");
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cnpj.Complete("714o256s8");
+            });
         }
         
         [Fact]
         public void CompleteThrowsArgumentExceptionIfCnpjTextIsWrong()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cnpj.Complete("6e9433l5o001");
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cnpj.Complete("6e9433l5o001");
+            });
         }
 
         [Fact]
@@ -377,7 +307,7 @@
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                Cnpj.Complete(null);
+                _ = Cnpj.Complete(null);
             });
         }
 
@@ -386,7 +316,7 @@
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                Cnpj.Complete(null);
+                _ = Cnpj.Complete(null);
             });
         }
 
