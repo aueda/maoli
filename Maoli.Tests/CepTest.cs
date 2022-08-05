@@ -1,4 +1,6 @@
-﻿namespace Maoli.Tests
+﻿// Copyright (c) Adriano Ueda. All rights reserved.
+
+namespace Maoli.Tests
 {
     using System;
     using Maoli;
@@ -37,53 +39,41 @@
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsNull()
         {
-            Cep cep = null;
-
-            Assert.Throws<ArgumentException>(() =>
-            {
-                cep = new Cep(null);
-            });
-
-            Assert.Null(cep);
+            Assert.Throws<ArgumentException>(
+                () =>
+                {
+                    _ = new Cep(null);
+                });
         }
 
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsEmpty()
         {
-            Cep cep = null;
-
-            Assert.Throws<ArgumentException>(() =>
-            {
-                cep = new Cep(string.Empty);
-            });
-
-            Assert.Null(cep);
+            Assert.Throws<ArgumentException>(
+                () =>
+                {
+                    _ = new Cep(string.Empty);
+                });
         }
 
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsInvalidAndLoose()
         {
-            Cep cep = null;
-
-            Assert.Throws<ArgumentException>(() =>
-            {
-                cep = new Cep("012e501", CepPunctuation.Loose);
-            });
-
-            Assert.Null(cep);
+            Assert.Throws<ArgumentException>(
+                () =>
+                {
+                    _ = new Cep("012e501", CepPunctuation.Loose);
+                });
         }
 
         [Fact]
         public void ConstructorThrowsExceptionIfCepIsInvalidAndStrict()
         {
-            Cep cep = null;
-
-            Assert.Throws<ArgumentException>(() =>
-            {
-                cep = new Cep("01234001", CepPunctuation.Strict);
-            });
-
-            Assert.Null(cep);
+            Assert.Throws<ArgumentException>(
+                () =>
+                {
+                    var cep = new Cep("01234001", CepPunctuation.Strict);
+                });
         }
 
         [Fact]

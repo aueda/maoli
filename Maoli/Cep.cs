@@ -28,12 +28,16 @@ namespace Maoli
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException("O CEP não pode ser nulo ou branco");
+                throw new ArgumentException(
+                    "O CEP não pode ser nulo ou branco",
+                    nameof(value));
             }
 
             if (!CepHelper.Validate(value, punctuation))
             {
-                throw new ArgumentException("O CEP não é válido");
+                throw new ArgumentException(
+                    "O CEP não é válido",
+                    nameof(value));
             }
 
             this.Punctuation = punctuation;
