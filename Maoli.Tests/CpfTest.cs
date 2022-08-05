@@ -1,4 +1,6 @@
-﻿namespace Maoli.Tests
+﻿// Copyright (c) Adriano Ueda. All rights reserved.
+
+namespace Maoli.Tests
 {
     using System;
     using Maoli;
@@ -53,18 +55,10 @@
         [Fact]
         public void LooseParseThrowsArgumentExceptionIfCpfIsNotValid()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cpf.Parse(CpfTest.looseInvalidCpf);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cpf.Parse(CpfTest.looseInvalidCpf);
+            });
         }
 
         [Fact]
@@ -86,86 +80,46 @@
         [Fact]
         public void LooseParseThrowsArgumentExceptionIfCpfIsEmpty()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cpf.Parse(string.Empty);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cpf.Parse(string.Empty);
+            });
         }
 
         [Fact]
         public void LooseParseThrowsArgumentExceptionIfCpfIsNull()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cpf.Parse(null);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cpf.Parse(null);
+            });
         }
 
         [Fact]
         public void StrictParseThrowsArgumentExceptionACpfObjectIfCpfIsEmpty()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cpf.Parse(string.Empty, CpfPunctuation.Strict);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cpf.Parse(string.Empty, CpfPunctuation.Strict);
+            });
         }
 
         [Fact]
         public void StrictParseThrowsArgumentExceptionACpfObjectIfCpfIsInvalid()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Strict);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Strict);
+            });
         }
 
         [Fact]
         public void StrictParseThrowsArgumentExceptionACpfObjectIfCpfIsNull()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cpf.Parse(null, CpfPunctuation.Strict);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cpf.Parse(null, CpfPunctuation.Strict);
+            });
         }
 
         [Fact]
@@ -179,18 +133,10 @@
         [Fact]
         public void StrictParseThrowsArgumentExceptionIfCpfIsFormatted()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Strict);
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cpf.Parse(CpfTest.looseValidCpf, CpfPunctuation.Strict);
+            });
         }
 
         [Fact]
@@ -412,7 +358,7 @@
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                Cpf.Complete(null);
+                _ = Cpf.Complete(null);
             });
         }
 
@@ -421,7 +367,7 @@
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                Cpf.Complete(string.Empty);
+                _ = Cpf.Complete(string.Empty);
             });
         }
 
@@ -437,18 +383,10 @@
         [Fact]
         public void CompleteThrowsArgumentExceptionIfCpfTextIsWrong()
         {
-            var actual = false;
-
-            try
+            Assert.Throws<ArgumentException>(() =>
             {
-                Cpf.Complete("714o256s8");
-            }
-            catch (ArgumentException)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+                _ = Cpf.Complete("714o256s8");
+            });
         }
 
         // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
