@@ -40,12 +40,9 @@ namespace Maoli.Tests
         public void ConstructorThrowsExceptionIfCepIsNull()
         {
             Assert.Throws<ArgumentException>(
-#if !NET40 && !NET45
-                "value",
-#endif
                 () =>
                 {
-                    var cep = new Cep(null);
+                    _ = new Cep(null);
                 });
         }
 
