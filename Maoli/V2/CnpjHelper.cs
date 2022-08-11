@@ -27,7 +27,7 @@ namespace Maoli.V2
             }
 
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
-            ReadOnlySpan<char> valueSpan =
+            var valueSpan =
                 value.AsSpan();
 #else
             var valueSpan =

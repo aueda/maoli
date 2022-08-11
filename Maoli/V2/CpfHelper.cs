@@ -168,7 +168,7 @@ namespace Maoli.V2
 
             var sameDigits = true;
 
-            char previousSymbol = ' ';
+            var previousSymbol = ' ';
 
             for (var i = 0; isValid && i < valueSpan.Length; i++)
             {
