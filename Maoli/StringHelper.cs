@@ -48,7 +48,8 @@ namespace Maoli
 
                 if (char.IsDigit(symbol))
                 {
-                    sanitizedValue[index++] = symbol;
+                    sanitizedValue[index] = symbol;
+                    index++;
                 }
             }
 
