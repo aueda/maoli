@@ -10,6 +10,8 @@ namespace Maoli.Spellers
     public sealed class NumberSpeller
         : INumberSpeller<int>, INumberSpeller<long>
     {
+        private const string Conjunction = " e ";
+
         private const string SpecialName =
             "cem";
 
@@ -94,7 +96,7 @@ namespace Maoli.Spellers
             };
 
         /// <summary>
-        /// Returns the number spelled.
+        /// Returns the number spelled in Brazilian Portuguese.
         /// </summary>
         /// <param name="number">
         /// The number.
@@ -108,7 +110,7 @@ namespace Maoli.Spellers
         }
 
         /// <summary>
-        /// Returns the number spelled.
+        /// Returns the number spelled in Brazilian Portuguese.
         /// </summary>
         /// <param name="number">
         /// The number.
@@ -118,71 +120,69 @@ namespace Maoli.Spellers
         /// </returns>
         public string Spell(long number)
         {
+            if (number == 0L)
+            {
+                return OneNames[number];
+            }
+
             var sb = new StringBuilder();
 
-            if (number == 0)
-            {
-                sb.Append(OneNames[number]);
-            }
-            else
-            {
-                var partialNumber = number;
-                var firstGroup = true;
-                var requiresConjunction = false;
-                var groupCount = 0;
+            var partialNumber = number;
+            var firstGroup = true;
+            var requiresConjunction = false;
+            var groupCount = 0;
 
-                do
+            do
+            {
+                var numberClass = (int)(partialNumber % 1000);
+
+                partialNumber /= 1000;
+
+                if (numberClass > 0)
                 {
-                    var numberClass = (int)(partialNumber % 1000);
-
-                    partialNumber /= 1000;
-
-                    if (numberClass > 0)
+                    if (firstGroup)
                     {
-                        if (firstGroup)
+                        firstGroup = false;
+
+                        if (numberClass <= 100 || numberClass % 100 <= 0)
                         {
-                            firstGroup = false;
-
-                            if (numberClass <= 100 || numberClass % 100 <= 0)
-                            {
-                                requiresConjunction = true;
-                            }
-                        }
-
-                        if (groupCount > 0)
-                        {
-                            var desc = numberClass > 1
-                                ? PluralThousandNames[groupCount - 1]
-                                : ThousandNames[groupCount - 1];
-
-                            sb.Insert(0, desc);
-
-                            sb.Insert(0, " ");
-                        }
-
-                        if (groupCount != 1 || numberClass != 1)
-                        {
-                            sb.Insert(0, SpellValue(numberClass));
-                        }
-
-                        if (partialNumber > 0)
-                        {
-                            if (requiresConjunction)
-                            {
-                                sb.Insert(0, " e ");
-                                requiresConjunction = false;
-                            }
-                            else
-                            {
-                                sb.Insert(0, " ");
-                            }
+                            requiresConjunction = true;
                         }
                     }
 
-                    groupCount++;
+                    if (groupCount > 0)
+                    {
+                        var desc = numberClass > 1
+                            ? PluralThousandNames[groupCount - 1]
+                            : ThousandNames[groupCount - 1];
+
+                        sb.Insert(0, desc);
+
+                        sb.Insert(0, ' ');
+                    }
+
+                    if (groupCount != 1 || numberClass != 1)
+                    {
+                        sb.Insert(0, SpellValue(numberClass));
+                    }
+
+                    if (partialNumber > 0)
+                    {
+                        if (requiresConjunction)
+                        {
+                            sb.Insert(0, Conjunction);
+                            requiresConjunction = false;
+                        }
+                        else
+                        {
+                            sb.Insert(0, ' ');
+                        }
+                    }
                 }
-                while (partialNumber > 0);
+
+                groupCount++;
             }
+            while (partialNumber > 0);
 
             return sb
                 .ToString()
@@ -243,7 +243,7 @@ namespace Maoli.Spellers
 
                     if (digit2 + digit3 > 0)
                     {
-                        sb.Append(" e ");
+                        sb.Append(Conjunction);
                     }
                 }
             }
@@ -266,7 +266,7 @@ namespace Maoli.Spellers
 
                     if (digit3 > 0)
                     {
-                        sb.Append(" e ");
+                        sb.Append(Conjunction);
                     }
                 }
             }

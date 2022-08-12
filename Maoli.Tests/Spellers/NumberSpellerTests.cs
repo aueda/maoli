@@ -1,4 +1,4 @@
-﻿namespace Maoli.Tests
+﻿namespace Maoli.Tests.Spellers
 {
     using Maoli.Spellers;
     using Xunit;
