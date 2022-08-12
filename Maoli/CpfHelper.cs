@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Adriano Ueda. All rights reserved.
 
-namespace Maoli.V2
+namespace Maoli
 {
     using System;
     using System.Collections.Generic;
@@ -97,30 +97,6 @@ namespace Maoli.V2
             }
 
             return new string(result);
-        }
-
-        /// <summary>
-        /// Removes punctuation and trim from a CPF string.
-        /// </summary>
-        /// <param name="value">a CPF string.</param>
-        /// <returns>a trimmed CPF string without punctuation.</returns>
-        internal static string Sanitize(string value)
-        {
-            var sanitizedValue = new char[11];
-
-            var index = 0;
-
-            for (var i = 0; index < 11 && i < value.Length; i++)
-            {
-                var symbol = value[i];
-
-                if (char.IsDigit(symbol))
-                {
-                    sanitizedValue[index++] = symbol;
-                }
-            }
-
-            return new string(sanitizedValue);
         }
 
         /// <summary>
