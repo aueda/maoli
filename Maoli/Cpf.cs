@@ -83,7 +83,7 @@ namespace Maoli
         /// <param name="value">a CPF string.</param>
         /// <param name="cpf">the new instance of <see cref="Cpf"/>.</param>
         /// <returns>true if CPF string is valid; false, otherwise.</returns>
-        public static bool TryParse(string value, out Cpf cpf)
+        public static bool TryParse(string value, out Cpf? cpf)
         {
             return Cpf.TryParse(value, out cpf, CpfPunctuation.Loose);
         }
@@ -96,7 +96,7 @@ namespace Maoli
         /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled.</param>
         /// <returns>true if CPF string is valid; false, otherwise.</returns>
-        public static bool TryParse(string value, out Cpf cpf, CpfPunctuation punctuation)
+        public static bool TryParse(string value, out Cpf? cpf, CpfPunctuation punctuation)
         {
             bool parsed;
 
@@ -156,7 +156,7 @@ namespace Maoli
         /// <param name="obj">The CPF to compare to this instance.</param>
         /// <returns>if the value of the value parameter is
         /// the same as this instance; otherwise, false.</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return this.Equals(obj as Cpf);
         }
@@ -171,7 +171,7 @@ namespace Maoli
         /// <returns>if the value of the value parameter is
         /// the same as this instance; otherwise, false.
         /// </returns>
-        public bool Equals(Cpf other)
+        public bool Equals(Cpf? other)
         {
             if (other == null)
             {

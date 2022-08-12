@@ -83,7 +83,7 @@ namespace Maoli
         /// <param name="value">a CNPJ string.</param>
         /// <param name="cnpj">the new instance of <see cref="Cnpj"/>.</param>
         /// <returns>true if CNPJ string is valid; false, otherwise.</returns>
-        public static bool TryParse(string value, out Cnpj cnpj)
+        public static bool TryParse(string value, out Cnpj? cnpj)
         {
             return Cnpj.TryParse(value, out cnpj, CnpjPunctuation.Loose);
         }
@@ -98,7 +98,7 @@ namespace Maoli
         /// <returns>true if CNPJ string is valid; false, otherwise.</returns>
         public static bool TryParse(
             string value,
-            out Cnpj cnpj,
+            out Cnpj? cnpj,
             CnpjPunctuation punctuation)
         {
             bool parsed;
@@ -158,7 +158,7 @@ namespace Maoli
         /// <param name="obj">The CNPJ to compare to this instance.</param>
         /// <returns>if the value of the value parameter is
         /// the same as this instance; otherwise, false.</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return this.Equals(obj as Cnpj);
         }
@@ -172,7 +172,7 @@ namespace Maoli
         /// </param>
         /// <returns>if the value of the value parameter is
         /// the same as this instance; otherwise, false.</returns>
-        public bool Equals(Cnpj other)
+        public bool Equals(Cnpj? other)
         {
             if (other == null)
             {
