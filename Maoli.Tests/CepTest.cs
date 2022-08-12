@@ -72,7 +72,7 @@ namespace Maoli.Tests
             Assert.Throws<ArgumentException>(
                 () =>
                 {
-                    var cep = new Cep("01234001", CepPunctuation.Strict);
+                    _ = new Cep("01234001", CepPunctuation.Strict);
                 });
         }
 
