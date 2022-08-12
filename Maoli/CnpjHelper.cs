@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Adriano Ueda. All rights reserved.
 
-namespace Maoli.V2
+namespace Maoli
 {
     using System;
     using System.Text;
@@ -91,10 +91,10 @@ namespace Maoli.V2
                 var lastDigit2 = valueSpan[valueSpan.Length - 1] - 48;
 
                 var checksum1 = sum1 % 11;
-                checksum1 = (checksum1 < 2) ? 0 : 11 - checksum1;
+                checksum1 = checksum1 < 2 ? 0 : 11 - checksum1;
 
                 var checksum2 = sum2 % 11;
-                checksum2 = (checksum2 < 2) ? 0 : 11 - checksum2;
+                checksum2 = checksum2 < 2 ? 0 : 11 - checksum2;
 
                 isValid =
                     checksum1 == lastDigit1 &&
@@ -167,12 +167,12 @@ namespace Maoli.V2
             if (isValid)
             {
                 var checksum1 = sum1 % 11;
-                checksum1 = (checksum1 < 2) ? 0 : 11 - checksum1;
+                checksum1 = checksum1 < 2 ? 0 : 11 - checksum1;
 
                 sum2 += checksum1 * (14 - index2);
 
                 var checksum2 = sum2 % 11;
-                checksum2 = (checksum2 < 2) ? 0 : 11 - checksum2;
+                checksum2 = checksum2 < 2 ? 0 : 11 - checksum2;
 
                 result[12] = (char)(checksum1 + 48);
                 result[13] = (char)(checksum2 + 48);
@@ -183,30 +183,6 @@ namespace Maoli.V2
             }
 
             return new string(result);
-        }
-
-        /// <summary>
-        /// Removes punctuation and trim from a CNPJ string.
-        /// </summary>
-        /// <param name="value">a CNPJ string.</param>
-        /// <returns>
-        /// a trimmed CNPJ string without punctuation.
-        /// </returns>
-        internal static string Sanitize(string value)
-        {
-            var sb = new StringBuilder();
-
-            for (var i = 0; i < value.Length; i++)
-            {
-                var symbol = value[i];
-
-                if (char.IsDigit(symbol))
-                {
-                    sb.Append(symbol);
-                }
-            }
-
-            return sb.ToString();
         }
     }
 }

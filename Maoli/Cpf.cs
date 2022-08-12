@@ -3,7 +3,6 @@
 namespace Maoli
 {
     using System;
-    using Maoli.V2;
 
     /// <summary>
     /// Represents a valid CPF number.
@@ -43,7 +42,10 @@ namespace Maoli
                 throw new ArgumentException("O CPF não é válido");
             }
 
-            this.parsedValue = CpfHelper.Sanitize(value);
+            this.parsedValue =
+                StringHelper.Sanitize(
+                    value,
+                    11);
 
             this.Punctuation = punctuation;
         }

@@ -3,7 +3,6 @@
 namespace Maoli
 {
     using System;
-    using Maoli.V2;
 
     /// <summary>
     /// Represents a valid CNPJ number.
@@ -43,7 +42,10 @@ namespace Maoli
                 throw new ArgumentException("O CNPJ não é válido");
             }
 
-            this.parsedValue = CnpjHelper.Sanitize(value);
+            this.parsedValue =
+                StringHelper.Sanitize(
+                    value,
+                    14);
 
             this.Punctuation = punctuation;
         }
