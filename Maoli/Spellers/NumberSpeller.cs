@@ -80,7 +80,7 @@ namespace Maoli.Spellers
                 "milhão",
                 "bilhão",
                 "trilhão",
-                "quadrilhão",
+                "quatrilhão",
                 "quintilhão",
             };
 
@@ -91,7 +91,7 @@ namespace Maoli.Spellers
                 "milhões",
                 "bilhões",
                 "trilhões",
-                "quadrilhões",
+                "quatrilhões",
                 "quintilhões",
             };
 

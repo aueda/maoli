@@ -59,7 +59,9 @@
         [InlineData(324312090215L, "trezentos e vinte e quatro bilhões trezentos e doze milhões noventa mil duzentos e quinze")]
         [InlineData(1000000000000L, "um trilhão")]
         [InlineData(1000000000001L, "um trilhão e um")]
-        [InlineData(long.MaxValue, "nove quintilhões duzentos e vinte e três quadrilhões trezentos e setenta e dois trilhões trinta e seis bilhões oitocentos e cinquenta e quatro milhões setecentos e setenta e cinco mil oitocentos e sete")]
+        [InlineData(1000000000000000L, "um quatrilhão")]
+        [InlineData(1000000000000001L, "um quatrilhão e um")]
+        [InlineData(long.MaxValue, "nove quintilhões duzentos e vinte e três quatrilhões trezentos e setenta e dois trilhões trinta e seis bilhões oitocentos e cinquenta e quatro milhões setecentos e setenta e cinco mil oitocentos e sete")]
         public void SpellReturnsCorrectLongNumber(
             long value,
             string expected)
