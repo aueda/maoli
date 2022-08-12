@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.452
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32611.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maoli", "Maoli\Maoli.csproj", "{7B077AF7-3181-4ECC-9F57-8A5EE0CB1F6C}"
 EndProject
@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maoli.Tests", "Maoli.Tests\Maoli.Tests.csproj", "{BC6507EC-1E91-4C8E-96A4-CD02C1315878}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maoli.Tests.Benchmark", "Maoli.Tests.Benchmark\Maoli.Tests.Benchmark.csproj", "{3161D734-3349-4E0B-A9D4-44009D774D8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{BC6507EC-1E91-4C8E-96A4-CD02C1315878}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC6507EC-1E91-4C8E-96A4-CD02C1315878}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC6507EC-1E91-4C8E-96A4-CD02C1315878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3161D734-3349-4E0B-A9D4-44009D774D8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3161D734-3349-4E0B-A9D4-44009D774D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3161D734-3349-4E0B-A9D4-44009D774D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3161D734-3349-4E0B-A9D4-44009D774D8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
