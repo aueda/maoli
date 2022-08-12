@@ -2,13 +2,15 @@
 
 namespace Maoli.Spellers
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// Defines methods for a number speller.
     /// </summary>
     /// <typeparam name="TNumber">
     /// The type of the number.
     /// </typeparam>
-    public interface INumberSpeller<TNumber>
+    public interface INumberSpeller<in TNumber>
     {
         /// <summary>
         /// Returns the number spelled.
@@ -19,6 +21,11 @@ namespace Maoli.Spellers
         /// <returns>
         /// The number spelled.
         /// </returns>
-        string Spell(TNumber number);
+        string Spell(
+#if NET5_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+            [NotNull] TNumber number);
+#else
+            TNumber number);
+#endif
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Maoli.Spellers
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Text;
 
     /// <summary>
@@ -16,7 +17,7 @@ namespace Maoli.Spellers
             "cem";
 
         private static readonly string[] OneNames =
-            new string[]
+            new[]
             {
                 "zero",
                 "um",
@@ -31,7 +32,7 @@ namespace Maoli.Spellers
             };
 
         private static readonly string[] TenNames =
-            new string[]
+            new[]
             {
                 "dez",
                 "vinte",
@@ -45,7 +46,7 @@ namespace Maoli.Spellers
             };
 
         private static readonly string[] HundredNames =
-            new string[]
+            new[]
             {
                 "cento",
                 "duzentos",
@@ -59,7 +60,7 @@ namespace Maoli.Spellers
             };
 
         private static readonly string[] AltTenNames =
-            new string[]
+            new[]
             {
                 "dez",
                 "onze",
@@ -74,7 +75,7 @@ namespace Maoli.Spellers
             };
 
         private static readonly string[] ThousandNames =
-            new string[]
+            new[]
             {
                 "mil",
                 "milhão",
@@ -85,7 +86,7 @@ namespace Maoli.Spellers
             };
 
         private static readonly string[] PluralThousandNames =
-            new string[]
+            new[]
             {
                 "mil",
                 "milhões",
@@ -104,7 +105,12 @@ namespace Maoli.Spellers
         /// <returns>
         /// The number spelled.
         /// </returns>
-        public string Spell(int number)
+        public string Spell(
+#if NET5_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+            [NotNull] int number)
+#else
+            int number)
+#endif
         {
             return this.Spell((long)number);
         }
@@ -118,7 +124,12 @@ namespace Maoli.Spellers
         /// <returns>
         /// The number spelled.
         /// </returns>
-        public string Spell(long number)
+        public string Spell(
+#if NET5_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+            [NotNull] long number)
+#else
+            long number)
+#endif
         {
             if (number == 0L)
             {
