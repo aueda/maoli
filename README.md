@@ -70,6 +70,32 @@ Returns a CNPJ string with a valid checksum trailing.
 var cnpj = Cnpj.Complete("999999999999"));
 ```
 
+### Number Speller
+
+``NumberSpeller.Spell(int value)`` - returns the number spelled in Brazilian Portuguese.
+The maximum value is `int.MaxValue`.
+
+```c#
+var speller = new NumberSpeller();
+
+var number = speller.Spell(2022);
+
+// outputs "dois mil duzentos e vinte e dois"
+Console.WriteLine(number);
+```
+
+``NumberSpeller.Spell(long value)`` - returns the number spelled in Brazilian Portuguese.
+The maximum value is `long.MaxValue`.
+
+```c#
+var speller = new NumberSpeller();
+
+var number = speller.Spell(2022L);
+
+// outputs "dois mil duzentos e vinte e dois"
+Console.WriteLine(number);
+```
+
 ## NuGet Package
 
 To install Maoli using NuGet, run the following command in the Package Manager Console:

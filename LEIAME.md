@@ -65,7 +65,33 @@ if (Cnpj.Validate("99.999.999/9999-99"))
 
 ```c#
 // devolve "99999999999999"
-var cnpj = Cnpj.Complete("999999999999")); 
+var cnpj = Cnpj.Complete("999999999999"));
+```
+
+### Number Speller
+
+``NumberSpeller.Spell(int value)`` - retorna o número por extenso em português brasileiro.
+O valor máximo é `int.MaxValue`.
+
+```c#
+var speller = new NumberSpeller();
+
+var number = speller.Spell(2022);
+
+// imprime "dois mil duzentos e vinte e dois"
+Console.WriteLine(number);
+```
+
+``NumberSpeller.Spell(long value)`` - retorna o número por extenso em português brasileiro.
+O valor máximo é `long.MaxValue`.
+
+```c#
+var speller = new NumberSpeller();
+
+var number = speller.Spell(2022L);
+
+// imprime "dois mil duzentos e vinte e dois"
+Console.WriteLine(number);
 ```
 
 ## Pacote NuGet
