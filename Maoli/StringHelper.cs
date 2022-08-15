@@ -42,14 +42,15 @@ namespace Maoli
         {
             var sanitizedValue = new char[size];
 
-            for (int i = 0, index = 0; index < size && i < value.Length; i++)
+            var index = 0;
+
+            for (int i = 0; index < size && i < value.Length; i++)
             {
                 var symbol = value[i];
 
                 if (char.IsDigit(symbol))
                 {
-                    sanitizedValue[index] = symbol;
-                    index++;
+                    sanitizedValue[index++] = symbol;
                 }
             }
 

@@ -10,7 +10,7 @@
 Versão em português: [LEIAME.md](https://github.com/aueda/maoli/blob/master/LEIAME.md)
 
 Maoli is a C# helper library for common Brazilian business rules (CEP, CPF and CNPJ),
-compatible with .NET Framework 4.0+, .NET Core 1.0+, and .NET 5.
+compatible with .NET Framework 4.6+, .NET Core 1.0+, and .NET 5+.
 
 Currently implements:
 
@@ -68,6 +68,32 @@ Returns a CNPJ string with a valid checksum trailing.
 ```c#
 // outputs "99999999999999"
 var cnpj = Cnpj.Complete("999999999999"));
+```
+
+### Number Speller
+
+``NumberSpeller.Spell(int value)`` - returns the number spelled in Brazilian Portuguese.
+The maximum value is `int.MaxValue`.
+
+```c#
+var speller = new NumberSpeller();
+
+var number = speller.Spell(2022);
+
+// outputs "dois mil duzentos e vinte e dois"
+Console.WriteLine(number);
+```
+
+``NumberSpeller.Spell(long value)`` - returns the number spelled in Brazilian Portuguese.
+The maximum value is `long.MaxValue`.
+
+```c#
+var speller = new NumberSpeller();
+
+var number = speller.Spell(2022L);
+
+// outputs "dois mil duzentos e vinte e dois"
+Console.WriteLine(number);
 ```
 
 ## NuGet Package
