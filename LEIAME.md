@@ -10,7 +10,7 @@
 Versão em inglês: [README.md](https://github.com/aueda/maoli/)
 
 Maoli é uma biblioteca de regras de negócio brasileiras comuns,
-compatível com .NET Framework 4.0+, .NET Core 1.0+ e .NET 5.
+compatível com .NET Framework 4.6+, .NET Core 1.0+ e .NET 5+.
 
 Atualmente implementa:
 

@@ -10,7 +10,7 @@
 Versão em português: [LEIAME.md](https://github.com/aueda/maoli/blob/master/LEIAME.md)
 
 Maoli is a C# helper library for common Brazilian business rules (CEP, CPF and CNPJ),
-compatible with .NET Framework 4.0+, .NET Core 1.0+, and .NET 5.
+compatible with .NET Framework 4.6+, .NET Core 1.0+, and .NET 5+.
 
 Currently implements:
 
