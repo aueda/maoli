@@ -10,7 +10,7 @@ namespace Maoli.Spellers
     /// <typeparam name="TNumber">
     /// The type of the number.
     /// </typeparam>
-    public interface INumberSpeller<in TNumber>
+    internal interface INumberSpeller<in TNumber>
     {
         /// <summary>
         /// Returns the number spelled.
