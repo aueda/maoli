@@ -119,23 +119,63 @@ namespace Maoli
         /// <summary>
         /// Checks if a string value is a valid CPF representation.
         /// </summary>
-        /// <param name="value">a CPF string to be checked.</param>
-        /// <returns>true if CPF string is valid; false otherwise.</returns>
+        /// <param name="value">
+        /// A CPF string to be checked.
+        /// </param>
+        /// <returns>
+        /// true if CPF string is valid;
+        /// Otherwise, false.
+        /// </returns>
         public static bool Validate(string value)
         {
-            return CpfHelper.Validate(value, CpfPunctuation.Loose);
+            if (value == null)
+            {
+                return false;
+            }
+
+            return CpfHelper
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+                    .Validate(
+                        value.AsSpan(),
+#else
+                    .Validate(
+                        value,
+#endif
+                        CpfPunctuation.Loose);
         }
 
         /// <summary>
         /// Checks if a string value is a valid CPF representation.
         /// </summary>
-        /// <param name="value">a CPF string to be checked.</param>
-        /// <param name="punctuation">the punctuation setting to
-        /// how validation must be handled.</param>
-        /// <returns>true if CPF string is valid; otherwise, false.</returns>
-        public static bool Validate(string value, CpfPunctuation punctuation)
+        /// <param name="value">
+        /// A CPF string to be checked.
+        /// </param>
+        /// <param name="punctuation">
+        /// The punctuation setting to
+        /// how validation must be handled.
+        /// </param>
+        /// <returns>
+        /// true if CPF string is valid;
+        /// Otherwise, false.
+        /// </returns>
+        public static bool Validate(
+            string value,
+            CpfPunctuation punctuation)
         {
-            return CpfHelper.Validate(value, punctuation);
+            if (value == null)
+            {
+                return false;
+            }
+
+            return CpfHelper
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+                    .Validate(
+                        value.AsSpan(),
+#else
+                    .Validate(
+                        value,
+#endif
+                        punctuation);
         }
 
         /// <summary>

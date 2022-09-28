@@ -124,9 +124,23 @@ namespace Maoli
         /// </summary>
         /// <param name="value">a CNPJ string to be checked.</param>
         /// <returns>true if CNPJ string is valid; false otherwise.</returns>
-        public static bool Validate(string value)
+        public static bool Validate(
+            string value)
         {
-            return CnpjHelper.Validate(value, CnpjPunctuation.Loose);
+            if (value == null)
+            {
+                return false;
+            }
+
+            return CnpjHelper
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+                .Validate(
+                    value.AsSpan(),
+#else
+                .Validate(
+                    value,
+#endif
+                    CnpjPunctuation.Loose);
         }
 
         /// <summary>
@@ -136,9 +150,25 @@ namespace Maoli
         /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled.</param>
         /// <returns>true if CNPJ string is valid; otherwise, false.</returns>
-        public static bool Validate(string value, CnpjPunctuation punctuation)
+        public static bool Validate(
+            string value,
+            CnpjPunctuation punctuation)
         {
-            return CnpjHelper.Validate(value, punctuation);
+            if (value == null)
+            {
+                return false;
+            }
+
+            return
+                CnpjHelper
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+                    .Validate(
+                        value.AsSpan(),
+#else
+                    .Validate(
+                        value,
+#endif
+                        punctuation);
         }
 
         /// <summary>

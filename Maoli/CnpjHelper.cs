@@ -13,39 +13,36 @@ namespace Maoli
         /// <summary>
         /// Checks if a string value is a valid CNPJ representation.
         /// </summary>
-        /// <param name="value">a CNPJ string to be checked.</param>
-        /// <param name="punctuation">the punctuation setting to
-        /// how validation must be handled.</param>
-        /// <returns>true if CNPJ string is valid; false otherwise.</returns>
-        internal static bool Validate(string value, CnpjPunctuation punctuation)
-        {
-            var isValid = false;
-
-            if (value == null)
-            {
-                return isValid;
-            }
-
+        /// <param name="value">
+        /// A CNPJ string to be checked.
+        /// </param>
+        /// <param name="punctuation">
+        /// The punctuation setting to
+        /// how validation must be handled.
+        /// </param>
+        /// <returns>
+        /// true if CNPJ string is valid; Otherwise, false.
+        /// </returns>
+        internal static bool Validate(
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
-            var valueSpan =
-                value.AsSpan();
+            ReadOnlySpan<char> value,
 #else
-            var valueSpan =
-                value;
+            string value,
 #endif
+            CnpjPunctuation punctuation)
+        {
+            var isValid =
+                punctuation == CnpjPunctuation.Strict
+                    ? value.Length == 18 &&
+                        value[2] == '.' &&
+                        value[6] == '.' &&
+                        value[10] == '/' &&
+                        value[15] == '-'
+                    : value.Length == 14 || value.Length == 18;
 
-            if (punctuation == CnpjPunctuation.Strict)
+            if (!isValid)
             {
-                isValid =
-                    valueSpan.Length == 18 &&
-                    valueSpan[2] == '.' &&
-                    valueSpan[6] == '.' &&
-                    valueSpan[10] == '/' &&
-                    valueSpan[15] == '-';
-            }
-            else
-            {
-                isValid = valueSpan.Length == 14 || valueSpan.Length == 18;
+                return false;
             }
 
             var index1 = 0;
@@ -54,54 +51,53 @@ namespace Maoli
             var sum1 = 0;
             var sum2 = 0;
 
-            for (var i = 0; isValid && i < valueSpan.Length; i++)
+            for (var i = 0; i < value.Length; i++)
             {
-                var symbol = valueSpan[i];
+                var symbol = value[i];
 
                 if (symbol == '-' || symbol == '.' || symbol == '/')
                 {
                     continue;
                 }
 
-                if (char.IsDigit(symbol))
+                if (!char.IsDigit(symbol))
                 {
-                    if (index1 < 12)
-                    {
-                        sum1 += (symbol - 48) * ((index1 < 4 ? 5 : 13) - index1);
-                        index1++;
-                    }
-
-                    if (index2 < 13)
-                    {
-                        sum2 += (symbol - 48) * ((index2 < 5 ? 6 : 14) - index2);
-                        index2++;
-                    }
-
-                    isValid = true;
+                    return false;
                 }
-                else
+
+                if (index1 < 12)
                 {
-                    isValid = false;
+                    sum1 += (symbol - 48) * ((index1 < 4 ? 5 : 13) - index1);
+                    index1++;
+                }
+
+                if (index2 < 13)
+                {
+                    sum2 += (symbol - 48) * ((index2 < 5 ? 6 : 14) - index2);
+                    index2++;
                 }
             }
 
-            if (isValid)
-            {
-                var lastDigit1 = valueSpan[valueSpan.Length - 2] - 48;
-                var lastDigit2 = valueSpan[valueSpan.Length - 1] - 48;
+            var lastDigit1 = value[value.Length - 2] - 48;
+            var lastDigit2 = value[value.Length - 1] - 48;
 
-                var checksum1 = sum1 % 11;
-                checksum1 = checksum1 < 2 ? 0 : 11 - checksum1;
+            var checksum1 = sum1 % 11;
 
-                var checksum2 = sum2 % 11;
-                checksum2 = checksum2 < 2 ? 0 : 11 - checksum2;
+            checksum1 =
+                checksum1 < 2
+                    ? 0
+                    : 11 - checksum1;
 
-                isValid =
-                    checksum1 == lastDigit1 &&
-                    checksum2 == lastDigit2;
-            }
+            var checksum2 = sum2 % 11;
 
-            return isValid;
+            checksum2 =
+                checksum2 < 2
+                    ? 0
+                    : 11 - checksum2;
+
+            return
+                checksum1 == lastDigit1 &&
+                checksum2 == lastDigit2;
         }
 
         /// <summary>
