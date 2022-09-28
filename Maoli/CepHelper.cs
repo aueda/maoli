@@ -14,8 +14,8 @@ namespace Maoli
         /// <summary>
         /// Regex validations.
         /// </summary>
-        private static Dictionary<CepPunctuation, string> regexValidations =
-            new Dictionary<CepPunctuation, string>
+        private static readonly Dictionary<CepPunctuation, string> RegexValidations =
+            new ()
             {
                 {
                     CepPunctuation.Loose,
@@ -34,14 +34,16 @@ namespace Maoli
         /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled.</param>
         /// <returns>true if CNPJ string is valid; false otherwise.</returns>
-        internal static bool Validate(string value, CepPunctuation punctuation)
+        internal static bool Validate(
+            string value,
+            CepPunctuation punctuation)
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
                 return false;
             }
 
-            if (!Regex.IsMatch(value, CepHelper.regexValidations[punctuation]))
+            if (!Regex.IsMatch(value, CepHelper.RegexValidations[punctuation]))
             {
                 return false;
             }

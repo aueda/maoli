@@ -17,7 +17,8 @@ namespace Maoli
         /// <param name="value">a partial CPF strin
         /// with or without punctuation.</param>
         /// <returns>a CPF string with a valid checksum trailing.</returns>
-        internal static string Complete(string value)
+        internal static string Complete(
+            string value)
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {

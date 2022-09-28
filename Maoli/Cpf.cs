@@ -30,7 +30,9 @@ namespace Maoli
         /// <param name="value">a valid CPF string.</param>
         /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled.</param>
-        public Cpf(string value, CpfPunctuation punctuation)
+        public Cpf(
+            string value,
+            CpfPunctuation punctuation)
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
@@ -60,7 +62,8 @@ namespace Maoli
         /// </summary>
         /// <param name="value">a CPF string.</param>
         /// <returns>the new instance of <see cref="Cpf"/>.</returns>
-        public static Cpf Parse(string value)
+        public static Cpf Parse(
+            string value)
         {
             return Cpf.Parse(value, CpfPunctuation.Loose);
         }
@@ -72,7 +75,9 @@ namespace Maoli
         /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled.</param>
         /// <returns>the new instance of <see cref="Cpf"/>.</returns>
-        public static Cpf Parse(string value, CpfPunctuation punctuation)
+        public static Cpf Parse(
+            string value,
+            CpfPunctuation punctuation)
         {
             return new Cpf(value, punctuation);
         }
@@ -83,9 +88,14 @@ namespace Maoli
         /// <param name="value">a CPF string.</param>
         /// <param name="cpf">the new instance of <see cref="Cpf"/>.</param>
         /// <returns>true if CPF string is valid; false, otherwise.</returns>
-        public static bool TryParse(string value, out Cpf? cpf)
+        public static bool TryParse(
+            string value,
+            out Cpf? cpf)
         {
-            return Cpf.TryParse(value, out cpf, CpfPunctuation.Loose);
+            return Cpf.TryParse(
+                value,
+                out cpf,
+                CpfPunctuation.Loose);
         }
 
         /// <summary>
@@ -96,7 +106,10 @@ namespace Maoli
         /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled.</param>
         /// <returns>true if CPF string is valid; false, otherwise.</returns>
-        public static bool TryParse(string value, out Cpf? cpf, CpfPunctuation punctuation)
+        public static bool TryParse(
+            string value,
+            out Cpf? cpf,
+            CpfPunctuation punctuation)
         {
             bool parsed;
 
@@ -126,7 +139,8 @@ namespace Maoli
         /// true if CPF string is valid;
         /// Otherwise, false.
         /// </returns>
-        public static bool Validate(string value)
+        public static bool Validate(
+            string value)
         {
             if (value == null)
             {
@@ -184,7 +198,8 @@ namespace Maoli
         /// <param name="value">a partial CPF string
         /// with or without punctuation.</param>
         /// <returns>a CPF string with a valid checksum trailing.</returns>
-        public static string Complete(string value)
+        public static string Complete(
+            string value)
         {
             return CpfHelper.Complete(value);
         }
@@ -196,7 +211,8 @@ namespace Maoli
         /// <param name="obj">The CPF to compare to this instance.</param>
         /// <returns>if the value of the value parameter is
         /// the same as this instance; otherwise, false.</returns>
-        public override bool Equals(object? obj)
+        public override bool Equals(
+            object? obj)
         {
             return this.Equals(obj as Cpf);
         }
@@ -211,7 +227,8 @@ namespace Maoli
         /// <returns>if the value of the value parameter is
         /// the same as this instance; otherwise, false.
         /// </returns>
-        public bool Equals(Cpf? other)
+        public bool Equals(
+            Cpf? other)
         {
             if (other == null)
             {

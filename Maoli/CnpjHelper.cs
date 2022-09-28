@@ -109,7 +109,8 @@ namespace Maoli
         /// <returns>
         /// a CNPJ string with a valid checksum trailing.
         /// </returns>
-        internal static string Complete(string value)
+        internal static string Complete(
+            string value)
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
