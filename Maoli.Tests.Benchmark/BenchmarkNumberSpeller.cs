@@ -7,8 +7,9 @@ namespace Maoli.Benchmark
     using Maoli.Spellers;
 
     [SimpleJob(RuntimeMoniker.NetCoreApp31)]
-    [SimpleJob(RuntimeMoniker.Net60)]
     [SimpleJob(RuntimeMoniker.Net70)]
+    [SimpleJob(RuntimeMoniker.Net60)]
+    [SimpleJob(RuntimeMoniker.Net50)]
     [SimpleJob(RuntimeMoniker.Net48)]
     [MemoryDiagnoser]
     [MarkdownExporterAttribute.GitHub]
