@@ -26,7 +26,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Maoli.xml</DocumentationFile>
   </PropertyGroup>
- 
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net7.0' Or '$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net5.0'">
+    <InternalsVisibleTo Include="Maoli.Tests" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Remove="stylecop.json" />
     <None Include="..\LICENSE.txt">

@@ -130,6 +130,130 @@
 
             Assert.Equal(expected, actual);
         }
+
+#if NET5_0_OR_GREATER
+        [Theory]
+        [InlineData(0, "zero")]
+        [InlineData(1, "um")]
+        [InlineData(2, "dois")]
+        [InlineData(3, "três")]
+        [InlineData(4, "quatro")]
+        [InlineData(5, "cinco")]
+        [InlineData(6, "seis")]
+        [InlineData(7, "sete")]
+        [InlineData(8, "oito")]
+        [InlineData(9, "nove")]
+        public void GetOneNameReturnsCorrectName(
+            int index,
+            string expected)
+        {
+            var actual = NumberSpeller
+                .GetOneName(index)
+                .ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(0, "dez")]
+        [InlineData(1, "vinte")]
+        [InlineData(2, "trinta")]
+        [InlineData(3, "quarenta")]
+        [InlineData(4, "cinquenta")]
+        [InlineData(5, "sessenta")]
+        [InlineData(6, "setenta")]
+        [InlineData(7, "oitenta")]
+        [InlineData(8, "noventa")]
+        public void GetTenNameReturnsCorrectName(
+            int index,
+            string expected)
+        {
+            var actual = NumberSpeller
+                .GetTenName(index)
+                .ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(0, "dez")]
+        [InlineData(1, "onze")]
+        [InlineData(2, "doze")]
+        [InlineData(3, "treze")]
+        [InlineData(4, "quatorze")]
+        [InlineData(5, "quinze")]
+        [InlineData(6, "dezesseis")]
+        [InlineData(7, "dezessete")]
+        [InlineData(8, "dezoito")]
+        [InlineData(9, "dezenove")]
+        public void GetAltTenNameReturnsCorrectName(
+            int index,
+            string expected)
+        {
+            var actual = NumberSpeller
+                .GetAltTenName(index)
+                .ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(0, "cento")]
+        [InlineData(1, "duzentos")]
+        [InlineData(2, "trezentos")]
+        [InlineData(3, "quatrocentos")]
+        [InlineData(4, "quinhentos")]
+        [InlineData(5, "seiscentos")]
+        [InlineData(6, "setecentos")]
+        [InlineData(7, "oitocentos")]
+        [InlineData(8, "novecentos")]
+        public void GetHundredNameReturnsCorrectName(
+            int index,
+            string expected)
+        {
+            var actual = NumberSpeller
+                .GetHundredName(index)
+                .ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(0, "mil")]
+        [InlineData(1, "milhão")]
+        [InlineData(2, "bilhão")]
+        [InlineData(3, "trilhão")]
+        [InlineData(4, "quatrilhão")]
+        [InlineData(5, "quintilhão")]
+        public void GetThousandNameReturnsCorrectName(
+            int index,
+            string expected)
+        {
+            var actual = NumberSpeller
+                .GetThousandName(index)
+                .ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(0, "mil")]
+        [InlineData(1, "milhões")]
+        [InlineData(2, "bilhões")]
+        [InlineData(3, "trilhões")]
+        [InlineData(4, "quatrilhões")]
+        [InlineData(5, "quintilhões")]
+        public void GetPluralThousandNameReturnsCorrectName(
+            int index,
+            string expected)
+        {
+            var actual = NumberSpeller
+                .GetPluralThousandName(index)
+                .ToString();
+
+            Assert.Equal(expected, actual);
+        }
+#endif
 #endif
     }
 }
