@@ -3,7 +3,7 @@
     using Maoli.Spellers;
     using Xunit;
 
-    public class NumberSpellerTests
+    public sealed class NumberSpellerTests
     {
 #if !NET40 && !NET45
         [Theory]

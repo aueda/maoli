@@ -8,7 +8,7 @@ namespace Maoli.Tests
     using Maoli;
     using Xunit;
 
-    public class CnpjTest
+    public sealed class CnpjTest
     {
         private const string looseValidCnpj = "63943315000192";
 

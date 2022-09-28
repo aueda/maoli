@@ -6,7 +6,7 @@ namespace Maoli.Tests
     using Maoli;
     using Xunit;
 
-    public class CepTest
+    public sealed class CepTest
     {
         [Fact]
         public void ConstructorSetsPunctuation()

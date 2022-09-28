@@ -6,7 +6,7 @@ namespace Maoli.Tests
     using Maoli;
     using Xunit;
 
-    public class CpfTest
+    public sealed class CpfTest
     {
         private const string looseValidCpf = "71402565860";
 
