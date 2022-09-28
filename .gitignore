@@ -158,3 +158,6 @@ $RECYCLE.BIN/
 
 # VS 2015
 .vs
+
+# BenchmarkDotNet artifacts
+[Bb]enchmark[Dd]ot[Nn]et.[Aa]rtifacts*
