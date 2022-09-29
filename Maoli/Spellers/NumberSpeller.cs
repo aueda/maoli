@@ -23,9 +23,7 @@ namespace Maoli.Spellers
 #endif
 
         private const string Names =
-            " " +
-            "e" +
-            " " +
+            " e " +
             "zero" +
             "um" +
             "dois" +
@@ -54,6 +52,7 @@ namespace Maoli.Spellers
             "setenta" +
             "oitenta" +
             "noventa" +
+            "cem" +
             "cento" +
             "duzentos" +
             "trezentos" +
@@ -205,37 +204,37 @@ namespace Maoli.Spellers
         private static readonly int[] HundredNameIndexes =
             new[]
             {
-                164, 05, // cento
-                169, 08, // duzentos
-                177, 09, // trezentos
-                186, 12, // quatrocentos
-                198, 10, // quinhentos
-                208, 10, // seiscentos
-                218, 10, // setecentos
-                228, 10, // oitocentos
-                238, 10, // novecentos
+                167, 05, // cento
+                172, 08, // duzentos
+                180, 09, // trezentos
+                189, 12, // quatrocentos
+                201, 10, // quinhentos
+                211, 10, // seiscentos
+                221, 10, // setecentos
+                231, 10, // oitocentos
+                241, 10, // novecentos
             };
 
         private static readonly int[] ThousandNameIndexes =
             new[]
             {
-                248, 03, // mil
-                251, 06, // milhão
-                257, 06, // bilhão
-                263, 07, // trilhão
-                270, 10, // quatrilhão
-                280, 10, // quintilhão
+                251, 03, // mil
+                254, 06, // milhão
+                260, 06, // bilhão
+                266, 07, // trilhão
+                273, 10, // quatrilhão
+                283, 10, // quintilhão
             };
 
         private static readonly int[] PluralThousandNameIndexes =
             new[]
             {
-                290, 03, // mil
-                293, 07, // milhões
-                300, 07, // bilhões
-                307, 08, // trilhões
-                315, 11, // quatrilhões
-                326, 11, // quintilhões
+                293, 03, // mil
+                296, 07, // milhões
+                303, 07, // bilhões
+                310, 08, // trilhões
+                318, 11, // quatrilhões
+                329, 11, // quintilhões
             };
 
         /// <summary>
@@ -291,15 +290,13 @@ namespace Maoli.Spellers
 
             Span<char> span = stackalloc char[256];
 
-            var conj = Names.AsSpan().Slice(0, 3);
+            var conj = Names
+                .AsSpan()
+                .Slice(0, 3);
 
-            ReadOnlySpan<char> specialName =
-                stackalloc char[3]
-                {
-                    'c',
-                    'e',
-                    'm',
-                };
+            var specialName = Names
+                .AsSpan()
+                .Slice(164, 3);
 
             var startIndex = span.Length - 1;
 
