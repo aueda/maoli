@@ -163,90 +163,21 @@ namespace Maoli.Tests
             Assert.False(actual);
         }
 
-        [Fact]
-        public void ValidateReturnsFalseIfCpfIsSameDigit()
+        [Theory]
+        [InlineData("000.000.000-00")]
+        [InlineData("111.111.111-11")]
+        [InlineData("222.222.222-22")]
+        [InlineData("333.333.333-33")]
+        [InlineData("444.444.444-44")]
+        [InlineData("555.555.555-55")]
+        [InlineData("666.666.666-66")]
+        [InlineData("777.777.777-77")]
+        [InlineData("888.888.888-88")]
+        [InlineData("999.999.999-99")]
+        public void ValidateReturnsFalseIfCpfIsSameDigit(
+            string cpf)
         {
-            var actual = Cpf.Validate("111.111.111-11");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCpfIsOnlyZero()
-        {
-            var actual = Cpf.Validate("000.000.000-00");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCpfIsOnlyOne()
-        {
-            var actual = Cpf.Validate("111.111.111-11");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCpfIsOnlyTwo()
-        {
-            var actual = Cpf.Validate("222.222.222-22");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCpfIsOnlyThree()
-        {
-            var actual = Cpf.Validate("333.333.333-33");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCpfIsOnlyFour()
-        {
-            var actual = Cpf.Validate("444.444.444-44");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCpfIsOnlyFive()
-        {
-            var actual = Cpf.Validate("555.555.555-55");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCpfIsOnlySix()
-        {
-            var actual = Cpf.Validate("666.666.666-66");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCpfIsOnlySeven()
-        {
-            var actual = Cpf.Validate("777.777.777-77");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCpfIsOnlyEight()
-        {
-            var actual = Cpf.Validate("888.888.888-88");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCpfIsOnlyNine()
-        {
-            var actual = Cpf.Validate("999.999.999-99");
+            var actual = Cpf.Validate(cpf);
 
             Assert.False(actual);
         }

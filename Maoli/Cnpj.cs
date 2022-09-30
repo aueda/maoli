@@ -30,7 +30,9 @@ namespace Maoli
         /// <param name="value">a valid CNPJ string.</param>
         /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled.</param>
-        public Cnpj(string value, CnpjPunctuation punctuation)
+        public Cnpj(
+            string value,
+            CnpjPunctuation punctuation)
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
@@ -60,9 +62,12 @@ namespace Maoli
         /// </summary>
         /// <param name="value">a CNPJ string.</param>
         /// <returns>the new instance of <see cref="Cnpj"/>.</returns>
-        public static Cnpj Parse(string value)
+        public static Cnpj Parse(
+            string value)
         {
-            return Cnpj.Parse(value, CnpjPunctuation.Loose);
+            return Cnpj.Parse(
+                value,
+                CnpjPunctuation.Loose);
         }
 
         /// <summary>
@@ -72,7 +77,9 @@ namespace Maoli
         /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled.</param>
         /// <returns>the new instance of <see cref="Cnpj"/>.</returns>
-        public static Cnpj Parse(string value, CnpjPunctuation punctuation)
+        public static Cnpj Parse(
+            string value,
+            CnpjPunctuation punctuation)
         {
             return new Cnpj(value, punctuation);
         }
@@ -83,9 +90,14 @@ namespace Maoli
         /// <param name="value">a CNPJ string.</param>
         /// <param name="cnpj">the new instance of <see cref="Cnpj"/>.</param>
         /// <returns>true if CNPJ string is valid; false, otherwise.</returns>
-        public static bool TryParse(string value, out Cnpj? cnpj)
+        public static bool TryParse(
+            string value,
+            out Cnpj? cnpj)
         {
-            return Cnpj.TryParse(value, out cnpj, CnpjPunctuation.Loose);
+            return Cnpj.TryParse(
+                value,
+                out cnpj,
+                CnpjPunctuation.Loose);
         }
 
         /// <summary>
@@ -124,9 +136,23 @@ namespace Maoli
         /// </summary>
         /// <param name="value">a CNPJ string to be checked.</param>
         /// <returns>true if CNPJ string is valid; false otherwise.</returns>
-        public static bool Validate(string value)
+        public static bool Validate(
+            string value)
         {
-            return CnpjHelper.Validate(value, CnpjPunctuation.Loose);
+            if (value == null)
+            {
+                return false;
+            }
+
+            return CnpjHelper
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+                .Validate(
+                    value.AsSpan(),
+#else
+                .Validate(
+                    value,
+#endif
+                    CnpjPunctuation.Loose);
         }
 
         /// <summary>
@@ -136,9 +162,25 @@ namespace Maoli
         /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled.</param>
         /// <returns>true if CNPJ string is valid; otherwise, false.</returns>
-        public static bool Validate(string value, CnpjPunctuation punctuation)
+        public static bool Validate(
+            string value,
+            CnpjPunctuation punctuation)
         {
-            return CnpjHelper.Validate(value, punctuation);
+            if (value == null)
+            {
+                return false;
+            }
+
+            return
+                CnpjHelper
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+                    .Validate(
+                        value.AsSpan(),
+#else
+                    .Validate(
+                        value,
+#endif
+                        punctuation);
         }
 
         /// <summary>
@@ -146,7 +188,8 @@ namespace Maoli
         /// </summary>
         /// <param name="value">a partial CNPJ string with or without punctuation.</param>
         /// <returns>a CNPJ string with a valid checksum trailing.</returns>
-        public static string Complete(string value)
+        public static string Complete(
+            string value)
         {
             return CnpjHelper.Complete(value);
         }
@@ -158,7 +201,8 @@ namespace Maoli
         /// <param name="obj">The CNPJ to compare to this instance.</param>
         /// <returns>if the value of the value parameter is
         /// the same as this instance; otherwise, false.</returns>
-        public override bool Equals(object? obj)
+        public override bool Equals(
+            object? obj)
         {
             return this.Equals(obj as Cnpj);
         }
@@ -172,7 +216,8 @@ namespace Maoli
         /// </param>
         /// <returns>if the value of the value parameter is
         /// the same as this instance; otherwise, false.</returns>
-        public bool Equals(Cnpj? other)
+        public bool Equals(
+            Cnpj? other)
         {
             if (other == null)
             {

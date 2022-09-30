@@ -17,7 +17,8 @@ namespace Maoli
         /// <param name="value">a partial CPF strin
         /// with or without punctuation.</param>
         /// <returns>a CPF string with a valid checksum trailing.</returns>
-        internal static string Complete(string value)
+        internal static string Complete(
+            string value)
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
@@ -102,26 +103,26 @@ namespace Maoli
         /// <summary>
         /// Checks if a string value is a valid CPF representation.
         /// </summary>
-        /// <param name="value">a CPF string to be checked.</param>
-        /// <param name="punctuation">the punctuation setting to
-        /// how validation must be handled.</param>
-        /// <returns>true if CPF string is valid; false otherwise.</returns>
-        internal static bool Validate(string value, CpfPunctuation punctuation)
+        /// <param name="valueSpan">
+        /// A CPF string to be checked.
+        /// </param>
+        /// <param name="punctuation">
+        /// The punctuation setting to
+        /// how validation must be handled.
+        /// </param>
+        /// <returns>
+        /// true if CPF string is valid;
+        /// Otherwise, false.
+        /// </returns>
+        internal static bool Validate(
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+            ReadOnlySpan<char> valueSpan,
+#else
+            string valueSpan,
+#endif
+            CpfPunctuation punctuation)
         {
             var isValid = false;
-
-            if (value == null)
-            {
-                return isValid;
-            }
-
-#if NETSTANDARD2_1 || NET5_0_OR_GREATER
-            ReadOnlySpan<char> valueSpan =
-                value.AsSpan();
-#else
-            var valueSpan =
-                value;
-#endif
 
             if (punctuation == CpfPunctuation.Strict)
             {
@@ -133,7 +134,9 @@ namespace Maoli
             }
             else
             {
-                isValid = valueSpan.Length == 11 || valueSpan.Length == 14;
+                isValid =
+                    valueSpan.Length == 11 ||
+                    valueSpan.Length == 14;
             }
 
             var index1 = 0;

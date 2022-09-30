@@ -24,7 +24,9 @@ namespace Maoli
         /// <param name="value">a valid CEP string.</param>
         /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled.</param>
-        public Cep(string value, CepPunctuation punctuation)
+        public Cep(
+            string value,
+            CepPunctuation punctuation)
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
@@ -53,7 +55,8 @@ namespace Maoli
         /// </summary>
         /// <param name="value">a CEP string to be checked.</param>
         /// <returns>true if CEP string is valid; false otherwise.</returns>
-        public static bool Validate(string value)
+        public static bool Validate(
+            string value)
         {
             return CepHelper.Validate(value, CepPunctuation.Loose);
         }
@@ -65,7 +68,9 @@ namespace Maoli
         /// <param name="punctuation">the punctuation setting to
         /// how validation must be handled.</param>
         /// <returns>true if CEP string is valid; otherwise, false.</returns>
-        public static bool Validate(string value, CepPunctuation punctuation)
+        public static bool Validate(
+            string value,
+            CepPunctuation punctuation)
         {
             return CepHelper.Validate(value, punctuation);
         }
