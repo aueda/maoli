@@ -63,7 +63,14 @@ steps:
   displayName: 'dotnet test (coverage)'
   inputs:
     command: test
-    arguments: '--framework net6.0 --no-build --no-restore --configuration $(BuildConfiguration) --collect:"XPlat Code Coverage"' 
+    arguments: '--framework net6.0 --no-build --no-restore --configuration $(BuildConfiguration) --collect:"XPlat Code Coverage"'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet tool restore'
+  inputs:
+    command: 'custom'
+    custom: 'tool'
+    arguments: 'restore'
 
 - script: 'reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/coverlet/reports -reporttypes:"Cobertura;HtmlInline_AzurePipelines"'  
   displayName: 'Create reports'
