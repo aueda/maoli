@@ -65,9 +65,6 @@ steps:
     command: test
     arguments: '--framework net6.0 --no-build --no-restore --configuration $(BuildConfiguration) --collect:"XPlat Code Coverage"' 
 
-- script: 'dotnet tool install --global dotnet-reportgenerator-globaltool --version 4.8.13'  
-  displayName: 'Install ReportGenerator tool'  
-
 - script: 'reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/coverlet/reports -reporttypes:"Cobertura;HtmlInline_AzurePipelines"'  
   displayName: 'Create reports'
   workingDirectory: Maoli.Tests
