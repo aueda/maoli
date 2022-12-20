@@ -72,7 +72,7 @@ steps:
     custom: 'tool'
     arguments: 'restore'
 
-- script: 'reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/coverlet/reports -reporttypes:"Cobertura;HtmlInline_AzurePipelines"'  
+- script: 'dotnet reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/coverlet/reports -reporttypes:"Cobertura;HtmlInline_AzurePipelines"'  
   displayName: 'Create reports'
   workingDirectory: Maoli.Tests
 
