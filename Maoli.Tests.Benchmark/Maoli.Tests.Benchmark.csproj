@@ -2,10 +2,14 @@
 
   <PropertyGroup>
     <TargetFrameworks>net7.0;net6.0;net5.0;netcoreapp3.1;net48</TargetFrameworks>
+    <Authors>Adriano Ueda</Authors>
+    <Company />
+    <Copyright>Copyright (c) 2023 Adriano Ueda</Copyright>
     <OutputType>Exe</OutputType>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
