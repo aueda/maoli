@@ -31,7 +31,11 @@
     <InternalsVisibleTo Include="Maoli.Tests" />
   </ItemGroup>
 
-  <ItemGroup>
+  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+	<ItemGroup>
     <None Remove="stylecop.json" />
     <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
