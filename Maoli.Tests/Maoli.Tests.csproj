@@ -2,7 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net7.0;net6.0;net5.0;netcoreapp3.1;net48;net472;net462</TargetFrameworks>
-		<Copyright>Copyright (c) 2022 Adriano Ueda</Copyright>
+		<Copyright>Copyright (c) 2023 Adriano Ueda</Copyright>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net461' Or '$(TargetFramework)'=='net462' Or '$(TargetFramework)'=='net472'">
