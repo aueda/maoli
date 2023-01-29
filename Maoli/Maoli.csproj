@@ -28,14 +28,14 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net7.0' Or '$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net5.0'">
-    <InternalsVisibleTo Include="Maoli.Tests" />
+    <InternalsVisibleTo Include="Maoli.Tests, PublicKey=002400000480000094000000060200000024000052534131000400000100010031cd860450a415b1dcb1efb0a5ffdcbee0c36f1e0690aae738bfe9dcc00708c3694b9ffec6d91f293377b12c480bfbecaa4bea18f8b120e016fa787cd4ca2a6d6b8da3dbee948cc820e1240148ba6460db644ea607f54e2b7b061652420664e52535e22d533a770fa4035fbb63de18d5321f29e1d2b68d1eaf90341257f7e9c6" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
-	<ItemGroup>
+  <ItemGroup>
     <None Remove="stylecop.json" />
     <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
@@ -48,9 +48,11 @@
 
   <PropertyGroup>
     <PackageIcon>icon.png</PackageIcon>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\maoli.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="icon.png" Pack="true" PackagePath=""/>
+    <None Include="icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">

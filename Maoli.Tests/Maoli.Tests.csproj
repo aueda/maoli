@@ -4,6 +4,8 @@
 		<TargetFrameworks>net7.0;net6.0;net5.0;netcoreapp3.1;net48;net472;net462</TargetFrameworks>
 		<Copyright>Copyright (c) 2023 Adriano Ueda</Copyright>
 		<IsPackable>false</IsPackable>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\maoli.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net461' Or '$(TargetFramework)'=='net462' Or '$(TargetFramework)'=='net472'">
@@ -22,10 +24,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="xunit" Version="2.4.2" />
 		<PackageReference Include="xunit.analyzers" Version="1.1.0" />
 		<PackageReference Include="xunit.runner.utility" Version="2.4.2" />
