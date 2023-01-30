@@ -10,6 +10,8 @@
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <IsPackable>false</IsPackable>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\maoli.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
