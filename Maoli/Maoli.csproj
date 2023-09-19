@@ -1,71 +1,68 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net8.0;net7.0;net6.0;net5.0;netstandard2.1;netstandard2.0;netstandard1.1;net472;net461;net46</TargetFrameworks>
-    <Authors>Adriano Ueda</Authors>
-    <Company />
-    <Copyright>Copyright © 2023 Adriano Ueda</Copyright>
-    <Description>Maoli is a C# helper library for common Brazilian business rules (CPF, CNPJ and CEP). For documentation visit https://github.com/aueda/maoli</Description>
-    <Version>4.0.0-alpha2</Version>
-    <PackageProjectUrl>https://github.com/aueda/maoli</PackageProjectUrl>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageTags>aspnet aspnetcore xamarin cnpj cpf cep</PackageTags>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>net8.0;net7.0;net6.0;net5.0;netstandard2.1;netstandard2.0;netstandard1.1;net48;net472;net461;net46</TargetFrameworks>
+        <Authors>Adriano Ueda</Authors>
+        <Company />
+        <Copyright>Copyright © 2023 Adriano Ueda</Copyright>
+        <Description>Maoli is a C# helper library for common Brazilian business rules (CPF, CNPJ and CEP). For documentation visit https://github.com/aueda/maoli</Description>
+        <Version>4.0.0-alpha3</Version>
+        <PackageProjectUrl>https://github.com/aueda/maoli</PackageProjectUrl>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PackageTags>aspnet aspnetcore xamarin cnpj cpf cep</PackageTags>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Maoli.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Maoli.xml</DocumentationFile>
-  </PropertyGroup>
+    <ItemGroup Condition="'$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net7.0' Or '$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net5.0'">
+        <InternalsVisibleTo Include="Maoli.Tests, PublicKey=002400000480000094000000060200000024000052534131000400000100010031cd860450a415b1dcb1efb0a5ffdcbee0c36f1e0690aae738bfe9dcc00708c3694b9ffec6d91f293377b12c480bfbecaa4bea18f8b120e016fa787cd4ca2a6d6b8da3dbee948cc820e1240148ba6460db644ea607f54e2b7b061652420664e52535e22d533a770fa4035fbb63de18d5321f29e1d2b68d1eaf90341257f7e9c6" />
+    </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net7.0' Or '$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net5.0'">
-    <InternalsVisibleTo Include="Maoli.Tests, PublicKey=002400000480000094000000060200000024000052534131000400000100010031cd860450a415b1dcb1efb0a5ffdcbee0c36f1e0690aae738bfe9dcc00708c3694b9ffec6d91f293377b12c480bfbecaa4bea18f8b120e016fa787cd4ca2a6d6b8da3dbee948cc820e1240148ba6460db644ea607f54e2b7b061652420664e52535e22d533a770fa4035fbb63de18d5321f29e1d2b68d1eaf90341257f7e9c6" />
-  </ItemGroup>
+    <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-  </PropertyGroup>
+    <ItemGroup>
+        <None Remove="stylecop.json" />
+        <None Include="..\LICENSE.txt">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="stylecop.json" />
-    <None Include="..\LICENSE.txt">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="stylecop.json" />
-  </ItemGroup>
+    <PropertyGroup>
+        <PackageIcon>icon.png</PackageIcon>
+        <SignAssembly>True</SignAssembly>
+        <AssemblyOriginatorKeyFile>..\maoli.snk</AssemblyOriginatorKeyFile>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <PackageIcon>icon.png</PackageIcon>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\maoli.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Include="icon.png" Pack="true" PackagePath="" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+    <ItemGroup>
+        <None Include="icon.png" Pack="true" PackagePath="" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 </Project>

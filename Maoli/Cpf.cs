@@ -142,7 +142,7 @@ namespace Maoli
         public static bool Validate(
             string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 return false;
             }
@@ -176,7 +176,7 @@ namespace Maoli
             string value,
             CpfPunctuation punctuation)
         {
-            if (value == null)
+            if (value is null)
             {
                 return false;
             }
@@ -230,7 +230,7 @@ namespace Maoli
         public bool Equals(
             Cpf? other)
         {
-            if (other == null)
+            if (other is null)
             {
                 return false;
             }
