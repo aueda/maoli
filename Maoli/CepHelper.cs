@@ -43,7 +43,11 @@ namespace Maoli
                 return false;
             }
 
-            if (!Regex.IsMatch(value, CepHelper.RegexValidations[punctuation]))
+            if (!Regex.IsMatch(
+                value,
+                CepHelper.RegexValidations[punctuation],
+                RegexOptions.None,
+                TimeSpan.FromSeconds(1)))
             {
                 return false;
             }
