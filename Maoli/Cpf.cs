@@ -36,12 +36,16 @@ namespace Maoli
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException("O CPF não pode ser nulo ou branco");
+                throw new ArgumentException(
+                    "O CPF não pode ser nulo ou branco",
+                    nameof(value));
             }
 
             if (!CpfHelper.Validate(value, punctuation))
             {
-                throw new ArgumentException("O CPF não é válido");
+                throw new ArgumentException(
+                    "O CPF não é válido",
+                    nameof(value));
             }
 
             this.parsedValue =
@@ -235,7 +239,10 @@ namespace Maoli
                 return false;
             }
 
-            return this.parsedValue == other.parsedValue;
+            return string.Equals(
+                this.parsedValue,
+                other.parsedValue,
+                StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -249,12 +256,8 @@ namespace Maoli
             unchecked
             {
                 hash = (hash * 31) +
-#if NETSTANDARD2_1 || NET5_0_OR_GREATER
-                    this.parsedValue.GetHashCode(
-                        StringComparison.InvariantCultureIgnoreCase);
-#else
-                    this.parsedValue.GetHashCode();
-#endif
+                    StringComparer.OrdinalIgnoreCase.GetHashCode(
+                        this.parsedValue);
             }
 
             return hash;

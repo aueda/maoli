@@ -36,12 +36,16 @@ namespace Maoli
         {
             if (StringHelper.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException("O CNPJ não pode ser nulo ou branco");
+                throw new ArgumentException(
+                    "O CNPJ não pode ser nulo ou branco",
+                    nameof(value));
             }
 
             if (!CnpjHelper.Validate(value, punctuation))
             {
-                throw new ArgumentException("O CNPJ não é válido");
+                throw new ArgumentException(
+                    "O CNPJ não é válido",
+                    nameof(value));
             }
 
             this.parsedValue =
@@ -224,7 +228,10 @@ namespace Maoli
                 return false;
             }
 
-            return this.parsedValue == other.parsedValue;
+            return string.Equals(
+                this.parsedValue,
+                other.parsedValue,
+                StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -238,12 +245,8 @@ namespace Maoli
             unchecked
             {
                 hash = (hash * 31) +
-#if NETSTANDARD2_1 || NET5_0_OR_GREATER
-                    this.parsedValue.GetHashCode(
-                        StringComparison.InvariantCultureIgnoreCase);
-#else
-                    this.parsedValue.GetHashCode();
-#endif
+                    StringComparer.OrdinalIgnoreCase.GetHashCode(
+                        this.parsedValue);
             }
 
             return hash;
