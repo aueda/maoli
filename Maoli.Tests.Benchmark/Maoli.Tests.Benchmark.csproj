@@ -6,7 +6,6 @@
     <Company />
     <Copyright>Copyright (c) 2023 Adriano Ueda</Copyright>
     <OutputType>Exe</OutputType>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <IsPackable>false</IsPackable>
@@ -15,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.8" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.10" />
   </ItemGroup>
 
   <ItemGroup>
