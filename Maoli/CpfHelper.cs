@@ -94,7 +94,9 @@ namespace Maoli
             }
             else
             {
-                throw new ArgumentException("O CPF é inválido");
+                throw new ArgumentException(
+                    "O CPF é inválido",
+                    nameof(value));
             }
 
             return new string(result);
@@ -122,22 +124,14 @@ namespace Maoli
 #endif
             CpfPunctuation punctuation)
         {
-            var isValid = false;
-
-            if (punctuation == CpfPunctuation.Strict)
-            {
-                isValid =
-                    valueSpan.Length == 14 &&
-                    valueSpan[3] == '.' &&
-                    valueSpan[7] == '.' &&
-                    valueSpan[11] == '-';
-            }
-            else
-            {
-                isValid =
-                    valueSpan.Length == 11 ||
-                    valueSpan.Length == 14;
-            }
+            var isValid =
+                punctuation == CpfPunctuation.Strict
+                    ? valueSpan.Length == 14 &&
+                        valueSpan[3] == '.' &&
+                        valueSpan[7] == '.' &&
+                        valueSpan[11] == '-'
+                    : valueSpan.Length == 11 ||
+                      valueSpan.Length == 14;
 
             var index1 = 0;
             var index2 = 0;
