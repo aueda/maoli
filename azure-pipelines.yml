@@ -41,6 +41,13 @@ steps:
     packageType: 'sdk'
     version: '8.x'
 
+- task: UseDotNet@2
+  displayName: 'Use .NET 9 (RC)'
+  inputs:
+    packageType: 'sdk'
+    version: '9.x'
+    includePreviewVersions: true
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
