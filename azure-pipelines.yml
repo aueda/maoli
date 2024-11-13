@@ -41,6 +41,12 @@ steps:
     packageType: 'sdk'
     version: '8.x'
 
+- task: UseDotNet@2
+  displayName: 'Use .NET 9'
+  inputs:
+    packageType: 'sdk'
+    version: '9.x'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
@@ -75,7 +81,7 @@ steps:
   displayName: 'dotnet test (coverage)'
   inputs:
     command: test
-    arguments: '--framework net7.0 --no-build --no-restore --configuration $(BuildConfiguration) --collect:"XPlat Code Coverage"'
+    arguments: '--framework net9.0 --no-build --no-restore --configuration $(BuildConfiguration) --collect:"XPlat Code Coverage"'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet tool restore'
