@@ -22,6 +22,7 @@
     <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
     <PackageReference Include="System.Private.Uri" Version="4.3.2" />
 	  <PackageReference Include="System.Collections.Immutable" Version="9.0.0" />
+	  <PackageReference Include="System.Reflection.Metadata" Version="9.0.0" />
   </ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net462' Or '$(TargetFramework)'=='net472'">
