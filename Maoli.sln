@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.txt = LICENSE.txt
 		maoli.snk = maoli.snk
 		README.md = README.md
+		testEnvironments.json = testEnvironments.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maoli.Tests", "Maoli.Tests\Maoli.Tests.csproj", "{BC6507EC-1E91-4C8E-96A4-CD02C1315878}"

@@ -1,21 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net7.0;net6.0;net5.0;netcoreapp3.1;net48</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0;net48</TargetFrameworks>
     <Authors>Adriano Ueda</Authors>
     <Company />
-    <Copyright>Copyright (c) 2023 Adriano Ueda</Copyright>
+    <Copyright>Copyright (c) 2024 Adriano Ueda</Copyright>
     <OutputType>Exe</OutputType>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <IsPackable>false</IsPackable>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\maoli.snk</AssemblyOriginatorKeyFile>
+	  <PlatformTarget>AnyCPU</PlatformTarget>
+	  <SignAssembly>True</SignAssembly>
+	  <AssemblyOriginatorKeyFile>..\maoli.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
+	<PropertyGroup Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net472' Or '$(TargetFramework)'=='net462'">
+		<EnableNETAnalyzers>false</EnableNETAnalyzers>
+	</PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.10" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+    <PackageReference Include="System.Private.Uri" Version="4.3.2" />
+	  <PackageReference Include="System.Collections.Immutable" Version="9.0.0" />
+	  <PackageReference Include="System.Reflection.Metadata" Version="9.0.0" />
   </ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net462' Or '$(TargetFramework)'=='net472'">
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Maoli\Maoli.csproj" />
