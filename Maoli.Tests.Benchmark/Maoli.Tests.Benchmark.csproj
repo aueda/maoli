@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net9.0;net8.0;net48</TargetFrameworks>
+        <TargetFrameworks>net10.0;net9.0;net8.0;net48</TargetFrameworks>
         <OutputType>Exe</OutputType>
         <Nullable>disable</Nullable>
         <IsPackable>false</IsPackable>
@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+        <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
         <PackageReference Include="IDisposableAnalyzers" Version="4.0.8">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -25,8 +25,8 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
         <PackageReference Include="System.Private.Uri" Version="4.3.2" />
-        <PackageReference Include="System.Collections.Immutable" Version="9.0.4" />
-        <PackageReference Include="System.Reflection.Metadata" Version="9.0.4" />
+        <PackageReference Include="System.Collections.Immutable" Version="10.0.2" />
+        <PackageReference Include="System.Reflection.Metadata" Version="10.0.2" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net462' Or '$(TargetFramework)'=='net472'">
@@ -36,8 +36,8 @@
         </PackageReference>
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)'=='net9.0' Or '$(TargetFramework)'=='net8.0'">
-        <PackageReference Include="Meziantou.Analyzer" Version="2.0.184">
+    <ItemGroup Condition="'$(TargetFramework)'=='net10.0' Or '$(TargetFramework)'=='net9.0' Or '$(TargetFramework)'=='net8.0'">
+        <PackageReference Include="Meziantou.Analyzer" Version="2.0.286">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

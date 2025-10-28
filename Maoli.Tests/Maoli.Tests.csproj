@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net9.0;net8.0;net48;net472;net462</TargetFrameworks>
+        <TargetFrameworks>net10.0;net9.0;net8.0;net48;net472;net462</TargetFrameworks>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
         <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
     </ItemGroup>
 
@@ -37,8 +37,8 @@
         </PackageReference>
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)'=='net9.0' Or '$(TargetFramework)'=='net8.0'">
-        <PackageReference Include="Meziantou.Analyzer" Version="2.0.197">
+    <ItemGroup Condition="'$(TargetFramework)'=='net10.0' Or '$(TargetFramework)'=='net9.0' Or '$(TargetFramework)'=='net8.0'">
+        <PackageReference Include="Meziantou.Analyzer" Version="2.0.286">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
