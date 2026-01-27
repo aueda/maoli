@@ -3,7 +3,6 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a4cff971e9c4380826bb3176a668a4d)](https://app.codacy.com/manual/aueda/maoli?utm_source=github.com&utm_medium=referral&utm_content=aueda/maoli&utm_campaign=Badge_Grade_Dashboard)
 [![Coverage Status](https://coveralls.io/repos/github/aueda/maoli/badge.svg)](https://coveralls.io/github/aueda/maoli)
 [![NuGet Version](https://img.shields.io/nuget/v/Maoli.svg)](https://www.nuget.org/packages/Maoli/)
-[![Maoli no fuget.org](https://www.fuget.org/packages/Maoli/badge.svg)](https://www.fuget.org/packages/Maoli)
 [![Join the chat at https://gitter.im/maoli-net/community](https://badges.gitter.im/maoli-net/community.svg)](https://gitter.im/maoli-net/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![BuitlWithDot.Net shield](https://builtwithdot.net/project/143/maoli/badge)](https://builtwithdot.net/project/143/maoli)
 

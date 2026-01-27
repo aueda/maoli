@@ -1,167 +1,185 @@
 ﻿// Copyright (c) Adriano Ueda. All rights reserved.
 
-namespace Maoli.Tests
+namespace Maoli.Tests;
+
+using System;
+using Maoli;
+using Xunit;
+
+/// <summary>
+/// Implements tests for <see cref="Cep"/>.
+/// </summary>
+public sealed class CepTest
 {
-    using System;
-    using Maoli;
-    using Xunit;
-
-    public sealed class CepTest
+    /// <summary>
+    /// Tests if <see cref="Cep"/> sets the
+    /// punctuation correctly.
+    /// </summary>
+    [Fact]
+    public void CepConstructorSetsPunctuation()
     {
-        [Fact]
-        public void ConstructorSetsPunctuation()
-        {
-            var cep = new Cep("01234-001", CepPunctuation.Strict);
+        var cep = new Cep("01234-001", CepPunctuation.Strict);
 
-            var expected = CepPunctuation.Strict;
+        var expected = CepPunctuation.Strict;
 
-            var actual = cep.Punctuation;
+        var actual = cep.Punctuation;
 
-            Assert.Equal(expected, actual);
-        }
+        Assert.Equal(expected, actual);
+    }
 
-        [Fact]
-        public void ConstructorCreatesCepIfPunctuationIsStrict()
-        {
-            var cep = new Cep("01234-001", CepPunctuation.Strict);
+    /// <summary>
+    /// Tests if <see cref="Cep"/> creates the
+    /// instance correctly.
+    /// </summary>
+    [Fact]
+    public void CepConstructorCreatesCepIfPunctuationIsStrict()
+    {
+        var cep = new Cep("01234-001", CepPunctuation.Strict);
 
-            Assert.NotNull(cep);
-        }
+        Assert.NotNull(cep);
+    }
 
-        [Fact]
-        public void ConstructorCreatesCepIfPunctuationIsLoose()
-        {
-            var cep = new Cep("01234-001");
+    /// <summary>
+    /// Tests if <see cref="Cep"/> creates the
+    /// instance correctly.
+    /// </summary>
+    [Fact]
+    public void CepConstructorCreatesCepIfPunctuationIsLoose()
+    {
+        var cep = new Cep("01234-001");
 
-            Assert.NotNull(cep);
-        }
+        Assert.NotNull(cep);
+    }
 
-        [Fact]
-        public void ConstructorThrowsExceptionIfCepIsNull()
-        {
-            Assert.Throws<ArgumentException>(
-                () =>
-                {
-                    _ = new Cep(null);
-                });
-        }
+    /// <summary>
+    /// Tests if <see cref="Cep"/> throws an exception if the
+    /// CEP is null.
+    /// </summary>
+    [Fact]
+    public void CepConstructorThrowsExceptionIfCepIsNull()
+    {
+        Assert.Throws<ArgumentException>(
+            () =>
+            {
+#nullable disable
+                _ = new Cep(value: null);
+#nullable restore
+            });
+    }
 
-        [Fact]
-        public void ConstructorThrowsExceptionIfCepIsEmpty()
-        {
-            Assert.Throws<ArgumentException>(
-                () =>
-                {
-                    _ = new Cep(string.Empty);
-                });
-        }
+    /// <summary>
+    /// Tests if <see cref="Cep"/> throws an exception if the
+    /// CEP is empty.
+    /// </summary>
+    [Fact]
+    public void CepConstructorThrowsExceptionIfCepIsEmpty()
+    {
+        Assert.Throws<ArgumentException>(
+            () =>
+            {
+                _ = new Cep(string.Empty);
+            });
+    }
 
-        [Fact]
-        public void ConstructorThrowsExceptionIfCepIsInvalidAndLoose()
-        {
-            Assert.Throws<ArgumentException>(
-                () =>
-                {
-                    _ = new Cep("012e501", CepPunctuation.Loose);
-                });
-        }
+    /// <summary>
+    /// Tests if <see cref="Cep"/> throws an exception if the
+    /// CEP is loose and invalid.
+    /// </summary>
+    [Fact]
+    public void CepConstructorThrowsExceptionIfCepIsInvalidAndLoose()
+    {
+        Assert.Throws<ArgumentException>(
+            () =>
+            {
+                _ = new Cep("012e501", CepPunctuation.Loose);
+            });
+    }
 
-        [Fact]
-        public void ConstructorThrowsExceptionIfCepIsInvalidAndStrict()
-        {
-            Assert.Throws<ArgumentException>(
-                () =>
-                {
-                    _ = new Cep("01234001", CepPunctuation.Strict);
-                });
-        }
+    /// <summary>
+    /// Tests if <see cref="Cep"/> throws an exception if the
+    /// CEP is strict and invalid.
+    /// </summary>
+    [Fact]
+    public void CepConstructorThrowsExceptionIfCepIsInvalidAndStrict()
+    {
+        Assert.Throws<ArgumentException>(
+            () =>
+            {
+                _ = new Cep("01234001", CepPunctuation.Strict);
+            });
+    }
 
-        [Fact]
-        public void ValidateReturnsFalseIfCepIsNull()
-        {
-            var actual = Cep.Validate(null);
+    /// <summary>
+    /// Tests if <see cref="Cep.Validate(string)"/>
+    /// validates a valid loose CEP correctly.
+    /// </summary>
+    [Fact]
+    public void CepValidateReturnsTrueIfCepIsLooseAndValid()
+    {
+        var actual = Cep.Validate("12345678");
 
-            Assert.False(actual);
-        }
+        Assert.True(actual);
+    }
 
-        [Fact]
-        public void StrictValidateReturnsFalseIfCepIsNull()
-        {
-            var actual = Cep.Validate(null, CepPunctuation.Strict);
+    /// <summary>
+    /// Tests if <see cref="Cep.Validate(string)"/>
+    /// validates an invalid loose CEP correctly.
+    /// </summary>
+    /// <param name="value">
+    /// The CEP value.
+    /// </param>
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("12345")]
+    [InlineData("1234567890")]
+    [InlineData("123-5678")]
+    [InlineData("013s3-9b1")]
+    public void CepValidateReturnsFalseIfCepIsLooseAndInvalid(
+        string? value)
+    {
+#nullable disable
+        var actual = Cep.Validate(value: value);
+#nullable restore
 
-            Assert.False(actual);
-        }
+        Assert.False(actual);
+    }
 
-        [Fact]
-        public void ValidateReturnsTrueIfCepIsEmpty()
-        {
-            var actual = Cep.Validate(string.Empty);
+    /// <summary>
+    /// Tests if <see cref="Cep.Validate(string)"/>
+    /// validates a valid strict CEP correctly.
+    /// </summary>
+    [Fact]
+    public void CepValidateReturnsTrueIfCepIsStrictAndValid()
+    {
+        var actual = Cep.Validate(
+            "12345-678",
+            CepPunctuation.Strict);
 
-            Assert.False(actual);
-        }
+        Assert.True(actual);
+    }
 
-        [Fact]
-        public void ValidateReturnsTrueIfCepIsLooseAndValid()
-        {
-            var actual = Cep.Validate("12345678");
+    /// <summary>
+    /// Tests if <see cref="Cep.Validate(string)"/>
+    /// validates an invalid strict CEP correctly.
+    /// </summary>
+    /// <param name="value">
+    /// The CEP value.
+    /// </param>
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("32341-3d3")]
+    [InlineData("12345678")]
+    public void CepValidateReturnsFalseIfCepIsStrictAndInvalid(
+        string? value)
+    {
+#nullable disable
+        var actual = Cep.Validate(
+            value: value,
+            CepPunctuation.Strict);
+#nullable restore
 
-            Assert.True(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCepIsLooseAndInvalidAndIncomplete()
-        {
-            var actual = Cep.Validate("12345");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCepIsLooseAndGreaterThanEightCaracters()
-        {
-            var actual = Cep.Validate("1234567890");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCepIsLooseAndInvalid()
-        {
-            var actual = Cep.Validate("123-5678");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsTrueIfCepIsStrictAndValid()
-        {
-            var actual = Cep.Validate("12345-678", CepPunctuation.Strict);
-
-            Assert.True(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCepIsStrictAndInvalid()
-        {
-            var actual = Cep.Validate("32341-3d3", CepPunctuation.Strict);
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCepContainsInvalidChars()
-        {
-            var actual = Cep.Validate("013s3-9b1");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCepIsValidButNotStrict()
-        {
-            var actual = Cep.Validate("12345678", CepPunctuation.Strict);
-
-            Assert.False(actual);
-        }
+        Assert.False(actual);
     }
 }
