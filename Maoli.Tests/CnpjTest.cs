@@ -1,532 +1,438 @@
 ﻿// Copyright (c) Adriano Ueda. All rights reserved.
 
-namespace Maoli.Tests
+namespace Maoli.Tests;
+
+using System;
+using System.Globalization;
+using System.Threading;
+using Maoli;
+using Xunit;
+
+/// <summary>
+/// Implements tests for <see cref="Cnpj"/>.
+/// </summary>
+public sealed class CnpjTest
 {
-    using System;
-    using System.Globalization;
-    using System.Threading;
-    using Maoli;
-    using Xunit;
+    private const string LooseValidCnpj = "63943315000192";
 
-    public sealed class CnpjTest
+    private const string LooseInvalidCnpj = "32343315/000134";
+
+    private const string StrictValidCnpj = "63.943.315/0001-92";
+
+    private const string StrictInvalidCnpj = "32.343.315/0001-34";
+
+    /// <summary>
+    /// Tests if <see cref="Cnpj.Parse(string, CnpjPunctuation)"/> sets the
+    /// punctuation correctly.
+    /// </summary>
+    /// <param name="cnpjPunctuation">
+    /// The CNPJ punctuation.
+    /// </param>
+    [Theory]
+    [InlineData(CnpjPunctuation.Strict)]
+    [InlineData(CnpjPunctuation.Loose)]
+    public void CnpjPunctuationReturnsThePunctuationCorrectly(
+        CnpjPunctuation cnpjPunctuation)
     {
-        private const string looseValidCnpj = "63943315000192";
+        var cnpj = Cnpj.Parse(CnpjTest.StrictValidCnpj, cnpjPunctuation);
+        var expected = cnpjPunctuation;
+        var actual = cnpj.Punctuation;
 
-        private const string looseInvalidCnpj = "32343315/000134";
+        Assert.Equal<CnpjPunctuation>(expected, actual);
+    }
 
-        private const string strictValidCnpj = "63.943.315/0001-92";
+    [Theory]
+    [InlineData(CnpjTest.LooseValidCnpj)]
+    [InlineData(CnpjTest.StrictValidCnpj)]
+    public void CnpjLooseParseReturnsACnpjObjectIfCnpjIsValid(
+        string cnpjAsString)
+    {
+        var cnpj = Cnpj.Parse(cnpjAsString);
 
-        private const string strictInvalidCnpj = "32.343.315/0001-34";
+        Assert.NotNull(cnpj);
+    }
 
-        [Fact]
-        public void PunctuationReturnsStrict()
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData(CnpjTest.LooseInvalidCnpj)]
+    public void CnpjLooseParseThrowsArgumentExceptionIfCnpjIsNotValid(
+        string? cnpjAsString)
+    {
+        Assert.Throws<ArgumentException>(() =>
         {
-            var cnpj = Cnpj.Parse(CnpjTest.strictValidCnpj, CnpjPunctuation.Strict);
-            var expected = CnpjPunctuation.Strict;
-            var actual = cnpj.Punctuation;
+#nullable disable
+            _ = Cnpj.Parse(cnpjAsString);
+#nullable restore
+        });
+    }
 
-            Assert.Equal<CnpjPunctuation>(expected, actual);
-        }
-
-        [Fact]
-        public void PunctuationReturnsLoose()
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData(CnpjTest.LooseValidCnpj)]
+    public void CnpjStrictParseThrowsArgumentExceptionACnpjObjectIfCnpjIsInvalidAndStrict(
+        string? cnpjAsString)
+    {
+        Assert.Throws<ArgumentException>(() =>
         {
-            var cnpj = Cnpj.Parse(CnpjTest.looseValidCnpj, CnpjPunctuation.Loose);
-            var expected = CnpjPunctuation.Loose;
-            var actual = cnpj.Punctuation;
+#nullable disable
+            _ = Cnpj.Parse(cnpjAsString, CnpjPunctuation.Strict);
+#nullable restore
+        });
+    }
 
-            Assert.Equal<CnpjPunctuation>(expected, actual);
-        }
+    [Theory]
+    [InlineData(CnpjTest.StrictValidCnpj)]
+    public void CnpjStrictParseReturnsACnpjObjectIfFormattedCnpjIsValidAndStrict(
+        string cnpjAsString)
+    {
+        var cnpj = Cnpj.Parse(cnpjAsString, CnpjPunctuation.Strict);
 
-        [Fact]
-        public void LooseParseReturnsACnpjObjectIfCnpjIsValid()
-        {
-            var cnpj = Cnpj.Parse(CnpjTest.looseValidCnpj);
+        Assert.NotNull(cnpj);
+    }
 
-            Assert.NotNull(cnpj);
-        }
+    [Fact]
+    public void CnpjValidateReturnsTrueIfCnpjIsValid()
+    {
+        var actual = Cnpj.Validate(CnpjTest.LooseValidCnpj);
 
-        [Fact]
-        public void LooseParseReturnsACnpjObjectIfFormattedCnpjIsValid()
-        {
-            var cnpj = Cnpj.Parse(CnpjTest.strictValidCnpj);
+        Assert.True(actual);
+    }
 
-            Assert.NotNull(cnpj);
-        }
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData(CnpjTest.LooseInvalidCnpj)]
+    [InlineData("6e9433l5000192")]
+    public void CnpjValidateReturnsFalseIfCnpjIsInvalid(
+        string? cnpjAsString)
+    {
+#nullable disable
+        var actual = Cnpj.Validate(cnpjAsString);
+#nullable restore
 
-        [Fact]
-        public void LooseParseThrowsArgumentExceptionIfCnpjIsNotValid()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _ = Cnpj.Parse(CnpjTest.looseInvalidCnpj);
-            });
-        }
+        Assert.False(actual);
+    }
 
-        [Fact]
-        public void LooseParseThrowsArgumentExceptionIfCnpjIsEmpty()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _ = Cnpj.Parse(string.Empty);
-            });
-        }
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("714o256s8")]
+    [InlineData("12345678901234567890")]
+    [InlineData("LooseValidCnpj")]
+    [InlineData(CnpjTest.StrictInvalidCnpj)]
+    public void CnpjStrictValidateReturnsFalseIfCnpjIsInvalidAndStrict(
+        string? cnpjAsString)
+    {
+#nullable disable
+        var actual = Cnpj.Validate(cnpjAsString, CnpjPunctuation.Strict);
+#nullable restore
 
-        [Fact]
-        public void LooseParseThrowsArgumentExceptionIfCnpjIsNull()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _ = Cnpj.Parse(null);
-            });
-        }
-
-        [Fact]
-        public void StrictParseThrowsArgumentExceptionACnpjObjectIfCnpjIsEmpty()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _ = Cnpj.Parse(string.Empty, CnpjPunctuation.Strict);
-            });
-        }
-
-        [Fact]
-        public void StrictParseThrowsArgumentExceptionACnpjObjectIfCnpjIsInvalid()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _ = Cnpj.Parse(CnpjTest.looseValidCnpj, CnpjPunctuation.Strict);
-            });
-        }
-
-        [Fact]
-        public void StrictParseThrowsArgumentExceptionACnpjObjectIfCnpjIsNull()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _ = Cnpj.Parse(null, CnpjPunctuation.Strict);
-            });
-        }
-
-        [Fact]
-        public void StrictParseReturnsACnpjObjectIfFormattedCnpjIsValid()
-        {
-            var cnpj = Cnpj.Parse(CnpjTest.strictValidCnpj, CnpjPunctuation.Strict);
-
-            Assert.NotNull(cnpj);
-        }
-
-        [Fact]
-        public void StrictParseThrowsArgumentExceptionIfCnpjIsFormatted()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _ = Cnpj.Parse(CnpjTest.looseValidCnpj, CnpjPunctuation.Strict);
-            });
-        }
-
-        [Fact]
-        public void ValidateReturnsTrueIfCnpjIsValid()
-        {
-            var actual = Cnpj.Validate(CnpjTest.looseValidCnpj);
-
-            Assert.True(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCnpjIsInvalid()
-        {
-            var actual = Cnpj.Validate(CnpjTest.looseInvalidCnpj);
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCnpjContainsInvalidChars()
-        {
-            var actual = Cnpj.Validate("6e9433l5000192");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCnpjIsNull()
-        {
-            var actual = Cnpj.Validate(null);
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void StrictValidateReturnsFalseIfCnpjIsNull()
-        {
-            var actual = Cnpj.Validate(null, CnpjPunctuation.Strict);
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCnpjIsEmpty()
-        {
-            var actual = Cnpj.Validate(string.Empty);
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCnpjContainsInvalidCharsAndItIsShorter()
-        {
-            var actual = Cnpj.Validate("714o256s8");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCnpjIsLooseAndGreaterThanFourteenCaracters()
-        {
-            var actual = Cnpj.Validate("12345678901234567890");
-
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCnpjIsValidButNotStrict()
-        {
-            var actual = Cnpj.Validate(looseValidCnpj, CnpjPunctuation.Strict);
-
-            Assert.False(actual);
-        }
+        Assert.False(actual);
+    }
 
 #if NET40 || NET45
-        [Fact]
-        public void ValidateReturnsTrueIfCnpjIsValidAndStrict()
+    [Fact]
+    public void ValidateReturnsTrueIfCnpjIsValidAndStrict()
 #else
-       
-        [InlineData("04.581.245/0001-00")]
-        [InlineData("73.693.087/0001-01")]
-        [InlineData("22.678.874/0001-35")]
-        [InlineData("63.943.315/0001-92")]
-        [Theory]
-        public void ValidateReturnsTrueIfCnpjIsValidAndStrict(string strictCnpjString)
+    [Theory]
+    [InlineData("04.581.245/0001-00")]
+    [InlineData("73.693.087/0001-01")]
+    [InlineData("22.678.874/0001-35")]
+    [InlineData("63.943.315/0001-92")]
+    public void CnpjValidateReturnsTrueIfCnpjIsValidAndStrict(
+        string strictCnpjString)
 #endif
-        {
+    {
 #if NET40 || NET45
-            var actual = Cnpj.Validate(CnpjTest.strictValidCnpj, CnpjPunctuation.Strict);
+        var actual = Cnpj.Validate(CnpjTest.strictValidCnpj, CnpjPunctuation.Strict);
 #else
-            var actual = Cnpj.Validate(strictCnpjString, CnpjPunctuation.Strict);
+        var actual = Cnpj.Validate(strictCnpjString, CnpjPunctuation.Strict);
 #endif
 
-            Assert.True(actual);
-        }
+        Assert.True(actual);
+    }
 
-        [Fact]
-        public void ValidateReturnsFalseIfCnpjIsInvalidAndStrict()
-        {
-            var actual = Cnpj.Validate(CnpjTest.strictInvalidCnpj, CnpjPunctuation.Strict);
+    [Fact]
+    public void CnpjValidateReturnsFalseIfCnpjIsHalfPunctuatedAndValidAndLoose()
+    {
+        var actual = Cnpj.Validate("63.9433150001-92", CnpjPunctuation.Loose);
 
-            Assert.False(actual);
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfCnpjIsHalfPunctuatedAndValidAndLoose()
-        {
-            var actual = Cnpj.Validate("63.9433150001-92", CnpjPunctuation.Loose);
-
-            Assert.False(actual);
-        }
+        Assert.False(actual);
+    }
 
 #if NET40 || NET45
 #pragma warning disable xUnit2006
-        [Fact]
-        public void CompleteReturnsAValidCnpj()
-        {
-            var actual = Cnpj.Complete("639433150001");
+    [Fact]
+    public void CompleteReturnsAValidCnpj()
+    {
+        var actual = Cnpj.Complete("639433150001");
 
-            Assert.Equal(CnpjTest.looseValidCnpj, actual);
-        }
+        Assert.Equal(CnpjTest.looseValidCnpj, actual);
+    }
 #pragma warning restore xUnit2006
 #else
-        [InlineData("045812450001", "04581245000100")]
-        [InlineData("736930870001", "73693087000101")]
-        [InlineData("639433150001", "63943315000192")]
-        [Theory]
-        public void CompleteReturnsAValidCnpj(
-            string cnpjString,
-            string expectedCnpjString)
-        {
-            var actual = Cnpj.Complete(cnpjString);
+    [Theory]
+    [InlineData("045812450001", "04581245000100")]
+    [InlineData("736930870001", "73693087000101")]
+    [InlineData("639433150001", "63943315000192")]
+    public void CnpjCompleteReturnsAValidCnpj(
+        string cnpjString,
+        string expectedCnpjString)
+    {
+        var actual = Cnpj.Complete(cnpjString);
 
-            Assert.Equal(expectedCnpjString, actual);
-        }
+        Assert.Equal(expectedCnpjString, actual);
+    }
 #endif
 
 #if NET40 || NET45
 #pragma warning disable xUnit2006
-        [Fact]
-        public void CompleteReturnsAValidCnpjIfHasPunctuaction()
-        {
-            var actual = Cnpj.Complete("63.943.315/0001");
+    [Fact]
+    public void CompleteReturnsAValidCnpjIfHasPunctuaction()
+    {
+        var actual = Cnpj.Complete("63.943.315/0001");
 
-            Assert.Equal(CnpjTest.looseValidCnpj, actual);
-        }
+        Assert.Equal(CnpjTest.looseValidCnpj, actual);
+    }
 #pragma warning restore xUnit2006
 #else
-        [InlineData("04.581.245/0001", "04581245000100")]
-        [InlineData("63.943.315/0001", "63943315000192")]
-        [Theory]
-        public void CompleteReturnsAValidCnpjIfHasPunctuaction(
-            string cnpjString,
-            string expectedCnpj)
-        { 
-            var actual = Cnpj.Complete(cnpjString);
+    [InlineData("04.581.245/0001", "04581245000100")]
+    [InlineData("63.943.315/0001", "63943315000192")]
+    [Theory]
+    public void CnpjCompleteReturnsAValidCnpjIfHasPunctuaction(
+        string cnpjString,
+        string expectedCnpj)
+    {
+        var actual = Cnpj.Complete(cnpjString);
 
-            Assert.Equal(expectedCnpj, actual);
-        }
+        Assert.Equal(expectedCnpj, actual);
+    }
 #endif
 
-        [Fact]
-        public void CompleteThrowsArgumentExceptionIfCnpjTextIsSmaller()
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("714o256s8")]
+    [InlineData("6e9433l5o001")]
+    public void CnpjCompleteThrowsArgumentExceptionIfCnpjIsInvalid(
+        string? partialCnpjAsString)
+    {
+        Assert.Throws<ArgumentException>(() =>
         {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _ = Cnpj.Complete("714o256s8");
-            });
-        }
-        
-        [Fact]
-        public void CompleteThrowsArgumentExceptionIfCnpjTextIsWrong()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _ = Cnpj.Complete("6e9433l5o001");
-            });
-        }
+#nullable disable
+            _ = Cnpj.Complete(partialCnpjAsString);
+#nullable restore
+        });
+    }
 
-        [Fact]
-        public void CompleteThrowsArgumentExceptionIfCnpjTextIsNull()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _ = Cnpj.Complete(null);
-            });
-        }
+    // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
+    [Fact]
+    public void CnpjEqualsReturnsTrueIfSameCnpjIsEqual()
+    {
+        var cnpj = Cnpj.Parse(LooseValidCnpj);
 
-        [Fact]
-        public void CompleteThrowsArgumentExceptionIfCnpjTextIsEmpty()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _ = Cnpj.Complete(null);
-            });
-        }
+        var actual = cnpj.Equals(cnpj);
 
-        // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
-        [Fact]
-        public void EqualsReturnsTrueIfSameCnpjIsEqual()
-        {
-            var cnpj = Cnpj.Parse(looseValidCnpj);
+        Assert.True(actual);
+    }
 
-            var actual = cnpj.Equals(cnpj);
+    // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
+    [Fact]
+    public void CnpjEqualsReturnsTrueIfTwoCnpjsAreReciprocal()
+    {
+        var cnpj1 = Cnpj.Parse(LooseValidCnpj);
+        var cnpj2 = Cnpj.Parse(LooseValidCnpj);
 
-            Assert.True(actual);
-        }
+        var actual = cnpj1.Equals(cnpj2) && cnpj2.Equals(cnpj1);
 
-        // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
-        [Fact]
-        public void EqualsReturnsTrueIfTwoCnpjsAreReciprocal()
-        {
-            var Cnpj1 = Cnpj.Parse(looseValidCnpj);
-            var Cnpj2 = Cnpj.Parse(looseValidCnpj);
+        Assert.True(actual);
+    }
 
-            var actual = Cnpj1.Equals(Cnpj2) && Cnpj2.Equals(Cnpj1);
+    // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
+    [Fact]
+    public void CnpjEqualsReturnsTrueIfThreeCnpjsAreReciprocal()
+    {
+        var cnpj1 = Cnpj.Parse(LooseValidCnpj);
+        var cnpj2 = Cnpj.Parse(LooseValidCnpj);
+        var cnpj3 = Cnpj.Parse(LooseValidCnpj);
 
-            Assert.True(actual);
-        }
+        var actual = cnpj1.Equals(cnpj2) && cnpj2.Equals(cnpj3) && cnpj1.Equals(cnpj3);
 
-        // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
-        [Fact]
-        public void EqualsReturnsTrueIfThreeCnpjsAreReciprocal()
-        {
-            var Cnpj1 = Cnpj.Parse(looseValidCnpj);
-            var Cnpj2 = Cnpj.Parse(looseValidCnpj);
-            var Cnpj3 = Cnpj.Parse(looseValidCnpj);
+        Assert.True(actual);
+    }
 
-            var actual = Cnpj1.Equals(Cnpj2) && Cnpj2.Equals(Cnpj3) && Cnpj1.Equals(Cnpj3);
+    // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
+    [Fact]
+    public void CnpjEqualsReturnsFalseIfCnpjIsNull()
+    {
+        var cnpj = Cnpj.Parse(LooseValidCnpj);
 
-            Assert.True(actual);
-        }
+        var actual = cnpj.Equals(null);
 
-        // see http://msdn.microsoft.com/en-us/library/ms173147(v=vs.80).aspx
-        [Fact]
-        public void EqualsReturnsFalseIfCnpjIsNull()
-        {
-            var cnpj = Cnpj.Parse(looseValidCnpj);
+        Assert.False(actual);
+    }
 
-            var actual = cnpj.Equals(null);
+    [Fact]
+    public void CnpjEqualsReturnsTrueIfCnpjAreEqual()
+    {
+        var cnpj1 = Cnpj.Parse(LooseValidCnpj);
+        var cnpj2 = Cnpj.Parse(LooseValidCnpj);
 
-            Assert.False(actual);
-        }
+        var actual = cnpj1.Equals(cnpj2);
 
-        [Fact]
-        public void EqualsReturnsTrueIfCnpjAreEqual()
-        {
-            var cnpj1 = Cnpj.Parse(looseValidCnpj);
-            var cnpj2 = Cnpj.Parse(looseValidCnpj);
+        Assert.True(actual);
+    }
 
-            var actual = cnpj1.Equals(cnpj2);
+    [Fact]
+    public void CnpjEqualsReturnsTrueIfCnpjAreEqualButWithDiffPunctuation()
+    {
+        var cnpj1 = Cnpj.Parse(LooseValidCnpj);
+        var cnpj2 = Cnpj.Parse(StrictValidCnpj, CnpjPunctuation.Strict);
 
-            Assert.True(actual);
-        }
+        var actual = cnpj1.Equals(cnpj2);
 
-        [Fact]
-        public void EqualsReturnsTrueIfCnpjAreEqualButWithDiffPunctuation()
-        {
-            var cnpj1 = Cnpj.Parse(looseValidCnpj);
-            var cnpj2 = Cnpj.Parse(strictValidCnpj, CnpjPunctuation.Strict);
+        Assert.True(actual);
+    }
 
-            var actual = cnpj1.Equals(cnpj2);
+    [Fact]
+    public void CnpjEqualsReturnsFalseIfCnpjAreNotEqual()
+    {
+        var cnpj1 = Cnpj.Parse(LooseValidCnpj);
+        var cnpj2 = Cnpj.Parse("71418811000155");
 
-            Assert.True(actual);
-        }
+        var actual = cnpj1.Equals(cnpj2);
 
-        [Fact]
-        public void EqualsReturnsFalseIfCnpjAreNotEqual()
-        {
-            var cnpj1 = Cnpj.Parse(looseValidCnpj);
-            var cnpj2 = Cnpj.Parse("71418811000155");
+        Assert.False(actual);
+    }
 
-            var actual = cnpj1.Equals(cnpj2);
+    [Fact]
+    public void CnpjEqualsReturnsTrueIfCnpjAreEqualAndObject()
+    {
+        object cnpj1 = Cnpj.Parse(LooseValidCnpj);
+        var cnpj2 = Cnpj.Parse(LooseValidCnpj);
 
-            Assert.False(actual);
-        }
-        
-        [Fact]
-        public void EqualsReturnsTrueIfCnpjAreEqualAndObject()
-        {
-            object cnpj1 = Cnpj.Parse(looseValidCnpj);
-            var cnpj2 = Cnpj.Parse(looseValidCnpj);
+        var actual = cnpj2.Equals(cnpj1);
 
-            var actual = cnpj2.Equals(cnpj1);
+        Assert.True(actual);
+    }
 
-            Assert.True(actual);
-        }
+    [Fact]
+    public void CnpjEqualsReturnsTrueIfCnpjAreNotEqualAndObject()
+    {
+        object cnpj1 = Cnpj.Parse(LooseValidCnpj);
+        var cnpj2 = Cnpj.Parse("71418811000155");
 
-        [Fact]
-        public void EqualsReturnsTrueIfCnpjAreNotEqualAndObject()
-        {
-            object cnpj1 = Cnpj.Parse(looseValidCnpj);
-            var cnpj2 = Cnpj.Parse("71418811000155");
+        var actual = cnpj2.Equals(cnpj1);
 
-            var actual = cnpj2.Equals(cnpj1);
+        Assert.False(actual);
+    }
 
-            Assert.False(actual);
-        }
+    [Fact]
+    public void CnpjGetHashCodeAreEqualIfTwoCnpjAreEqual()
+    {
+        var hash1 = Cnpj.Parse(LooseValidCnpj).GetHashCode();
+        var hash2 = Cnpj.Parse(LooseValidCnpj).GetHashCode();
 
-        [Fact]
-        public void GetHashCodeAreEqualIfTwoCnpjAreEqual()
-        {
-            var hash1 = Cnpj.Parse(looseValidCnpj).GetHashCode();
-            var hash2 = Cnpj.Parse(looseValidCnpj).GetHashCode();
+        Assert.Equal<int>(hash1, hash2);
+    }
 
-            Assert.Equal<int>(hash1, hash2);
-        }
+    [Fact]
+    public void CnpjGetHashCodeReturnsTrueIfCnpjAreEqualButWithDiffPunctuation()
+    {
+        var hash1 = Cnpj.Parse(LooseValidCnpj).GetHashCode();
+        var hash2 = Cnpj.Parse(StrictValidCnpj).GetHashCode();
 
-        [Fact]
-        public void GetHashCodeReturnsTrueIfCnpjAreEqualButWithDiffPunctuation()
-        {
-            var hash1 = Cnpj.Parse(looseValidCnpj).GetHashCode();
-            var hash2 = Cnpj.Parse(strictValidCnpj).GetHashCode();
+        Assert.Equal<int>(hash1, hash2);
+    }
 
-            Assert.Equal<int>(hash1, hash2);
-        }
+    [Fact]
+    public void CnpjGetHashCodeReturnsFalseIfTwoCnpjAreNotEqual()
+    {
+        var hash1 = Cnpj.Parse(LooseValidCnpj).GetHashCode();
+        var hash2 = Cnpj.Parse("71418811000155").GetHashCode();
 
-        [Fact]
-        public void GetHashCodeReturnsFalseIfTwoCnpjAreNotEqual()
-        {
-            var hash1 = Cnpj.Parse(looseValidCnpj).GetHashCode();
-            var hash2 = Cnpj.Parse("71418811000155").GetHashCode();
+        Assert.NotEqual<int>(hash1, hash2);
+    }
 
-            Assert.NotEqual<int>(hash1, hash2);
-        }
+    [Fact]
+    public void CnpjToStringReturnsStringWithNoPunctuationIfCnpjPunctuationIsStrict()
+    {
+        var cnpj = new Cnpj(StrictValidCnpj, CnpjPunctuation.Strict);
 
-        [Fact]
-        public void ToStringReturnsStringWithNoPunctuationIfCnpjPunctuationIsStrict()
-        {
-            var Cnpj = new Cnpj(strictValidCnpj, CnpjPunctuation.Strict);
-
-            var expected = looseValidCnpj;
-            var actual = Cnpj.ToString();
+        var expected = LooseValidCnpj;
+        var actual = cnpj.ToString();
 
 #if NET40 || NET45
 #pragma warning disable xUnit2006
 #endif
 
-            Assert.Equal(expected, actual);
+        Assert.Equal(expected, actual);
 
 #if NET40 || NET45
 #pragma warning restore xUnit2006
 #endif
-        }
+    }
 
-        [Fact]
-        public void ToStringReturnsStringWithNoPunctuationIfCnpjPunctuationIsLoose()
-        {
-            var Cnpj = new Cnpj(looseValidCnpj);
+    [Fact]
+    public void CnpjToStringReturnsStringWithNoPunctuationIfCnpjPunctuationIsLoose()
+    {
+        var cnpj = new Cnpj(LooseValidCnpj);
 
-            var expected = looseValidCnpj;
-            var actual = Cnpj.ToString();
+        var expected = LooseValidCnpj;
+        var actual = cnpj.ToString();
 
 #if NET40 || NET45
 #pragma warning disable xUnit2006
 #endif
 
-            Assert.Equal(expected, actual);
+        Assert.Equal(expected, actual);
 
 #if NET40 || NET45
 #pragma warning restore xUnit2006
 #endif
-        }
+    }
 
-        [Fact]
-        public void TryParseReturnsFalseIfCnpjIsInvalid()
-        {
-            var actual = Cnpj.TryParse(looseInvalidCnpj, out Cnpj cnpj);
+    [Fact]
+    public void CnpjTryParseReturnsFalseIfCnpjIsInvalid()
+    {
+        var actual = Cnpj.TryParse(LooseInvalidCnpj, out var cnpj);
 
-            Assert.False(actual);
-            Assert.Null(cnpj);
-        }
+        Assert.False(actual);
+        Assert.Null(cnpj);
+    }
 
-        [Fact]
-        public void TryParseReturnsTrueIfCnpjIsValid()
-        {
-            var actual = Cnpj.TryParse(looseValidCnpj, out Cnpj cnpj);
+    [Fact]
+    public void CnpjTryParseReturnsTrueIfCnpjIsValid()
+    {
+        var actual = Cnpj.TryParse(LooseValidCnpj, out var cnpj);
 
-            Assert.True(actual);
-            Assert.NotNull(cnpj);
-        }
+        Assert.True(actual);
+        Assert.NotNull(cnpj);
+    }
 
-        [Fact]
-        public void StrictTryParseReturnsFalseIfCnpjIsInvalid()
-        {
-            var actual = Cnpj.TryParse(
-                looseInvalidCnpj,
-                out Cnpj cnpj,
-                CnpjPunctuation.Strict);
+    [Fact]
+    public void CnpjStrictTryParseReturnsFalseIfCnpjIsInvalid()
+    {
+        var actual = Cnpj.TryParse(
+            LooseInvalidCnpj,
+            out var cnpj,
+            CnpjPunctuation.Strict);
 
-            Assert.False(actual);
-            Assert.Null(cnpj);
-        }
+        Assert.False(actual);
+        Assert.Null(cnpj);
+    }
 
-        [Fact]
-        public void StrictTryParseReturnsTrueIfCnpjIsValidAndHasPunctuation()
-        {
-            var actual = Cnpj.TryParse(
-                strictValidCnpj,
-                out Cnpj cnpj,
-                CnpjPunctuation.Strict);
+    [Fact]
+    public void CnpjStrictTryParseReturnsTrueIfCnpjIsValidAndHasPunctuation()
+    {
+        var actual = Cnpj.TryParse(
+            StrictValidCnpj,
+            out var cnpj,
+            CnpjPunctuation.Strict);
 
-            Assert.True(actual);
-            Assert.NotNull(cnpj);
-        }
+        Assert.True(actual);
+        Assert.NotNull(cnpj);
     }
 }

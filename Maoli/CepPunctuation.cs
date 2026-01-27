@@ -1,20 +1,19 @@
 ﻿// Copyright (c) Adriano Ueda. All rights reserved.
 
-namespace Maoli
+namespace Maoli;
+
+/// <summary>
+/// Indicates how punctuation must be validated.
+/// </summary>
+public enum CepPunctuation
 {
     /// <summary>
-    /// Indicates how punctuation must be validated.
+    /// A valid CEP has or not punctuation
     /// </summary>
-    public enum CepPunctuation
-    {
-        /// <summary>
-        /// A valid CEP has or not punctuation
-        /// </summary>
-        Loose = 0,
+    Loose = 0,
 
-        /// <summary>
-        /// A valid CEP must have punctuation
-        /// </summary>
-        Strict = 1,
-    }
+    /// <summary>
+    /// A valid CEP must have punctuation
+    /// </summary>
+    Strict = 1,
 }

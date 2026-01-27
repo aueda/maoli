@@ -1,39 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net9.0;net8.0;net48</TargetFrameworks>
-    <Authors>Adriano Ueda</Authors>
-    <Company />
-    <Copyright>Copyright (c) 2024 Adriano Ueda</Copyright>
-    <OutputType>Exe</OutputType>
-    <LangVersion>latest</LangVersion>
-    <Nullable>disable</Nullable>
-    <IsPackable>false</IsPackable>
-	  <PlatformTarget>AnyCPU</PlatformTarget>
-	  <SignAssembly>True</SignAssembly>
-	  <AssemblyOriginatorKeyFile>..\maoli.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>net9.0;net8.0;net48</TargetFrameworks>
+        <OutputType>Exe</OutputType>
+        <Nullable>disable</Nullable>
+        <IsPackable>false</IsPackable>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net472' Or '$(TargetFramework)'=='net462'">
-		<EnableNETAnalyzers>false</EnableNETAnalyzers>
-	</PropertyGroup>
+    <ItemGroup>
+      <None Include="..\maoli.snk" Link="maoli.snk">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
-    <PackageReference Include="System.Private.Uri" Version="4.3.2" />
-	  <PackageReference Include="System.Collections.Immutable" Version="9.0.0" />
-	  <PackageReference Include="System.Reflection.Metadata" Version="9.0.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+        <PackageReference Include="IDisposableAnalyzers" Version="4.0.8">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="System.Private.Uri" Version="4.3.2" />
+        <PackageReference Include="System.Collections.Immutable" Version="9.0.4" />
+        <PackageReference Include="System.Reflection.Metadata" Version="9.0.4" />
+    </ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net462' Or '$(TargetFramework)'=='net472'">
-		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net462' Or '$(TargetFramework)'=='net472'">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Maoli\Maoli.csproj" />
-  </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'=='net9.0' Or '$(TargetFramework)'=='net8.0'">
+        <PackageReference Include="Meziantou.Analyzer" Version="2.0.184">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Maoli\Maoli.csproj" />
+    </ItemGroup>
 
 </Project>
