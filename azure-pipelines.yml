@@ -66,6 +66,7 @@ steps:
   displayName: 'Copy bin and obj folders'
   inputs:
     Contents: | 
+      $(Build.SourcesDirectory)\Directory.Build.props
       $(Build.SourcesDirectory)\LICENSE.txt
       $(Build.SourcesDirectory)\Maoli\bin\**\*.*
       $(Build.SourcesDirectory)\Maoli\obj\project.assets.json
